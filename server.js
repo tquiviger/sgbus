@@ -7,7 +7,7 @@ var fs = require('fs');
 
 var app = express();
 
-var configurationFile = '/Users/thomas/sgbus/config.json';
+var configurationFile = '/home/ec2-user/config/config.json';
 var configuration = JSON.parse(fs.readFileSync(configurationFile));
 
 var _baseBusArrivalsUrl = 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival?SST=True&BusStopID=';
@@ -18,11 +18,11 @@ var static_path = path.join(__dirname, 'public');
 app.use(cors());
 
 https.createServer({
-      key: fs.readFileSync('/Users/thomas/sgbus/ssl/server.key'),
-      cert: fs.readFileSync('/Users/thomas/sgbus/ssl/server.crt')
+      key: fs.readFileSync('/home/ec2-user/config/key.pem'),
+      cert: fs.readFileSync('/home/ec2-user/config/cert.pem')
     }, app).listen(8080, function(){
-                          console.log("Express server listening on port " + 8080);
-                        });
+          console.log("Express server listening on port " + 8080);
+       });
 
 app.get('/api/bus_arrivals/:bus_stop_id', function (req, res) {
     axios.get(_baseBusArrivalsUrl + req.params.bus_stop_id, {
