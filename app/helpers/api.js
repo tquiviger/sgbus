@@ -65,7 +65,7 @@ function getBusStation(bus) {
         .then(axios.spread(function (arrivals, info) {
             arrivals.stationDesc = info._source
             arrivals.Services = arrivals.Services.sort(function(a, b){
-                return a.ServiceNo.replace(/\D/g,'')-b.ServiceNo.replace(/\D/g,'')
+            return a.Status.localeCompare(b.Status) || a.ServiceNo.replace(/\D/g,'')-b.ServiceNo.replace(/\D/g,'')
             });
             return arrivals
         }))

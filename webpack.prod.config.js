@@ -9,7 +9,7 @@ module.exports = {
         './app/index'
     ],
     externals: {
-        'Config': JSON.stringify(require('/home/ec2-user/config/config.json'))
+        'Config': JSON.stringify(require('/Users/thomas/sgbus/config.json'))
      },
     output: {
         path: path.join(__dirname, 'public'),
