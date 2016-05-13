@@ -1,0 +1,38 @@
+{
+  "name": "SGBus",
+  "version": "1.0.0",
+  "description": "SG Bus",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "prod": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tquiviger/sgbus.git"
+  },
+  "author": "Thomas Quiviger ",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.9.1",
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-react": "^6.5.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "file-loader": "^0.8.5",
+    "google-map-react": "^0.11.2",
+    "html-webpack-plugin": "^2.9.0",
+    "moment": "^2.13.0",
+    "react": "^0.14.8",
+    "react-dom": "^0.14.8",
+    "react-router": "^2.0.0",
+    "searchkit": "^0.8.3",
+    "webpack": "^1.12.14"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/sgbus
+hooks:
+  ApplicationStop:
+    - location: scripts/stop-server.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/post-install.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start-server.sh
+      timeout: 300
+      runas: root
