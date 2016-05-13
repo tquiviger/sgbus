@@ -23,9 +23,8 @@ var SearchBusContainer = React.createClass({
         return (
             <div style={styles.container}>
                 <h1 style={styles.header}>Enter the name of a Bus Station</h1>
+                <SearchBus/>
                 <NearestBusStationContainer/>
-                <SearchBus
-                />
             </div>
         );
     }

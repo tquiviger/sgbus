@@ -47,7 +47,7 @@ function getNearestBusStationInfo(lat,lon) {
                     "lon": lon
                     },
                     "order":         "asc",
-                    "unit":          "km",
+                    "unit":          "m",
                     "distance_type": "plane"
                   }
                 }

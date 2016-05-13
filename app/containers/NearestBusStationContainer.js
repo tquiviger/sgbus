@@ -1,6 +1,5 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var GetBusStation = require('../components/search/GetBusStation');
 var NearestBusStation = require('../components/search/NearestBusStation');
 var getNearestBusStationInfo = require('../helpers/api').getNearestBusStationInfo;
 
@@ -14,11 +13,11 @@ var GetNearestBusStationContainer = React.createClass({
             buttonCallback: this.searchNearestBusStation
         }
     },
-    useGeoData: function(position) {
-        getNearestBusStationInfo(position.coords.latitude,position.coords.longitude)
+    locationSuccess: function(position) {
+        getNearestBusStationInfo(position.coords.latitude, position.coords.longitude)
             .then(function (stationData) {
                 this.setState({
-                    nearestStationName: stationData.hits.hits[0]._source.Description,
+                    nearestStationName: this.getStationNameAndDistance(stationData),
                     buttonCallback: function(e) {
                         e.preventDefault()
                         this.context.router.push('/detail/' + stationData.hits.hits[0]._id)
@@ -26,7 +25,7 @@ var GetNearestBusStationContainer = React.createClass({
                  })
              }.bind(this));
     },
-    toto: function(position) {
+    locationError: function(position) {
         this.setState({
             nearestStationName:'No Station found'
         });
@@ -34,10 +33,10 @@ var GetNearestBusStationContainer = React.createClass({
     searchNearestBusStation: function(e) {
         e.preventDefault()
         this.setState({
-            nearestStationName:'Loading'
+            nearestStationName:'loading'
         });
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.useGeoData, this.toto);
+            navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError);
         }
         else {
             this.setState({
@@ -48,6 +47,12 @@ var GetNearestBusStationContainer = React.createClass({
     getNearestStationInfo: function (stationId) {
         this.context.router.push('/detail/' + stationId)
 
+    },
+    getStationNameAndDistance: function(stationData){
+        return stationData.hits.hits[0]._source.Description
+        + ' ('
+        + Math.round(Number(stationData.hits.hits[0].sort[0]))
+        + ' meters)'
     },
     render: function() {
         return (

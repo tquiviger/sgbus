@@ -1,15 +1,29 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
+var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
+
+var styles = {
+    image: {
+        width: 40,
+        align: 'middle'
+    },
+    icon: {
+        marginRight: 5
+    }
+}
 
 function Button(props) {
     return (
         <div>
-               <button type='button'
+               { props.nearestStationName === 'loading'
+                    ? <img src={loadingImage} style={styles.image}/>
+                    : <button type='button'
                        style={{margin: 10}}
                        className='btn btn-primary'
                        onClick={props.onSubmitNearestBusStation}>
-                   <span className='glyphicon glyphicon-globe'/>{props.nearestStationName}
+                   <span style={styles.icon} className='glyphicon glyphicon-globe'/>{props.nearestStationName}
                </button>
+               }
        </div>
     )
 }
