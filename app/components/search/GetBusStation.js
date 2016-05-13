@@ -4,7 +4,7 @@ var PropTypes = React.PropTypes;
 function Button(props) {
     return (
         <button type='button'
-                style={{margin: 10}}
+                style={{margin: 9}}
                 className='btn btn-warning'
                 onClick={props.onSubmitBusStation}>
             {props.busStationName}
