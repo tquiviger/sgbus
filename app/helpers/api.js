@@ -26,6 +26,15 @@ function getBusStation(bus) {
     return axios.all([getBusStationArrivalsInfo(bus), getBusStationInfo(bus)])
         .then(axios.spread(function (arrivals, info) {
             arrivals.stationDesc = info._source
+            arrivals.Services = arrivals.Services.sort(function(a, b){
+            if(a.Status === b.Status)
+                {
+                    return a.ServiceNo.replace(/\D/g,'')-b.ServiceNo.replace(/\D/g,'')
+                }
+            return a.Status - b.Status;
+
+
+            });
             return arrivals
         }))
     

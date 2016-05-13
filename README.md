@@ -9,7 +9,7 @@ Giving real-time information about bus arrivals for a given bus stop in Singapor
 
 #### Installation
 
-Make sure to put in your webpack configuration the absolute path of the application ocnfiguration file
+Make sure to put in your webpack configuration the absolute path of the application configuration file
   
 The application configuration file should look like that : 
 
