@@ -1,5 +1,6 @@
 var React = require('react');
 var SearchBus = require('../components/search/SearchBusStation');
+var NearestBusStationContainer = require('./NearestBusStationContainer');
 
 var styles = {
     container: {
@@ -22,6 +23,7 @@ var SearchBusContainer = React.createClass({
         return (
             <div style={styles.container}>
                 <h1 style={styles.header}>Enter the name of a Bus Station</h1>
+                <NearestBusStationContainer/>
                 <SearchBus
                 />
             </div>

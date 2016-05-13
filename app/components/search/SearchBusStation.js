@@ -9,7 +9,6 @@ const SearchBox = Searchkit.SearchBox;
 const Hits = Searchkit.Hits;
 
 var styles = {
-
     query: {
         fontSize: 20,
         color: '#333',
@@ -21,6 +20,7 @@ var styles = {
 function SearchBusStation() {
     return (
         <div>
+
             <SearchkitProvider searchkit={searchkit}>
                 <div>
                     <div style={styles.query}>

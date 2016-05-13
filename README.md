@@ -23,6 +23,19 @@ The application configuration file should look like that :
 
 ```
 
-
-
+```
+curl -XPUT 'http://localhost:9200/sgbus/_mapping/bus_station' -d '
+{
+  
+            "properties": {
+                "BusStopCode": {"type": "string"},
+                "Description": {"type": "string"},
+                "RoadName": {"type": "string"},
+                "location": {"type": "geo_point"}
+            }
+        
+    
+}
+'
+```
 

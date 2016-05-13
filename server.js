@@ -21,14 +21,14 @@ app.use(cors());
 
 app.get('/api/bus_arrivals/:bus_stop_id', function (req, res) {
     axios.get(_baseBusArrivalsUrl + req.params.bus_stop_id, {
-            headers: {
-                         AccountKey: configuration.AccountKey,
-                         UniqueUserID: configuration.UniqueUserID
-                     }
-        })
-        .then(function (response) {
+        headers: {
+            AccountKey: configuration.AccountKey,
+            UniqueUserID: configuration.UniqueUserID
+        }
+    })
+         .then(function (response) {
             res.send(response.data)
-        })
+         })
 });
 
 
