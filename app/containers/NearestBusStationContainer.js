@@ -1,5 +1,4 @@
 var React = require('react');
-var PropTypes = React.PropTypes;
 var NearestBusStation = require('../components/search/NearestBusStation');
 var getNearestBusStationInfo = require('../helpers/api').getNearestBusStationInfo;
 

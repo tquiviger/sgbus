@@ -20,14 +20,14 @@ var styles = {
 function SearchBusStation() {
     return (
         <div>
-
             <SearchkitProvider searchkit={searchkit}>
                 <div>
                     <div style={styles.query}>
                         <SearchBox
                             searchOnChange={true}
                             queryOptions={{analyzer:"standard"}}
-                            queryFields={["Description", "languages", "text"]}
+                            queryFields={["Description"]}
+                            prefixQueryFields={["Description"]}
                         />
                     </div>
                     <div className="search_results">

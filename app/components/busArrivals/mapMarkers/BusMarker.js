@@ -1,4 +1,5 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 
 const K_WIDTH = 20;
 const K_HEIGHT = 20;
@@ -25,6 +26,10 @@ function BusMarker(props) {
             {props.busNumber}
         </div>
     )
+}
+
+BusMarker.propTypes = {
+    busNumber: PropTypes.string.isRequired
 }
 
 module.exports = BusMarker;

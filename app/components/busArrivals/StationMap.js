@@ -3,6 +3,7 @@ var GoogleMap = require('google-map-react')
 var StationMarker = require('./mapMarkers/StationMarker')
 var BusMarker = require('./mapMarkers/BusMarker')
 var Config = require('Config')
+var PropTypes = React.PropTypes;
 
 function StationMap(props) {
     return (
@@ -26,6 +27,10 @@ function StationMap(props) {
             />
         </GoogleMap>
     )
+}
+
+StationMap.propTypes = {
+    stationData: PropTypes.object.isRequired
 }
 
 module.exports = StationMap;

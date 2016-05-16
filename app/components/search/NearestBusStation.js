@@ -53,6 +53,7 @@ function NearestBusStation(props) {
 
 NearestBusStation.propTypes = {
     onSubmitNearestBusStation: PropTypes.func.isRequired,
+    nearestStationName: PropTypes.string.isRequired
 }
 
 module.exports = NearestBusStation;

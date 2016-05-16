@@ -1,6 +1,7 @@
 var React = require('react');
 var Detail = require('./Detail');
 var StationMap = require('./StationMap');
+var PropTypes = React.PropTypes;
 
 var styles = {
     descriptionContainer: {
@@ -30,6 +31,10 @@ function BusStation(props) {
 
         </div>
     )
+}
+
+BusStation.propTypes = {
+    stationData: PropTypes.object.isRequired
 }
 
 

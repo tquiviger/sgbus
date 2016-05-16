@@ -1,6 +1,7 @@
 var React = require('react');
 var moment = require('moment')
 var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
+var PropTypes = React.PropTypes;
 
 var styles = {
     descriptionContainer: {
@@ -24,7 +25,7 @@ var styles = {
 function getInterval(status, date) {
     var interval = ''
     if (status != 'In Operation') {
-        return <td></td>
+        return <td/>
     }
     if (date) {
         interval = moment(date).fromNow(true)
@@ -74,6 +75,10 @@ function Detail(props) {
             </div>
         </div>
     )
+}
+
+Detail.propTypes = {
+    stationData: PropTypes.object.isRequired
 }
 
 module.exports = Detail;
