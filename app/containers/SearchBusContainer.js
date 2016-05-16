@@ -14,9 +14,9 @@ var styles = {
     header: {
         fontSize: 45,
         color: '#fff',
-        fontWeight: 100,
+        fontWeight: 100
     }
-}
+};
 
 var SearchBusContainer = React.createClass({
     render: function () {

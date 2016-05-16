@@ -4,15 +4,23 @@ var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
 
 var styles = {
     image: {
-        width: 40,
+        width: 60,
         align: 'middle'
     },
     icon: {
         marginRight: 5
+    },
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        maxWidth: 300,
+        alignSelf: 'right'
     }
-}
+};
 
-function Button(props) {
+function FindNearestButton(props) {
     return (
         <div>
             { props.nearestStationName === 'loading'
@@ -29,31 +37,23 @@ function Button(props) {
 }
 
 
-function getStyles(props) {
-    return {
-        display: 'flex',
-        flexDirection: props.direction || 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxWidth: 300,
-        alignSelf: 'right'
-    }
-}
 
-function NearestBusStation(props) {
-    return (
-        <div style={getStyles(props)}>
-            <Button
-                onSubmitNearestBusStation={props.onSubmitNearestBusStation}
-                nearestStationName={props.nearestStationName}
-            />
-        </div>
-    )
-}
+var NearestBusStation = React.createClass({
+    render: function () {
+        return (
+            <div style={styles.container}>
+                <FindNearestButton
+                    onSubmitNearestBusStation={this.props.onSubmitNearestBusStation}
+                    nearestStationName={this.props.nearestStationName}
+                />
+            </div>
+        )
+    }
+});
 
 NearestBusStation.propTypes = {
     onSubmitNearestBusStation: PropTypes.func.isRequired,
     nearestStationName: PropTypes.string.isRequired
-}
+};
 
 module.exports = NearestBusStation;

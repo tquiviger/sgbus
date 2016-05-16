@@ -3,9 +3,6 @@ var BusStation = require('../components/busArrivals/BusStation');
 var getBusStation = require('../helpers/api').getBusStation;
 
 var BusStationInfoContainer = React.createClass({
-    contextTypes: {
-        router: React.PropTypes.object.isRequired
-    },
     getInitialState: function () {
         return {
             isLoading: true,
@@ -29,7 +26,7 @@ var BusStationInfoContainer = React.createClass({
             }.bind(this));
     },
     updateData: function () {
-        stationData = this.state.stationData
+        var stationData = this.state.stationData;
         this.setState({
             stationData: stationData
         });

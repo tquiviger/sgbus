@@ -1,29 +1,17 @@
 var React = require('react');
-var PropTypes = React.PropTypes;
 var GetBusStation = require('../components/search/GetBusStation');
+var withRouter = require('react-router').withRouter;
 
 var GetBusStationContainer = React.createClass({
-    contextTypes: {
-        router: React.PropTypes.object.isRequired
-    },
-    getDefaultProps: function () {
-        return {
-            direction: 'column'
-        }
-    },
-    propTypes: {
-        direction: PropTypes.string
-    },
     getInitialState: function () {
         return {
             busStation: '',
             busStationName: ''
-
         }
     },
     handleSubmitBusStation: function (e) {
-        e.preventDefault()
-        this.context.router.push('/detail/' + this.props.result._id)
+        e.preventDefault();
+        this.props.router.push('/detail/' + this.props.result._id)
 
     },
     handleUpdateBusStation: function (e) {
@@ -44,4 +32,4 @@ var GetBusStationContainer = React.createClass({
     }
 });
 
-module.exports = GetBusStationContainer;
+module.exports = withRouter(GetBusStationContainer);

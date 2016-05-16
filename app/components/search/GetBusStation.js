@@ -1,6 +1,19 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
+
+var styles = {
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        maxWidth: 300,
+        alignSelf: 'right'
+    }
+};
+
+
 function Button(props) {
     return (
         <button type='button'
@@ -12,28 +25,18 @@ function Button(props) {
     )
 }
 
-
-function getStyles(props) {
-    return {
-        display: 'flex',
-        flexDirection: props.direction || 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxWidth: 300,
-        alignSelf: 'right'
+var GetBusStation = React.createClass({
+    render: function () {
+        return (
+            <div style={styles.container}>
+                <Button
+                    onSubmitBusStation={this.props.onSubmitBusStation}
+                    busStationName={this.props.busStationName}>
+                </Button>
+            </div>
+        )
     }
-}
-
-function GetBusStation(props) {
-    return (
-        <div style={getStyles(props)}>
-            <Button
-                onSubmitBusStation={props.onSubmitBusStation}
-                busStationName={props.busStationName}>
-            </Button>
-        </div>
-    )
-}
+});
 
 GetBusStation.propTypes = {
     direction: PropTypes.string,
@@ -41,6 +44,6 @@ GetBusStation.propTypes = {
     onUpdateBusStation: PropTypes.func.isRequired,
     busStation: PropTypes.string.isRequired,
     busStationName: PropTypes.string
-}
+};
 
 module.exports = GetBusStation;

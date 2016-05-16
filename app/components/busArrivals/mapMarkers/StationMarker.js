@@ -20,10 +20,12 @@ const placeStyle = {
 };
 
 
-function StationMarker(props) {
-    return (
-        <div style={placeStyle}></div>
-    )
-}
+var StationMarker = React.createClass({
+    render: function () {
+        return (
+            <div style={placeStyle}></div>
+        )
+    }
+});
 
 module.exports = StationMarker;

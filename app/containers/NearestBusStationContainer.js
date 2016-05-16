@@ -1,6 +1,7 @@
 var React = require('react');
 var NearestBusStation = require('../components/search/NearestBusStation');
 var getNearestBusStationInfo = require('../helpers/api').getNearestBusStationInfo;
+var withRouter = require('react-router').withRouter;
 
 var GetNearestBusStationContainer = React.createClass({
     contextTypes: {
@@ -18,19 +19,19 @@ var GetNearestBusStationContainer = React.createClass({
                 this.setState({
                     nearestStationName: this.getStationNameAndDistance(stationData),
                     buttonCallback: function (e) {
-                        e.preventDefault()
-                        this.context.router.push('/detail/' + stationData.hits.hits[0]._id)
+                        e.preventDefault();
+                        this.props.router.push('/detail/' + stationData.hits.hits[0]._id)
                     }.bind(this)
                 })
             }.bind(this));
     },
-    locationError: function (position) {
+    locationError: function () {
         this.setState({
             nearestStationName: 'No Station found'
         });
     },
     searchNearestBusStation: function (e) {
-        e.preventDefault()
+        e.preventDefault();
         this.setState({
             nearestStationName: 'loading'
         });
@@ -42,10 +43,6 @@ var GetNearestBusStationContainer = React.createClass({
                 nearestStationName: 'No Station found'
             });
         }
-    },
-    getNearestStationInfo: function (stationId) {
-        this.context.router.push('/detail/' + stationId)
-
     },
     getStationNameAndDistance: function (stationData) {
         return stationData.hits.hits[0]._source.Description
@@ -63,4 +60,4 @@ var GetNearestBusStationContainer = React.createClass({
     }
 });
 
-module.exports = GetNearestBusStationContainer;
+module.exports = withRouter(GetNearestBusStationContainer);

@@ -1,6 +1,5 @@
 var React = require('react');
-var GetBusContainer = require('./GetBusStationContainer');
-var Link = require('react-router').Link
+var Link = require('react-router').Link;
 var logo = require('file?name=[name].[ext]!../images/logo.png');
 
 var styles = {
@@ -19,7 +18,7 @@ var styles = {
         width: 40,
         align: 'middle'
     }
-}
+};
 
 var Main = React.createClass({
     render: function () {
@@ -36,6 +35,6 @@ var Main = React.createClass({
             </div>
         )
     }
-})
+});
 
 module.exports = Main;

@@ -1,5 +1,5 @@
 var axios = require('axios');
-var Config = require('Config')
+var Config = require('Config');
 
 var _apiBusArrivalsUrl = Config.apiUrl + '/bus_arrivals/';
 var _apiBusServicesUrl = Config.apiUrl + '/bus_stations/';
@@ -63,7 +63,7 @@ function getBusStation(bus) {
 
     return axios.all([getBusStationArrivalsInfo(bus), getBusStationInfo(bus)])
         .then(axios.spread(function (arrivals, info) {
-            arrivals.stationDesc = info._source
+            arrivals.stationDesc = info._source;
             arrivals.Services = arrivals.Services.sort(function (a, b) {
                 return a.Status.localeCompare(b.Status) || a.ServiceNo.replace(/\D/g, '') - b.ServiceNo.replace(/\D/g, '')
             });

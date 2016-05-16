@@ -4,7 +4,7 @@ var StationMap = require('./StationMap');
 var PropTypes = React.PropTypes;
 
 var styles = {
-    descriptionContainer: {
+    container: {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -12,30 +12,31 @@ var styles = {
         height: '100%',
         width: '100%'
     }
-}
+};
 
-function BusStation(props) {
+var BusStation = React.createClass({
+    render: function () {
 
-    return (
-        <div style={styles.descriptionContainer}>
-            {
-                props.isLoading === true
-                    ? <h1 style={styles.header}> Loading </h1>
-                    : <StationMap stationData={props.stationData}/>
-            }
-            {
-                props.isLoading === true
-                    ? ''
-                    : <Detail stationData={props.stationData}/>
-            }
-
-        </div>
-    )
-}
+        return (
+            <div style={styles.container}>
+                {
+                    this.props.isLoading === true
+                        ? <h1 style={styles.header}> Loading </h1>
+                        : <StationMap stationData={this.props.stationData}/>
+                }
+                {
+                    this.props.isLoading === true
+                        ? ''
+                        : <Detail stationData={this.props.stationData}/>
+                }
+            </div>
+        )
+    }
+});
 
 BusStation.propTypes = {
-    stationData: PropTypes.object.isRequired
-}
-
+    stationData: PropTypes.object.isRequired,
+    isLoading: PropTypes.bool.isRequired
+};
 
 module.exports = BusStation;

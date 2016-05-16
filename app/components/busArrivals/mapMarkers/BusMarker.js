@@ -20,16 +20,18 @@ const placeStyle = {
 };
 
 
-function BusMarker(props) {
-    return (
-        <div style={placeStyle}>
-            {props.busNumber}
-        </div>
-    )
-}
+var BusMarker = React.createClass({
+    render: function () {
+        return (
+            <div style={placeStyle}>
+                {this.props.busNumber}
+            </div>
+        )
+    }
+});
 
 BusMarker.propTypes = {
     busNumber: PropTypes.string.isRequired
-}
+};
 
 module.exports = BusMarker;

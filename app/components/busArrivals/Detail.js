@@ -1,10 +1,10 @@
 var React = require('react');
-var moment = require('moment')
+var moment = require('moment');
 var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 var PropTypes = React.PropTypes;
 
 var styles = {
-    descriptionContainer: {
+    container: {
         backgroundSize: 'cover',
         backgroundImage: 'url(' + backgroundImage + ')',
         fontWeight: 100,
@@ -20,15 +20,15 @@ var styles = {
     icon: {
         marginRight: 3
     }
-}
+};
 
 function getInterval(status, date) {
-    var interval = ''
+    var interval = '';
     if (status != 'In Operation') {
         return <td/>
     }
     if (date) {
-        interval = moment(date).fromNow(true)
+        interval = moment(date).fromNow(true);
         if (interval === 'a few seconds') {
             interval = <b>Arrived</b>
         }
@@ -42,43 +42,46 @@ function getInterval(status, date) {
 }
 
 
-function Detail(props) {
-    return (
-        <div className="row" style={styles.descriptionContainer}>
-            <div className="col-md-4">
-                <h1>{props.stationData.stationDesc.Description} </h1>
-                <h4>{props.stationData.stationDesc.RoadName}</h4>
-                <h4>#{props.stationData.BusStopID}</h4>
+var Detail = React.createClass({
+    render: function () {
+        var stationData = this.props.stationData;
+        return (
+            <div className="row" style={styles.container}>
+                <div className="col-md-4">
+                    <h1>{stationData.stationDesc.Description} </h1>
+                    <h4>{stationData.stationDesc.RoadName}</h4>
+                    <h4>#{stationData.BusStopID}</h4>
+                </div>
+                <div style={styles.table} className="col-md-8">
+                    <table className="table table-condensed">
+                        <tbody>
+                        {stationData.Services.map(function (result) {
+                            return (
+                                <tr key={result.OriginatingID+result.ServiceNo}>
+                                    <td>
+                                        { result.Status === 'In Operation'
+                                            ? <span className="glyphicon glyphicon-ok-circle"/>
+                                            : <span className="glyphicon glyphicon-ban-circle"/>
+                                        }
+                                    </td>
+                                    <td>Bus {result.ServiceNo}</td>
+                                    <td>{result.Operator}</td>
+                                    {getInterval(result.Status, result.NextBus.EstimatedArrival)}
+                                    {getInterval(result.Status, result.SubsequentBus.EstimatedArrival)}
+                                    {getInterval(result.Status, result.SubsequentBus3.EstimatedArrival)}
+                                </tr>)
+                        })}
+                        </tbody>
+                    </table>
+                    <small>Data are refreshed every 5 seconds</small>
+                </div>
             </div>
-            <div style={styles.table} className="col-md-8">
-                <table className="table table-condensed">
-                    <tbody>
-                    {props.stationData.Services.map(function (result) {
-                        return (
-                            <tr key={result.ServiceNo}>
-                                <td>
-                                    { result.Status === 'In Operation'
-                                        ? <span className="glyphicon glyphicon-ok-circle"/>
-                                        : <span className="glyphicon glyphicon-ban-circle"/>
-                                    }
-                                </td>
-                                <td>Bus {result.ServiceNo}</td>
-                                <td>{result.Operator}</td>
-                                {getInterval(result.Status, result.NextBus.EstimatedArrival)}
-                                {getInterval(result.Status, result.SubsequentBus.EstimatedArrival)}
-                                {getInterval(result.Status, result.SubsequentBus3.EstimatedArrival)}
-                            </tr>)
-                    })}
-                    </tbody>
-                </table>
-                <small>Datas are refreshed every 5 seconds</small>
-            </div>
-        </div>
-    )
-}
+        )
+    }
+});
 
 Detail.propTypes = {
     stationData: PropTypes.object.isRequired
-}
+};
 
 module.exports = Detail;

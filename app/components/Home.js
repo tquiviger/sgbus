@@ -1,5 +1,4 @@
 var React = require('react');
-var PropTypes = React.PropTypes;
 var SearchBusContainer = require('../containers/SearchBusContainer');
 var backgroundImage = require('file?name=[name].[ext]!../images/pattern.svg');
 
@@ -17,11 +16,11 @@ var styles = {
   header: {
     fontSize: 45,
     color: '#fff',
-    fontWeight: 100,
+    fontWeight: 100
   }
-}
+};
 
-function Home (props) {
+function Home () {
   return (
     <div style={styles.container}>
         <SearchBusContainer/>
