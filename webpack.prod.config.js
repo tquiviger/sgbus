@@ -10,7 +10,7 @@ module.exports = {
     ],
     externals: {
         'Config': JSON.stringify(require('/home/ec2-user/config/config.json'))
-     },
+    },
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'index_bundle.js',

@@ -14,18 +14,18 @@ var styles = {
 }
 
 function BusStation(props) {
-    
+
     return (
         <div style={styles.descriptionContainer}>
             {
                 props.isLoading === true
                     ? <h1 style={styles.header}> Loading </h1>
-                    : <StationMap stationData={props.stationData} />
+                    : <StationMap stationData={props.stationData}/>
             }
             {
                 props.isLoading === true
                     ? ''
-                    : <Detail stationData={props.stationData} />
+                    : <Detail stationData={props.stationData}/>
             }
 
         </div>

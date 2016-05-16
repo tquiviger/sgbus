@@ -23,7 +23,7 @@ var styles = {
 
 function getInterval(status, date) {
     var interval = ''
-    if (status != 'In Operation'){
+    if (status != 'In Operation') {
         return <td></td>
     }
     if (date) {

@@ -18,11 +18,11 @@ var static_path = path.join(__dirname, 'public');
 app.use(cors());
 
 https.createServer({
-      key: fs.readFileSync('/home/ec2-user/config/key.pem'),
-      cert: fs.readFileSync('/home/ec2-user/config/cert.pem')
-    }, app).listen(8080, function(){
-          console.log("Express server listening on port " + 8080);
-       });
+    key: fs.readFileSync('/home/ec2-user/config/key.pem'),
+    cert: fs.readFileSync('/home/ec2-user/config/cert.pem')
+}, app).listen(8080, function () {
+    console.log("Express server listening on port " + 8080);
+});
 
 app.get('/api/bus_arrivals/:bus_stop_id', function (req, res) {
     axios.get(_baseBusArrivalsUrl + req.params.bus_stop_id, {
@@ -31,9 +31,9 @@ app.get('/api/bus_arrivals/:bus_stop_id', function (req, res) {
             UniqueUserID: configuration.UniqueUserID
         }
     })
-         .then(function (response) {
+        .then(function (response) {
             res.send(response.data)
-         })
+        })
 });
 
 
@@ -45,10 +45,9 @@ app.get('/api/bus_stations/:bus_stop_id', function (req, res) {
 });
 
 
-
 app.use(express.static(static_path))
     .get('/', function (req, res) {
         res.sendFile('index.html', {
             root: static_path
         });
-});
+    });

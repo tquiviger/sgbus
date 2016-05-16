@@ -29,7 +29,7 @@ var BusStationInfoContainer = React.createClass({
             }.bind(this));
     },
     updateData: function () {
-        stationData=this.state.stationData
+        stationData = this.state.stationData
         this.setState({
             stationData: stationData
         });

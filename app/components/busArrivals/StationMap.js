@@ -23,7 +23,7 @@ function StationMap(props) {
             <StationMarker
                 lat={props.stationData.stationDesc.Latitude}
                 lng={props.stationData.stationDesc.Longitude}
-                />
+            />
         </GoogleMap>
     )
 }

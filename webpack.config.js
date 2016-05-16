@@ -13,7 +13,7 @@ module.exports = {
         './app/index.js'
     ],
     externals: {
-      'Config': JSON.stringify(require('/Users/thomas/sgbus/config.json'))
+        'Config': JSON.stringify(require('/Users/thomas/sgbus/config.json'))
     },
     output: {
         path: __dirname + '/dist',

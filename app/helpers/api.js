@@ -22,38 +22,38 @@ function getBusStationInfo(bus) {
         })
 }
 
-function getNearestBusStationInfo(lat,lon) {
+function getNearestBusStationInfo(lat, lon) {
 
-    return axios.post(_elasticSearchBusStationUrl,{
-            "from" : 0, "size" : 1,
-              "query": {
+    return axios.post(_elasticSearchBusStationUrl, {
+            "from": 0, "size": 1,
+            "query": {
                 "filtered": {
-                  "filter": {
-                    "geo_distance": {
-                      "distance": "1km",
-                      "location": {
-                        "lat":  lat,
-                        "lon": lon
-                      }
+                    "filter": {
+                        "geo_distance": {
+                            "distance": "1km",
+                            "location": {
+                                "lat": lat,
+                                "lon": lon
+                            }
+                        }
                     }
-                  }
                 }
-              },
-              "sort": [
+            },
+            "sort": [
                 {
-                  "_geo_distance": {
-                    "location": {
-                    "lat":  lat,
-                    "lon": lon
-                    },
-                    "order":         "asc",
-                    "unit":          "m",
-                    "distance_type": "plane"
-                  }
+                    "_geo_distance": {
+                        "location": {
+                            "lat": lat,
+                            "lon": lon
+                        },
+                        "order": "asc",
+                        "unit": "m",
+                        "distance_type": "plane"
+                    }
                 }
-              ]
-            }
-        )
+            ]
+        }
+    )
         .then(function (currentBusData) {
             return currentBusData.data
         })
@@ -64,12 +64,12 @@ function getBusStation(bus) {
     return axios.all([getBusStationArrivalsInfo(bus), getBusStationInfo(bus)])
         .then(axios.spread(function (arrivals, info) {
             arrivals.stationDesc = info._source
-            arrivals.Services = arrivals.Services.sort(function(a, b){
-            return a.Status.localeCompare(b.Status) || a.ServiceNo.replace(/\D/g,'')-b.ServiceNo.replace(/\D/g,'')
+            arrivals.Services = arrivals.Services.sort(function (a, b) {
+                return a.Status.localeCompare(b.Status) || a.ServiceNo.replace(/\D/g, '') - b.ServiceNo.replace(/\D/g, '')
             });
             return arrivals
         }))
-    
+
 }
 
 module.exports = {

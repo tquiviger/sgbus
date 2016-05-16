@@ -30,7 +30,7 @@ function SearchBusStation() {
                             queryFields={["Description", "languages", "text"]}
                         />
                     </div>
-                    <div className="search_results" >
+                    <div className="search_results">
                         <Hits
                             hitsPerPage={6}
                             mod="sk-hits-list"

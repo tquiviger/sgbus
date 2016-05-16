@@ -26,7 +26,7 @@ var Main = React.createClass({
         return (
             <div style={styles.container}>
                 <div style={styles.header}>
-                    <Link to={'/'} >
+                    <Link to={'/'}>
                         <img src={logo} style={styles.image}/>
                     </Link>
                     <h2 style={{margin:7}}> Bus@Singapore</h2>

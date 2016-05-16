@@ -15,16 +15,16 @@ var styles = {
 function Button(props) {
     return (
         <div>
-               { props.nearestStationName === 'loading'
-                    ? <img src={loadingImage} style={styles.image}/>
-                    : <button type='button'
-                       style={{margin: 10}}
-                       className='btn btn-primary'
-                       onClick={props.onSubmitNearestBusStation}>
-                   <span style={styles.icon} className='glyphicon glyphicon-globe'/>{props.nearestStationName}
-               </button>
-               }
-       </div>
+            { props.nearestStationName === 'loading'
+                ? <img src={loadingImage} style={styles.image}/>
+                : <button type='button'
+                          style={{margin: 10}}
+                          className='btn btn-primary'
+                          onClick={props.onSubmitNearestBusStation}>
+                <span style={styles.icon} className='glyphicon glyphicon-globe'/>{props.nearestStationName}
+            </button>
+            }
+        </div>
     )
 }
 
@@ -46,7 +46,7 @@ function NearestBusStation(props) {
             <Button
                 onSubmitNearestBusStation={props.onSubmitNearestBusStation}
                 nearestStationName={props.nearestStationName}
-                />
+            />
         </div>
     )
 }
