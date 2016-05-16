@@ -2,6 +2,7 @@ var React = require('react');
 var moment = require('moment');
 var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 var PropTypes = React.PropTypes;
+var Link = require('react-router').Link;
 
 var styles = {
     container: {
@@ -64,7 +65,9 @@ var Detail = React.createClass({
                                             : <span className="glyphicon glyphicon-ban-circle"/>
                                         }
                                     </td>
-                                    <td>Bus {result.ServiceNo}</td>
+                                    <td>
+                                        <Link to={'/routes/'+result.ServiceNo}>Bus {result.ServiceNo}</Link>
+                                    </td>
                                     <td>{result.Operator}</td>
                                     {getInterval(result.Status, result.NextBus.EstimatedArrival)}
                                     {getInterval(result.Status, result.SubsequentBus.EstimatedArrival)}

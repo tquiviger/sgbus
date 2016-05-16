@@ -4,10 +4,10 @@ var Config = require('Config');
 var _apiBusArrivalsUrl = Config.apiUrl + '/bus_arrivals/';
 var _apiBusServicesUrl = Config.apiUrl + '/bus_stations/';
 var _elasticSearchBusStationUrl = Config.elasticSearchUrl + '/sgbus/bus_station/_search';
+var _elasticSearchBusRoutesUrl = Config.elasticSearchUrl + '/sgbus/bus_routes/';
 
 
 function getBusStationArrivalsInfo(bus) {
-
     return axios.get(_apiBusArrivalsUrl + bus)
         .then(function (currentBusData) {
             return currentBusData.data
@@ -15,15 +15,20 @@ function getBusStationArrivalsInfo(bus) {
 }
 
 function getBusStationInfo(bus) {
-
     return axios.get(_apiBusServicesUrl + bus)
         .then(function (currentBusData) {
             return currentBusData.data
         })
 }
 
-function getNearestBusStationInfo(lat, lon) {
+function getBusRoutesInfo(bus) {
+    return axios.get(_elasticSearchBusRoutesUrl + bus)
+        .then(function (currentBusData) {
+            return currentBusData.data
+        })
+}
 
+function getNearestBusStationInfo(lat, lon) {
     return axios.post(_elasticSearchBusStationUrl, {
             "from": 0, "size": 1,
             "query": {
@@ -60,7 +65,6 @@ function getNearestBusStationInfo(lat, lon) {
 }
 
 function getBusStation(bus) {
-
     return axios.all([getBusStationArrivalsInfo(bus), getBusStationInfo(bus)])
         .then(axios.spread(function (arrivals, info) {
             arrivals.stationDesc = info._source;
@@ -75,5 +79,6 @@ function getBusStation(bus) {
 module.exports = {
     getBusStationArrivalsInfo: getBusStationArrivalsInfo,
     getBusStation: getBusStation,
-    getNearestBusStationInfo: getNearestBusStationInfo
+    getNearestBusStationInfo: getNearestBusStationInfo,
+    getBusRoutesInfo:getBusRoutesInfo
 };

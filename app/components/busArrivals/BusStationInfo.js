@@ -1,6 +1,6 @@
 var React = require('react');
-var Detail = require('./Detail');
-var StationMap = require('./StationMap');
+var BusStationArrivals = require('./BusStationArrivals');
+var BusStationMap = require('./BusStationMap');
 var PropTypes = React.PropTypes;
 
 var styles = {
@@ -14,7 +14,7 @@ var styles = {
     }
 };
 
-var BusStation = React.createClass({
+var BusStationInfo = React.createClass({
     render: function () {
 
         return (
@@ -22,21 +22,21 @@ var BusStation = React.createClass({
                 {
                     this.props.isLoading === true
                         ? <h1 style={styles.header}> Loading </h1>
-                        : <StationMap stationData={this.props.stationData}/>
+                        : <BusStationMap stationData={this.props.stationData}/>
                 }
                 {
                     this.props.isLoading === true
                         ? ''
-                        : <Detail stationData={this.props.stationData}/>
+                        : <BusStationArrivals stationData={this.props.stationData}/>
                 }
             </div>
         )
     }
 });
 
-BusStation.propTypes = {
+BusStationInfo.propTypes = {
     stationData: PropTypes.object.isRequired,
     isLoading: PropTypes.bool.isRequired
 };
 
-module.exports = BusStation;
+module.exports = BusStationInfo;

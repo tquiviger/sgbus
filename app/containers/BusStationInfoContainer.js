@@ -1,5 +1,5 @@
 var React = require('react');
-var BusStation = require('../components/busArrivals/BusStation');
+var BusStationInfo = require('../components/busArrivals/BusStationInfo');
 var getBusStation = require('../helpers/api').getBusStation;
 
 var BusStationInfoContainer = React.createClass({
@@ -33,7 +33,7 @@ var BusStationInfoContainer = React.createClass({
     },
     render: function () {
         return (
-            <BusStation
+            <BusStationInfo
                 busStation={this.props.routeParams.busStation}
                 isLoading={this.state.isLoading}
                 stationData={this.state.stationData}
