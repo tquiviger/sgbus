@@ -22,7 +22,7 @@ var styles = {
 };
 
 
-var BusStationRoutes = React.createClass({
+var BusRoutes = React.createClass({
     render: function () {
         var stationData = this.props.bus;
         return (
@@ -34,8 +34,9 @@ var BusStationRoutes = React.createClass({
     }
 });
 
-BusStationRoutes.propTypes = {
-    bus: PropTypes.string.isRequired
+BusRoutes.propTypes = {
+    bus: PropTypes.string.isRequired,
+    busData: PropTypes.object.isRequired
 };
 
-module.exports = BusStationRoutes;
+module.exports = BusRoutes;

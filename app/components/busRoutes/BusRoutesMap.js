@@ -5,7 +5,7 @@ var BusMarker = require('../mapMarkers/BusMarker');
 var Config = require('Config');
 var PropTypes = React.PropTypes;
 
-var BusStationMap = React.createClass({
+var BusRoutesMap = React.createClass({
     render: function () {
         var stationDesc = this.props.stationData.stationDesc;
         return (
@@ -32,8 +32,8 @@ var BusStationMap = React.createClass({
     }
 });
 
-BusStationMap.propTypes = {
-    stationData: PropTypes.object.isRequired
+BusRoutesMap.propTypes = {
+    busData: PropTypes.object.isRequired
 };
 
-module.exports = BusStationMap;
+module.exports = BusRoutesMap;
