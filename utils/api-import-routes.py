@@ -44,14 +44,20 @@ if __name__ == "__main__":
                     stopId = '0' + str(stopId)
                 else:
                     stopId = str(stopId)
-                newVal = {"BusStopName" + '.' + stopId: res['_source']['Description'],
+                newVal = {"BusStopCode" + '.' + stopId: res['_source']['BusStopCode'],
+                          "BusStopName" + '.' + stopId: res['_source']['Description'],
                           "BusStopRoad" + '.' + stopId: res['_source']['RoadName'],
+                          "Latitude" + '.' + stopId: res['_source']['Latitude'],
+                          "Longitude" + '.' + stopId: res['_source']['Longitude'],
                           "Distance" + '.' + stopId: bus['Distance']
                           }
                 if bus["ServiceNo"] in busDict:
                     tutu = busDict[bus["ServiceNo"]]
+                    tutu["BusStopCode" + '.' + stopId] = res['_source']['BusStopCode']
                     tutu["BusStopName" + '.' + stopId] = res['_source']['Description']
                     tutu["BusStopRoad" + '.' + stopId] = res['_source']['RoadName']
+                    tutu["Latitude" + '.' + stopId] = res['_source']['Latitude']
+                    tutu["Longitude" + '.' + stopId] = res['_source']['Longitude']
                     tutu["Distance" + '.' + stopId] = bus['Distance']
                     busDict[bus["ServiceNo"]] = tutu
                 else:
@@ -61,4 +67,5 @@ if __name__ == "__main__":
 
         count = count + 50
     for busStop, value in busDict.items():
-        es.index(index="sgbus", doc_type='bus_routes', id=busStop, body=value)
+        print('indexing '+busStop)
+        es.index(index="sgbus", doc_type='bus_route', id=busStop, body=value)
