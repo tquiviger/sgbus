@@ -24,7 +24,6 @@ var GetNearestBusStationContainer = React.createClass({
             }.bind(this));
     },
     locationError: function () {
-
         this.setState({
             buttonText: defaultNotFoundText
         });
@@ -32,14 +31,14 @@ var GetNearestBusStationContainer = React.createClass({
     searchNearestBusStation: function (e) {
         e.preventDefault();
         this.setState({
-            buttonText: defaultNotFoundText
+            buttonText: 'loading'
         });
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError);
         }
         else {
             this.setState({
-                buttonText: 'No Station found'
+                buttonText: defaultNotFoundText
             });
         }
     },
