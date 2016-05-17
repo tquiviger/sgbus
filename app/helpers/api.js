@@ -30,7 +30,7 @@ function getBusRoutesInfo(bus) {
 
 function getNearestBusStationInfo(lat, lon) {
     return axios.post(_elasticSearchBusStationUrl, {
-            "from": 0, "size": 1,
+            "from": 0, "size": 3,
             "query": {
                 "filtered": {
                     "filter": {

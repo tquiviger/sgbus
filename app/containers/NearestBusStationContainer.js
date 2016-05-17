@@ -3,11 +3,14 @@ var NearestBusStation = require('../components/search/NearestBusStation');
 var getNearestBusStationInfo = require('../helpers/api').getNearestBusStationInfo;
 var withRouter = require('react-router').withRouter;
 
+const defaultFindText = 'Find the nearest stations';
+const defaultNotFoundText = 'No Station found';
+
 var GetNearestBusStationContainer = React.createClass({
     getInitialState: function () {
         return {
-            nearestStationName: 'Find the nearest station',
-            nearestStationId:'',
+            buttonText: defaultFindText,
+            nearestStations: [],
             buttonCallback: this.searchNearestBusStation
         }
     },
@@ -15,46 +18,37 @@ var GetNearestBusStationContainer = React.createClass({
         getNearestBusStationInfo(position.coords.latitude, position.coords.longitude)
             .then(function (stationData) {
                 this.setState({
-                    nearestStationName: this.getStationNameAndDistance(stationData),
-                    nearestStationId:stationData.hits.hits[0]._id,
-                    buttonCallback: function (e) {
-                        e.preventDefault();
-                        this.props.router.push('/detail/' + e.currentTarget.getAttribute('value'))
-                    }.bind(this)
+                    buttonText: defaultFindText,
+                    nearestStations: stationData.hits.hits
                 })
             }.bind(this));
     },
     locationError: function () {
+
         this.setState({
-            nearestStationName: 'No Station found'
+            buttonText: defaultNotFoundText
         });
     },
     searchNearestBusStation: function (e) {
         e.preventDefault();
         this.setState({
-            nearestStationName: 'loading'
+            buttonText: defaultNotFoundText
         });
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError);
         }
         else {
             this.setState({
-                nearestStationName: 'No Station found'
+                buttonText: 'No Station found'
             });
         }
-    },
-    getStationNameAndDistance: function (stationData) {
-        return stationData.hits.hits[0]._source.Description
-            + ' ('
-            + Math.round(Number(stationData.hits.hits[0].sort[0]))
-            + ' meters)'
     },
     render: function () {
         return (
             <NearestBusStation
                 onSubmitNearestBusStation={this.state.buttonCallback}
-                nearestStationName={this.state.nearestStationName}
-                nearestStationId={this.state.nearestStationId}
+                buttonText={this.state.buttonText}
+                nearestStations={this.state.nearestStations}
             />
         )
     }
