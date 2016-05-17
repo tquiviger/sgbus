@@ -21,7 +21,7 @@ var styles = {
         fontWeight: 100
     },
     table: {
-        fontSize: 10,
+        fontSize: 12,
         height: '70%',
         overflow: 'scroll',
         textAlign: 'left'
@@ -43,7 +43,7 @@ var BusRoutes = React.createClass({
                         <td>
                             <Link to={'/detail/'+routes['BusStopCode.' + index]}>{routes['BusStopName.' + index]}</Link>
                         </td>
-                        <td>{routes['Distance.' + index]}</td>
+                        <td>{routes['Distance.' + index]} km</td>
                     </tr>
                 );
             }
@@ -55,6 +55,12 @@ var BusRoutes = React.createClass({
                 <h1>Bus { this.props.bus} </h1>
                 <div style={styles.table} className="col-md-8">
                     <table className="table table-condensed">
+                        <thead>
+                        <th>Road Name</th>
+                        <th>Bus Stop #</th>
+                        <th>Bus Stop Name</th>
+                        <th>Distance</th>
+                        </thead>
                         <tbody>{rows}</tbody>
                     </table>
                 </div>
