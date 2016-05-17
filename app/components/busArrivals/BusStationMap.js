@@ -5,8 +5,8 @@ var BusMarker = require('../mapMarkers/BusMarker');
 var Config = require('Config');
 var PropTypes = React.PropTypes;
 
-const stationMarkerSize = 8;
-const defaultZoom = 11;
+const stationMarkerSize = 20;
+const defaultZoom = 15;
 
 var BusStationMap = React.createClass({
     render: function () {
