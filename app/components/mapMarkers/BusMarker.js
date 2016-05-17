@@ -24,14 +24,15 @@ var BusMarker = React.createClass({
     render: function () {
         return (
             <div style={placeStyle}>
-                {this.props.busNumber}
+                {this.props.$hover ? 1 : this.props.busNumber}
             </div>
         )
     }
 });
 
 BusMarker.propTypes = {
-    busNumber: PropTypes.string.isRequired
+    busNumber: PropTypes.string.isRequired,
+    $hover: PropTypes.bool
 };
 
 module.exports = BusMarker;

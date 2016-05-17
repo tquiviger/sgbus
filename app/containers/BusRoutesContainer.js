@@ -6,7 +6,9 @@ var BusRoutesContainer = React.createClass({
     getInitialState: function () {
         return {
             isLoading: true,
-            busData: {}
+            busData: {},
+            currentStation:'',
+            onHoverStation: this.onHoverStation
         }
     },
     componentDidMount: function () {
@@ -27,12 +29,19 @@ var BusRoutesContainer = React.createClass({
             busData: busData
         });
     },
+    onHoverStation: function (e) {
+        this.setState({
+            currentStation:e.target.value
+        });
+    },
     render: function () {
         return (
             <BusInfo
                 bus={this.props.routeParams.bus}
                 isLoading={this.state.isLoading}
                 busData={this.state.busData}
+                currentStation={this.state.currentStation}
+                onHoverStation={this.state.onHoverStation}
             />
         )
     }

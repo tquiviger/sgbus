@@ -44,6 +44,13 @@ var BusRoutes = React.createClass({
                             <Link to={'/detail/'+routes['BusStopCode.' + index]}>{routes['BusStopName.' + index]}</Link>
                         </td>
                         <td>{routes['Distance.' + index]} km</td>
+                        <td>
+                            <button type='button'
+                                    className='btn btn-sm btn-primary'
+                                    value={index}
+                                    onClick={this.props.onHoverStation}>Show
+                            </button>
+                        </td>
                     </tr>
                 );
             }
@@ -56,10 +63,13 @@ var BusRoutes = React.createClass({
                 <div style={styles.table} className="col-md-8">
                     <table className="table table-condensed">
                         <thead>
-                        <th>Road Name</th>
-                        <th>Bus Stop #</th>
-                        <th>Bus Stop Name</th>
-                        <th>Distance</th>
+                        <tr>
+                            <th>Road Name</th>
+                            <th>Bus Stop #</th>
+                            <th>Bus Stop Name</th>
+                            <th>Distance</th>
+                            <th></th>
+                        </tr>
                         </thead>
                         <tbody>{rows}</tbody>
                     </table>

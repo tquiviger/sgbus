@@ -27,6 +27,8 @@ var BusStationMap = React.createClass({
                     })
                 }
                 <StationMarker
+                    stationName={stationDesc.Description}
+                    stationId={0}
                     size={stationMarkerSize}
                     lat={stationDesc.Latitude}
                     lng={stationDesc.Longitude}

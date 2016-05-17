@@ -20,6 +20,9 @@ var BusRoutesMap = React.createClass({
             if (routes['BusStopRoad.' + index] != null) {
                 rows.push(
                     <StationMarker
+                        stationName={routes['BusStopName.' + index]}
+                        stationId={index}
+                        currentStation={this.props.currentStation}
                         key={index}
                         lat={routes['Latitude.' + index]}
                         size={stationMarkerSize}

@@ -21,12 +21,18 @@ var BusInfo = React.createClass({
                 {
                     this.props.isLoading === true
                         ? <h1 style={styles.header}> Loading </h1>
-                        : <BusRoutesMap busData={this.props.busData}/>
+                        : <BusRoutesMap 
+                        busData={this.props.busData}
+                        currentStation={this.props.currentStation}/>
                 }
                 {
                     this.props.isLoading === true
                         ? ''
-                        : <BusRoutes bus={this.props.bus} busData={this.props.busData}/>
+                        : <BusRoutes 
+                        bus={this.props.bus} 
+                        busData={this.props.busData}
+                        onHoverStation={this.props.onHoverStation}
+                        currentStation={this.props.currentStation}/>
                 }
             </div>
         )
