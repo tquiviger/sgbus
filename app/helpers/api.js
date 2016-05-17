@@ -4,7 +4,7 @@ var Config = require('Config');
 var _apiBusArrivalsUrl = Config.apiUrl + '/bus_arrivals/';
 var _apiBusServicesUrl = Config.apiUrl + '/bus_stations/';
 var _elasticSearchBusStationUrl = Config.elasticSearchUrl + '/sgbus/bus_station/_search';
-var _elasticSearchBusRoutesUrl = Config.elasticSearchUrl + '/sgbus/bus_routes/';
+var _elasticSearchBusRoutesUrl = Config.elasticSearchUrl + '/sgbus/bus_route/';
 
 
 function getBusStationArrivalsInfo(bus) {

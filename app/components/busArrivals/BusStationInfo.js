@@ -16,18 +16,17 @@ var styles = {
 
 var BusStationInfo = React.createClass({
     render: function () {
-
         return (
             <div style={styles.container}>
                 {
                     this.props.isLoading === true
                         ? <h1 style={styles.header}> Loading </h1>
-                        : <BusStationMap stationData={this.props.stationData}/>
-                }
-                {
-                    this.props.isLoading === true
-                        ? ''
-                        : <BusStationArrivals stationData={this.props.stationData}/>
+                        : (
+                        <div>
+                            <BusStationMap stationData={this.props.stationData}/>
+                            <BusStationArrivals stationData={this.props.stationData}/>
+                        </div>
+                    )
                 }
             </div>
         )

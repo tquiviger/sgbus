@@ -5,28 +5,38 @@ var BusMarker = require('../mapMarkers/BusMarker');
 var Config = require('Config');
 var PropTypes = React.PropTypes;
 
+
+const stationMarkerSize = 8;
+const defaultZoom = 11;
+const defaultCenterLatitude = 1.3634594;
+const defaultCenterLongitude = 103.8200663;
+
 var BusRoutesMap = React.createClass({
     render: function () {
-        var stationDesc = this.props.stationData.stationDesc;
+        var routes = this.props.busData._source;
+        var rows = [];
+        for (var i = 0; i < 110; i++) {
+            var index = i < 10 ? '0' + i : i;
+            if (routes['BusStopRoad.' + index] != null) {
+                rows.push(
+                    <StationMarker
+                        key={index}
+                        lat={routes['Latitude.' + index]}
+                        size={stationMarkerSize}
+                        lng={routes['Longitude.' + index]}
+                    />
+                );
+            }
+
+        }
         return (
             <GoogleMap
                 bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
-                center={{ lat: stationDesc.Latitude, lng: stationDesc.Longitude }}
-                defaultZoom={ 15 }>
+                center={{ lat: defaultCenterLatitude, lng: defaultCenterLongitude }}
+                defaultZoom={ defaultZoom }>
                 {
-                    this.props.stationData.Services.map(function (result) {
-                        return (
-                            <BusMarker
-                                key={result.ServiceNo+result.OriginatingID}
-                                lat={result.NextBus.Latitude}
-                                lng={result.NextBus.Longitude}
-                                busNumber={result.ServiceNo}/>)
-                    })
+                    rows
                 }
-                <StationMarker
-                    lat={stationDesc.Latitude}
-                    lng={stationDesc.Longitude}
-                />
             </GoogleMap>
         )
     }
