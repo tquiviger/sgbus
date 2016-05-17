@@ -28,6 +28,7 @@ function FindNearestButton(props) {
                 : <button type='button'
                           style={{margin: 10}}
                           className='btn btn-primary'
+                          value={props.nearestStationId}
                           onClick={props.onSubmitNearestBusStation}>
                 <span style={styles.icon} className='glyphicon glyphicon-globe'/>{props.nearestStationName}
             </button>
@@ -45,6 +46,7 @@ var NearestBusStation = React.createClass({
                 <FindNearestButton
                     onSubmitNearestBusStation={this.props.onSubmitNearestBusStation}
                     nearestStationName={this.props.nearestStationName}
+                    nearestStationId={this.props.nearestStationId}
                 />
             </div>
         )
@@ -53,7 +55,8 @@ var NearestBusStation = React.createClass({
 
 NearestBusStation.propTypes = {
     onSubmitNearestBusStation: PropTypes.func.isRequired,
-    nearestStationName: PropTypes.string.isRequired
+    nearestStationName: PropTypes.string.isRequired,
+    nearestStationId: PropTypes.string.isRequired
 };
 
 module.exports = NearestBusStation;
