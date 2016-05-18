@@ -34,7 +34,7 @@ var BusRoutesMap = React.createClass({
         return (
             <GoogleMap
                 bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
-                center={{ lat: defaultCenterLatitude, lng: defaultCenterLongitude }}
+                defaultCenter={{ lat: defaultCenterLatitude, lng: defaultCenterLongitude }}
                 defaultZoom={ defaultZoom }>
                 {
                     rows

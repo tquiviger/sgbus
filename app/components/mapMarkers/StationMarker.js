@@ -6,7 +6,7 @@ const placeStyle = function (size, currentStation, stationId) {
     return {
         position: 'absolute',
         border: newSize / 5 + 'px solid #000',
-        backgroundColor: (currentStation.localeCompare(stationId)) ? 'rgba(252, 90, 44, 0.89)' : '#FFFF00',
+        backgroundColor: (currentStation.localeCompare(stationId)) ? '#2980B9' : '#F7DC6F',
         textAlign: 'center',
         width: newSize,
         height: newSize,
