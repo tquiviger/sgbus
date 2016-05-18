@@ -3,7 +3,10 @@ var Searchkit = require('searchkit');
 var GetBusStationContainer = require('../../containers/GetBusStationContainer');
 var Config = require('Config');
 
-const searchkit = new Searchkit.SearchkitManager(Config.elasticSearchUrl + "/sgbus/bus_station");
+const searchkit = new Searchkit.SearchkitManager(
+    Config.elasticSearchUrl + "/sgbus/bus_station",
+    {searchOnLoad: false, useHistory: false}
+);
 const SearchkitProvider = Searchkit.SearchkitProvider;
 const SearchBox = Searchkit.SearchBox;
 const Hits = Searchkit.Hits;

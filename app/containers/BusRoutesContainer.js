@@ -30,9 +30,11 @@ var BusRoutesContainer = React.createClass({
         });
     },
     onHoverStation: function (e) {
+        e.preventDefault();
         this.setState({
             currentStation:e.target.value
         });
+        console.log(this.state.currentStation)
     },
     render: function () {
         return (

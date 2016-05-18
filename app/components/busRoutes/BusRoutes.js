@@ -34,7 +34,7 @@ var BusRoutes = React.createClass({
         var routes = this.props.busData._source;
         var rows = [];
         for (var i = 0; i < 110; i++) {
-            var index = i < 10 ? '0' + i : i
+            var index = (i < 10) ? '0'+i : i
             if (routes['BusStopRoad.' + index] != null) {
                 rows.push(
                     <tr key={'BusStopRoad.'+index}>
@@ -68,7 +68,7 @@ var BusRoutes = React.createClass({
                             <th>Bus Stop #</th>
                             <th>Bus Stop Name</th>
                             <th>Distance</th>
-                            <th></th>
+                            <th/>
                         </tr>
                         </thead>
                         <tbody>{rows}</tbody>
