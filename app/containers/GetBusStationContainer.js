@@ -22,7 +22,6 @@ var GetBusStationContainer = React.createClass({
     render: function () {
         return (
             <GetBusStation
-                direction={this.props.direction}
                 onSubmitBusStation={this.handleSubmitBusStation}
                 onUpdateBusStation={this.handleUpdateBusStation}
                 busStation={this.props.result._id}

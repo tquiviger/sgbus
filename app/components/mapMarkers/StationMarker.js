@@ -2,11 +2,11 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 
 const placeStyle = function (size, currentStation, stationId) {
-    newSize = (currentStation === stationId) ? size * 2 : size
+    newSize = (currentStation.localeCompare(stationId)) ? size : size * 2
     return {
         position: 'absolute',
         border: newSize / 5 + 'px solid #000',
-        backgroundColor: (currentStation === stationId) ? '#FFFF00' : 'rgba(252, 90, 44, 0.89)',
+        backgroundColor: (currentStation.localeCompare(stationId)) ? 'rgba(252, 90, 44, 0.89)' : '#FFFF00',
         textAlign: 'center',
         width: newSize,
         height: newSize,
@@ -24,16 +24,15 @@ const placeStyle = function (size, currentStation, stationId) {
 var StationMarker = React.createClass({
     render: function () {
         return (
-            <div style={placeStyle(this.props.size, this.props.currentStation, this.props.stationId)}>
-            </div>
-
-
+            <div style={placeStyle(this.props.size, this.props.currentStation, this.props.stationId)}></div>
         )
     }
 });
 
 StationMarker.propTypes = {
-    $hover: PropTypes.bool
+    currentStation: PropTypes.string.isRequired,
+    stationId: PropTypes.string.isRequired
+
 };
 
 module.exports = StationMarker;

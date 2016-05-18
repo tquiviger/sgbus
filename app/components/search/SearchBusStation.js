@@ -16,8 +16,17 @@ var styles = {
         fontSize: 20,
         color: '#333',
         fontWeight: 100
+    },
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        maxWidth: 300,
+        alignSelf: 'right'
     }
 };
+
 
 var SearchBusStation = React.createClass({
     render : function() {
@@ -33,7 +42,7 @@ var SearchBusStation = React.createClass({
                                 prefixQueryFields={["Description"]}
                             />
                         </div>
-                        <div className="search_results">
+                        <div style={styles.container}>
                             <Hits
                                 hitsPerPage={6}
                                 mod="sk-hits-list"

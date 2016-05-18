@@ -36,7 +36,6 @@ function getInterval(status, date) {
     }
     return (
         <td>
-            <span style={styles.icon} className="glyphicon glyphicon-time"/>
             <span>{interval}</span>
         </td>
     )
@@ -55,6 +54,16 @@ var Detail = React.createClass({
                 </div>
                 <div style={styles.table} className="col-md-8">
                     <table className="table table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Bus #</th>
+                            <th>Company</th>
+                            <th><span style={styles.icon} className="glyphicon glyphicon-time"/>1st Bus</th>
+                            <th><span style={styles.icon} className="glyphicon glyphicon-time"/>2nd Bus</th>
+                            <th><span style={styles.icon} className="glyphicon glyphicon-time"/>3rd Bus</th>
+                        </tr>
+                        </thead>
                         <tbody>
                         {stationData.Services.map(function (result) {
                             return (
