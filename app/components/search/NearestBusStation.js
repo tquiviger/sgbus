@@ -46,7 +46,7 @@ function FindNearestButton(props) {
                 <button type='button'
                         key={result._id}
                         style={styles.button}
-                        className='btn btn-warning'
+                        className='btn btn-primary'
                         value={props.nearestStationId}>
                     <span style={styles.icon} className='glyphicon glyphicon-globe'/>{getStationNameAndDistance(result)}
                 </button>
@@ -60,7 +60,7 @@ function FindNearestButton(props) {
                 ? <img src={loadingImage} style={styles.image}/>
                 : <button type='button'
                           style={styles.button}
-                          className='btn btn-primary'
+                          className='btn btn-warning'
                           onClick={props.onSubmitNearestBusStation}>
                 <span style={styles.icon} className='glyphicon glyphicon-globe'/>{props.buttonText}
             </button>

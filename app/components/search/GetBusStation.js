@@ -18,7 +18,7 @@ function Button(props) {
     return (
         <button type='button'
                 style={{margin: 9}}
-                className='btn btn-warning'
+                className='btn btn-info'
                 onClick={props.onSubmitBusStation}>
             {props.busStationName}
         </button>

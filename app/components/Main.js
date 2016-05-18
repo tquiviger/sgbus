@@ -10,7 +10,7 @@ var styles = {
     header: {
         display: 'flex',
         alignItems: 'center',
-        background: 'rgba(252, 90, 44, 0.89)',
+        background: '#21618C',
         color: '#fff',
         padding: 5
     },
