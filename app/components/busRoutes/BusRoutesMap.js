@@ -5,7 +5,6 @@ var BusMarker = require('../mapMarkers/BusMarker');
 var Config = require('Config');
 var PropTypes = React.PropTypes;
 
-
 const stationMarkerSize = 8;
 const defaultZoom = 11;
 const defaultCenterLatitude = 1.3634594;

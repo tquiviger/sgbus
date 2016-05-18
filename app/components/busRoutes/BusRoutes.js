@@ -34,23 +34,16 @@ var BusRoutes = React.createClass({
         var routes = this.props.busData._source;
         var rows = [];
         for (var i = 0; i < 110; i++) {
-            var index = (i < 10) ? '0'+i : i
+            var index = (i < 10) ? '0' + i : i
             if (routes['BusStopRoad.' + index] != null) {
                 rows.push(
-                    <tr key={'BusStopRoad.'+index}>
+                    <tr key={'BusStopRoad.'+index} id={index} onMouseOver={this.props.onHoverStation}>
                         <td>{routes['BusStopRoad.' + index]}</td>
                         <td>{index}</td>
                         <td>
                             <Link to={'/detail/'+routes['BusStopCode.' + index]}>{routes['BusStopName.' + index]}</Link>
                         </td>
                         <td>{routes['Distance.' + index]} km</td>
-                        <td>
-                            <button type='button'
-                                    className='btn btn-sm btn-primary'
-                                    value={index}
-                                    onClick={this.props.onHoverStation}>Show
-                            </button>
-                        </td>
                     </tr>
                 );
             }
@@ -61,14 +54,13 @@ var BusRoutes = React.createClass({
             <div style={styles.container}>
                 <h1>Bus { this.props.bus} </h1>
                 <div style={styles.table} className="col-md-8">
-                    <table className="table table-condensed">
+                    <table className="table table-condensed table-hover">
                         <thead>
                         <tr>
                             <th>Road Name</th>
                             <th>Bus Stop #</th>
                             <th>Bus Stop Name</th>
                             <th>Distance</th>
-                            <th/>
                         </tr>
                         </thead>
                         <tbody>{rows}</tbody>

@@ -7,7 +7,7 @@ var BusRoutesContainer = React.createClass({
         return {
             isLoading: true,
             busData: {},
-            currentStation:'',
+            currentStation: '',
             onHoverStation: this.onHoverStation
         }
     },
@@ -31,10 +31,10 @@ var BusRoutesContainer = React.createClass({
     },
     onHoverStation: function (e) {
         e.preventDefault();
+        var stationClicked = e.currentTarget.id
         this.setState({
-            currentStation:e.target.value
+            currentStation: stationClicked
         });
-        console.log(this.state.currentStation)
     },
     render: function () {
         return (
