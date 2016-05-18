@@ -3,13 +3,10 @@ var NearestBusStation = require('../components/search/NearestBusStation');
 var getNearestBusStationInfo = require('../helpers/api').getNearestBusStationInfo;
 var withRouter = require('react-router').withRouter;
 
-const defaultFindText = 'Find the nearest stations';
-const defaultNotFoundText = 'No Station found';
-
 var GetNearestBusStationContainer = React.createClass({
     getInitialState: function () {
         return {
-            buttonText: defaultFindText,
+            isLoading: false,
             nearestStations: [],
             buttonCallback: this.searchNearestBusStation
         }
@@ -18,27 +15,22 @@ var GetNearestBusStationContainer = React.createClass({
         getNearestBusStationInfo(position.coords.latitude, position.coords.longitude)
             .then(function (stationData) {
                 this.setState({
-                    buttonText: defaultFindText,
+                    isLoading: false,
                     nearestStations: stationData.hits.hits
                 })
             }.bind(this));
     },
-    locationError: function () {
-        this.setState({
-            buttonText: defaultNotFoundText
-        });
-    },
     searchNearestBusStation: function (e) {
         e.preventDefault();
         this.setState({
-            buttonText: 'loading'
+            isLoading:true
         });
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.locationSuccess, this.locationError);
+            navigator.geolocation.getCurrentPosition(this.locationSuccess);
         }
         else {
             this.setState({
-                buttonText: defaultNotFoundText
+                isLoading:false
             });
         }
     },
@@ -46,7 +38,7 @@ var GetNearestBusStationContainer = React.createClass({
         return (
             <NearestBusStation
                 onSubmitNearestBusStation={this.state.buttonCallback}
-                buttonText={this.state.buttonText}
+                isLoading={this.state.isLoading}
                 nearestStations={this.state.nearestStations}
             />
         )

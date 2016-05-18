@@ -14,7 +14,7 @@ var styles = {
 };
 
 
-function Button(props) {
+var Button = function (props) {
     return (
         <button type='button'
                 style={{margin: 9}}
@@ -23,7 +23,7 @@ function Button(props) {
             {props.busStationName}
         </button>
     )
-}
+};
 
 var GetBusStation = React.createClass({
     render: function () {

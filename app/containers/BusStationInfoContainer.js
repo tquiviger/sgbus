@@ -2,6 +2,8 @@ var React = require('react');
 var BusStationInfo = require('../components/busArrivals/BusStationInfo');
 var getBusStation = require('../helpers/api').getBusStation;
 
+var myInterval;
+
 var BusStationInfoContainer = React.createClass({
     getInitialState: function () {
         return {

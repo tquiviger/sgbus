@@ -25,7 +25,7 @@ var styles = {
         height: '70%',
         overflow: 'scroll',
         textAlign: 'left'
-    },
+    }
 };
 
 
@@ -34,7 +34,7 @@ var BusRoutes = React.createClass({
         var routes = this.props.busData._source;
         var rows = [];
         for (var i = 0; i < 110; i++) {
-            var index = (i < 10) ? '0' + i : i
+            var index = (i < 10) ? '0' + i : i;
             if (routes['BusStopRoad.' + index] != null) {
                 rows.push(
                     <tr key={'BusStopRoad.'+index} id={index} onMouseOver={this.props.onHoverStation}>

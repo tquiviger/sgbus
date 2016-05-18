@@ -2,7 +2,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 
 const placeStyle = function (size, currentStation, stationId) {
-    newSize = (currentStation.localeCompare(stationId)) ? size : size * 2
+    var newSize = (currentStation.localeCompare(stationId)) ? size : size * 2;
     return {
         position: 'absolute',
         border: newSize / 5 + 'px solid #000',

@@ -10,7 +10,8 @@ var styles = {
         justifyContent: 'center',
         alignItems: 'center',
         maxWidth: 300,
-        alignSelf: 'right'
+        alignSelf: 'right',
+        align: 'middle'
     },
     buttons: {
         display: 'flex',
@@ -20,12 +21,11 @@ var styles = {
         alignItems: 'center'
     },
     button: {
-        align: 'middle',
         margin: 10
     },
     image: {
-        width: 60,
-        align: 'middle'
+        width: 60
+
     },
     icon: {
         marginRight: 5
@@ -37,10 +37,10 @@ function getStationNameAndDistance(stationData) {
         + ' ('
         + Math.round(Number(stationData.sort[0]))
         + ' meters)'
-};
+}
 
-function FindNearestButton(props) {
-    var buttons = props.nearestStations.map(function (result) {
+var FindNearestButton = function (props) {
+    var nearestStationsButtons = props.nearestStations.map(function (result) {
         return (
             <Link to={'/detail/'+result._id} key={result._id}>
                 <button type='button'
@@ -52,24 +52,23 @@ function FindNearestButton(props) {
                 </button>
             </Link>
         )
-    })
+    });
 
     return (
         <div style={styles.container}>
-            { props.buttonText === 'loading'
+            { props.isLoading
                 ? <img src={loadingImage} style={styles.image}/>
                 : <button type='button'
                           style={styles.button}
                           className='btn btn-warning'
                           onClick={props.onSubmitNearestBusStation}>
-                <span style={styles.icon} className='glyphicon glyphicon-globe'/>{props.buttonText}
+                <span style={styles.icon} className='glyphicon glyphicon-globe'/>Find the nearest stations
             </button>
             }
-
-            <div style={styles.buttons}>{buttons}</div>
+            <div style={styles.buttons}>{nearestStationsButtons}</div>
         </div>
     )
-}
+};
 
 
 var NearestBusStation = React.createClass({
@@ -77,7 +76,7 @@ var NearestBusStation = React.createClass({
         return (
             <FindNearestButton
                 onSubmitNearestBusStation={this.props.onSubmitNearestBusStation}
-                buttonText={this.props.buttonText}
+                isLoading={this.props.isLoading}
                 nearestStations={this.props.nearestStations}
             />
         )
@@ -86,7 +85,7 @@ var NearestBusStation = React.createClass({
 
 NearestBusStation.propTypes = {
     onSubmitNearestBusStation: PropTypes.func.isRequired,
-    buttonText: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     nearestStations: PropTypes.array.isRequired
 };
 

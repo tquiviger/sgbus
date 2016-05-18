@@ -31,7 +31,7 @@ var BusRoutesContainer = React.createClass({
     },
     onHoverStation: function (e) {
         e.preventDefault();
-        var stationClicked = e.currentTarget.id
+        var stationClicked = e.currentTarget.id;
         this.setState({
             currentStation: stationClicked
         });

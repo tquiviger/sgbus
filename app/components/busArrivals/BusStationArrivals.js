@@ -9,7 +9,7 @@ var styles = {
         backgroundSize: 'cover',
         backgroundImage: 'url(' + backgroundImage + ')',
         fontWeight: 100,
-        height: '71%',
+        height: '70%',
         width: '100%'
     },
     table: {
@@ -58,7 +58,7 @@ var Detail = React.createClass({
                         <tr>
                             <th>Status</th>
                             <th>Bus #</th>
-                            <th>Company</th>
+                            <th>Operator</th>
                             <th><span style={styles.icon} className="glyphicon glyphicon-time"/>1st Bus</th>
                             <th><span style={styles.icon} className="glyphicon glyphicon-time"/>2nd Bus</th>
                             <th><span style={styles.icon} className="glyphicon glyphicon-time"/>3rd Bus</th>
