@@ -22,9 +22,7 @@ var styles = {
 var SearchBusStation = React.createClass({
     render : function() {
         return (
-            <div>
                 <h1>{this.props.departureStation}</h1>
-            </div>
         )
     }
 });

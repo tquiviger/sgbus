@@ -4,25 +4,28 @@ var Home = require('../components/Home');
 var HomeContainer = React.createClass({
     getInitialState: function () {
         return {
-            departureStation: {},
-            arrivalStation: {},
-            buttonCallback: this.updateDepartureStation
+            mode: 'station',
+            buttonCallback: this.switchToItinerayMode
         }
     },
-    updateDepartureStation: function () {
+    switchToItinerayMode: function () {
         this.setState({
-            departureStation: {id: 1, name: "La station"},
-            buttonCallback: this.updateArrivalStation()
+            mode: 'itineray',
+            buttonCallback: this.switchToStationMode
         });
     },
-    updateArrivalStation: function () {
+    switchToStationMode: function () {
         this.setState({
-            departureStation: {id: 2, name: "L'autre station"}
+            mode: 'station',
+            buttonCallback: this.switchToItinerayMode
         });
     },
     render: function () {
         return (
-            <Home/>
+            <Home
+                mode={this.state.mode}
+                buttonCallback={this.state.buttonCallback}
+            />
         )
     }
 });

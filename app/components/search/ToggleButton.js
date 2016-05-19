@@ -1,27 +1,38 @@
 var React = require('react');
 var Config = require('Config');
-
+var PropTypes = React.PropTypes;
 
 var styles = {
     button: {
-        fontSize: 20,
-        color: '#333',
-        fontWeight: 100
+        float: 'right',
+        fontWeight: 100,
+        margin: 10,
+        backgroundColor: 'Transparent',
+        backgroundRepeat: 'no-repeat',
+        cursor: 'pointer',
+        outline: 'none'
     }
 };
 
 
-var SearchBusStation = React.createClass({
+var ToggleButton = React.createClass({
     render: function () {
         return (
-            <button style={styles.button}
-                    type='button'
-                    style={{margin: 9}}
-                    className='btn btn-info'
-            >w</button>
+            <button
+                type='button'
+                style={styles.button}
+                className='btn btn-primary'
+                onClick={this.props.buttonCallback}>
+                <span style={{marginRight :10}} className="glyphicon glyphicon-transfer"/>
+                {this.props.mode === 'station' ? 'Switch to Itinerary' : 'Switch to Bus Station'}
+            </button>
         )
     }
 });
 
+ToggleButton.propTypes = {
+    buttonCallback: PropTypes.func.isRequired,
+    mode: PropTypes.string.isRequired
+};
 
-module.exports = SearchBusStation;
+module.exports = ToggleButton;

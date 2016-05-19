@@ -1,5 +1,6 @@
 var React = require('react');
 var SearchBusStation = require('../../components/search/SearchBusStation');
+var ToggleButton = require('../../components/search/ToggleButton');
 var NearestBusStationContainer = require('./NearestBusStationContainer');
 
 var SearchBusStationContainer = React.createClass({
@@ -25,10 +26,7 @@ var SearchBusStationContainer = React.createClass({
         return (
             <div>
                 <SearchBusStation
-                    buttonCallback={this.state.buttonCallback}
-                    departureStation={this.state.departureStation}
-                    arrivalStation={this.state.arrivalStation}
-                />
+                    mode={this.props.mode}/>
                 <NearestBusStationContainer/>
             </div>
         )

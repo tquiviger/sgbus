@@ -2,7 +2,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 
 const K_WIDTH = 20;
-const K_HEIGHT = 20;
+const K_HEIGHT = 10;
 
 const placeStyle = {
     position: 'absolute',

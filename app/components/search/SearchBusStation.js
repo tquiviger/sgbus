@@ -16,21 +16,14 @@ var styles = {
     query: {
         fontSize: 20,
         color: '#333',
-        fontWeight: 100
-    },
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxWidth: 300,
-        alignSelf: 'right'
+        fontWeight: 100,
+        width: 300
     }
 };
 
-
 var SearchBusStation = React.createClass({
-    render : function() {
+    render: function () {
+        this.props.trucs=1;
         return (
             <div>
                 <SearchkitProvider searchkit={searchkit}>
@@ -43,20 +36,17 @@ var SearchBusStation = React.createClass({
                                 prefixQueryFields={["Description"]}
                             />
                         </div>
-                        <div style={styles.container}>
-                            <Hits
-                                hitsPerPage={6}
-                                mod="sk-hits-list"
-                                listComponent={BusStationResultsContainer}
-                            />
-                        </div>
+                        <Hits
+                            hitsPerPage={5}
+                            mod="sk-hits-list"
+                            listComponent={BusStationResultsContainer}
+                        />
                     </div>
                 </SearchkitProvider>
             </div>
         )
     }
 });
-
 
 
 module.exports = SearchBusStation;
