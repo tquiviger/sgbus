@@ -40,6 +40,20 @@ function getBusStation(bus) {
         }))
 }
 
+function getItineraryInfo(busStationDeparture, busStationArrival) {
+    return axios.all(
+        [
+            getBusForItinerary(busStationDeparture, busStationArrival),
+            getBusStationInfo(busStationDeparture),
+            getBusStationInfo(busStationArrival)
+        ])
+        .then(axios.spread(function (itinerary, depInfo, arrInfo) {
+            itinerary.departureStation=depInfo._source;
+            itinerary.arrivalStation=arrInfo._source;
+            return itinerary
+        }))
+}
+
 function getNearestBusStationInfo(lat, lon) {
     return axios.post(_elasticSearchBusStationUrl, {
             "from": 0, "size": 3,
@@ -112,5 +126,5 @@ module.exports = {
     getBusStationArrivalsInfo: getBusStationArrivalsInfo,
     getBusRoutesInfo: getBusRoutesInfo,
     getNearestBusStationInfo: getNearestBusStationInfo,
-    getBusForItinerary:getBusForItinerary
+    getItineraryInfo: getItineraryInfo
 };

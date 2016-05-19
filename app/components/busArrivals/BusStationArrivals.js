@@ -52,7 +52,7 @@ var Detail = React.createClass({
                     <h4>{stationData.stationDesc.RoadName}</h4>
                     <h4>#{stationData.BusStopID}</h4>
                 </div>
-                <div style={styles.table} className="col-md-">
+                <div style={styles.table} className="col-md-7">
                     <table className="table table-condensed">
                         <thead>
                         <tr>

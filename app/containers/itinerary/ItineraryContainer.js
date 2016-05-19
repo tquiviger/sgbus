@@ -1,23 +1,23 @@
 var React = require('react');
 var Itinerary = require('../../components/itinerary/Itinerary');
-var getBusForItinerary = require('../../helpers/api').getBusForItinerary;
+var getItineraryInfo = require('../../helpers/api').getItineraryInfo;
 
 var ItineraryContainer = React.createClass({
     getInitialState: function () {
         return {
             isLoading: true,
-            busData: []
+            busData: {}
         }
     },
     componentDidMount: function () {
         this.makeRequest(this.props.routeParams.departureStation, this.props.routeParams.arrivalStation);
     },
     makeRequest: function (departureStation, arrivalStation) {
-        getBusForItinerary(departureStation, arrivalStation)
+        getItineraryInfo(departureStation, arrivalStation)
             .then(function (busData) {
                 this.setState({
                     isLoading: false,
-                    busData: busData.hits.hits
+                    busData: busData
                 });
             }.bind(this));
     },
