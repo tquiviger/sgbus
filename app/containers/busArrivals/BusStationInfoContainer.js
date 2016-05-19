@@ -1,6 +1,6 @@
 var React = require('react');
-var BusStationInfo = require('../components/busArrivals/BusStationInfo');
-var getBusStation = require('../helpers/api').getBusStation;
+var BusStationInfo = require('../../components/busArrivals/BusStationInfo');
+var getBusStation = require('../../helpers/api').getBusStation;
 
 var myInterval;
 

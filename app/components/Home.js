@@ -1,6 +1,5 @@
 var React = require('react');
-var SearchBusStation = require('../components/search/SearchBusStation');
-var NearestBusStationContainer = require('../containers/NearestBusStationContainer');
+var SearchBusStationContainer = require('../containers/search/SearchBusStationContainer');
 var backgroundImage = require('file?name=[name].[ext]!../images/pattern.svg');
 
 
@@ -22,16 +21,15 @@ var styles = {
     }
 };
 
-var HomeContainer = React.createClass({
+var Home = React.createClass({
     render: function () {
         return (
             <div style={styles.container}>
                 <h1 style={styles.header}>Enter the name of a Bus Station</h1>
-                <SearchBusStation/>
-                <NearestBusStationContainer/>
+                <SearchBusStationContainer/>
             </div>
         )
     }
 });
 
-module.exports = HomeContainer;
+module.exports = Home;

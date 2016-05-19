@@ -1,6 +1,6 @@
 var React = require('react');
-var BusInfo = require('../components/busRoutes/BusInfo');
-var getBusRoutesInfo = require('../helpers/api').getBusRoutesInfo;
+var BusInfo = require('../../components/busRoutes/BusInfo');
+var getBusRoutesInfo = require('../../helpers/api').getBusRoutesInfo;
 
 var BusRoutesContainer = React.createClass({
     getInitialState: function () {

@@ -1,6 +1,7 @@
 var React = require('react');
 var Searchkit = require('searchkit');
-var GetBusStationContainer = require('../../containers/GetBusStationContainer');
+var BusStationResultsContainer = require('../../containers/search/BusStationResultsContainer');
+var Itinerary = require('./Itinerary');
 var Config = require('Config');
 
 const searchkit = new Searchkit.SearchkitManager(
@@ -46,7 +47,7 @@ var SearchBusStation = React.createClass({
                             <Hits
                                 hitsPerPage={6}
                                 mod="sk-hits-list"
-                                itemComponent={GetBusStationContainer}
+                                listComponent={BusStationResultsContainer}
                             />
                         </div>
                     </div>

@@ -73,7 +73,6 @@ function getBusStation(bus) {
             });
             return arrivals
         }))
-
 }
 
 module.exports = {

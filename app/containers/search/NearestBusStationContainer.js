@@ -1,9 +1,9 @@
 var React = require('react');
-var NearestBusStation = require('../components/search/NearestBusStation');
-var getNearestBusStationInfo = require('../helpers/api').getNearestBusStationInfo;
+var NearestBusStation = require('../../components/search/NearestBusStation');
+var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
 var withRouter = require('react-router').withRouter;
 
-var GetNearestBusStationContainer = React.createClass({
+var NearestBusStationContainer = React.createClass({
     getInitialState: function () {
         return {
             isLoading: false,
@@ -45,4 +45,4 @@ var GetNearestBusStationContainer = React.createClass({
     }
 });
 
-module.exports = withRouter(GetNearestBusStationContainer);
+module.exports = withRouter(NearestBusStationContainer);

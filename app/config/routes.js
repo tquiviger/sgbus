@@ -5,9 +5,9 @@ var Route = ReactRouter.Route;
 var hashHistory = ReactRouter.hashHistory;
 var IndexRoute = ReactRouter.IndexRoute;
 var Main = require('../components/Main');
-var Home = require('../components/Home');
-var BusStationInfoContainer = require('../containers/BusStationInfoContainer');
-var BusRoutesContainer = require('../containers/BusRoutesContainer');
+var Home = require('../containers/HomeContainer');
+var BusStationInfoContainer = require('../containers/busArrivals/BusStationInfoContainer');
+var BusRoutesContainer = require('../containers/busRoutes/BusRoutesContainer');
 
 
 var routes = (
