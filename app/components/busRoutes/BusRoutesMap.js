@@ -16,16 +16,16 @@ var BusRoutesMap = React.createClass({
         var rows = [];
         for (var i = 0; i < 110; i++) {
             var index = i < 10 ? '0' + i : i;
-            if (routes['BusStopRoad.' + index] != null) {
+            if (routes['BusStopRoad_' + index] != null) {
                 rows.push(
                     <StationMarker
-                        stationName={routes['BusStopName.' + index]}
+                        stationName={routes['BusStopName_' + index]}
                         stationId={index+''}
                         currentStation={this.props.currentStation}
                         key={index}
-                        lat={routes['Latitude.' + index]}
+                        lat={routes['Latitude_' + index]}
                         size={stationMarkerSize}
-                        lng={routes['Longitude.' + index]}
+                        lng={routes['Longitude_' + index]}
                     />
                 );
             }

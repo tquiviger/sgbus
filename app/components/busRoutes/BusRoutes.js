@@ -35,15 +35,15 @@ var BusRoutes = React.createClass({
         var rows = [];
         for (var i = 0; i < 110; i++) {
             var index = (i < 10) ? '0' + i : i;
-            if (routes['BusStopRoad.' + index] != null) {
+            if (routes['BusStopRoad_' + index] != null) {
                 rows.push(
-                    <tr key={'BusStopRoad.'+index} id={index} onMouseOver={this.props.onHoverStation}>
-                        <td>{routes['BusStopRoad.' + index]}</td>
+                    <tr key={'BusStopRoad_'+index} id={index} onMouseOver={this.props.onHoverStation}>
+                        <td>{routes['BusStopRoad_' + index]}</td>
                         <td>{index}</td>
                         <td>
-                            <Link to={'/detail/'+routes['BusStopCode.' + index]}>{routes['BusStopName.' + index]}</Link>
+                            <Link to={'/detail/'+routes['BusStopCode_' + index]}>{routes['BusStopName_' + index]}</Link>
                         </td>
-                        <td>{routes['Distance.' + index]} km</td>
+                        <td>{routes['Distance_' + index]} km</td>
                     </tr>
                 );
             }

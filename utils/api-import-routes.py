@@ -44,21 +44,21 @@ if __name__ == "__main__":
                     stopId = '0' + str(stopId)
                 else:
                     stopId = str(stopId)
-                newVal = {"BusStopCode" + '.' + stopId: res['_source']['BusStopCode'],
-                          "BusStopName" + '.' + stopId: res['_source']['Description'],
-                          "BusStopRoad" + '.' + stopId: res['_source']['RoadName'],
-                          "Latitude" + '.' + stopId: res['_source']['Latitude'],
-                          "Longitude" + '.' + stopId: res['_source']['Longitude'],
-                          "Distance" + '.' + stopId: bus['Distance']
+                newVal = {"BusStopCode" + '_' + stopId: res['_source']['BusStopCode'],
+                          "BusStopName" + '_' + stopId: res['_source']['Description'],
+                          "BusStopRoad" + '_' + stopId: res['_source']['RoadName'],
+                          "Latitude" + '_' + stopId: res['_source']['Latitude'],
+                          "Longitude" + '_' + stopId: res['_source']['Longitude'],
+                          "Distance" + '_' + stopId: bus['Distance']
                           }
                 if bus["ServiceNo"] in busDict:
                     tutu = busDict[bus["ServiceNo"]]
-                    tutu["BusStopCode" + '.' + stopId] = res['_source']['BusStopCode']
-                    tutu["BusStopName" + '.' + stopId] = res['_source']['Description']
-                    tutu["BusStopRoad" + '.' + stopId] = res['_source']['RoadName']
-                    tutu["Latitude" + '.' + stopId] = res['_source']['Latitude']
-                    tutu["Longitude" + '.' + stopId] = res['_source']['Longitude']
-                    tutu["Distance" + '.' + stopId] = bus['Distance']
+                    tutu["BusStopCode" + '_' + stopId] = res['_source']['BusStopCode']
+                    tutu["BusStopName" + '_' + stopId] = res['_source']['Description']
+                    tutu["BusStopRoad" + '_' + stopId] = res['_source']['RoadName']
+                    tutu["Latitude" + '_' + stopId] = res['_source']['Latitude']
+                    tutu["Longitude" + '_' + stopId] = res['_source']['Longitude']
+                    tutu["Distance" + '_' + stopId] = bus['Distance']
                     busDict[bus["ServiceNo"]] = tutu
                 else:
                     busDict[bus["ServiceNo"]] = newVal

@@ -5,6 +5,7 @@ var _apiBusArrivalsUrl = Config.apiUrl + '/bus_arrivals/';
 var _apiBusServicesUrl = Config.apiUrl + '/bus_stations/';
 var _elasticSearchBusStationUrl = Config.elasticSearchUrl + '/sgbus/bus_station/_search';
 var _elasticSearchBusRoutesUrl = Config.elasticSearchUrl + '/sgbus/bus_route/';
+var _elasticSearchBusRoutesSearchUrl = Config.elasticSearchUrl + '/sgbus/bus_route/_search';
 
 
 function getBusStationArrivalsInfo(bus) {
@@ -26,6 +27,17 @@ function getBusRoutesInfo(bus) {
         .then(function (currentBusData) {
             return currentBusData.data
         })
+}
+
+function getBusStation(bus) {
+    return axios.all([getBusStationArrivalsInfo(bus), getBusStationInfo(bus)])
+        .then(axios.spread(function (arrivals, info) {
+            arrivals.stationDesc = info._source;
+            arrivals.Services = arrivals.Services.sort(function (a, b) {
+                return a.Status.localeCompare(b.Status) || a.ServiceNo.replace(/\D/g, '') - b.ServiceNo.replace(/\D/g, '')
+            });
+            return arrivals
+        }))
 }
 
 function getNearestBusStationInfo(lat, lon) {
@@ -64,20 +76,41 @@ function getNearestBusStationInfo(lat, lon) {
         })
 }
 
-function getBusStation(bus) {
-    return axios.all([getBusStationArrivalsInfo(bus), getBusStationInfo(bus)])
-        .then(axios.spread(function (arrivals, info) {
-            arrivals.stationDesc = info._source;
-            arrivals.Services = arrivals.Services.sort(function (a, b) {
-                return a.Status.localeCompare(b.Status) || a.ServiceNo.replace(/\D/g, '') - b.ServiceNo.replace(/\D/g, '')
-            });
-            return arrivals
-        }))
+function getBusForItinerary(busStationDeparture, busStationArrival) {
+    return axios.post(_elasticSearchBusRoutesSearchUrl, {
+            "query": {
+                "bool": {
+                    "must": [
+                        {
+                            "multi_match": {
+                                "query": busStationDeparture,
+                                "type": "cross_fields",
+                                "fields": ["BusStopCode*"],
+                                "minimum_should_match": "50%"
+                            }
+                        },
+                        {
+                            "multi_match": {
+                                "query": busStationArrival,
+                                "type": "cross_fields",
+                                "fields": ["BusStopCode*"],
+                                "minimum_should_match": "50%"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    )
+        .then(function (currentBusData) {
+            return currentBusData.data
+        })
 }
 
 module.exports = {
-    getBusStationArrivalsInfo: getBusStationArrivalsInfo,
     getBusStation: getBusStation,
+    getBusStationArrivalsInfo: getBusStationArrivalsInfo,
+    getBusRoutesInfo: getBusRoutesInfo,
     getNearestBusStationInfo: getNearestBusStationInfo,
-    getBusRoutesInfo:getBusRoutesInfo
+    getBusForItinerary:getBusForItinerary
 };

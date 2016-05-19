@@ -1,25 +1,23 @@
 var React = require('react');
-var BusInfo = require('../../components/busRoutes/BusInfo');
-var getBusRoutesInfo = require('../../helpers/api').getBusRoutesInfo;
+var Itinerary = require('../../components/itinerary/Itinerary');
+var getBusForItinerary = require('../../helpers/api').getBusForItinerary;
 
 var ItineraryContainer = React.createClass({
     getInitialState: function () {
         return {
             isLoading: true,
-            busData: {},
-            currentStation: '',
-            onHoverStation: this.onHoverStation
+            busData: []
         }
     },
     componentDidMount: function () {
-        // this.makeRequest(this.props.routeParams.bus);
+        this.makeRequest(this.props.routeParams.departureStation, this.props.routeParams.arrivalStation);
     },
-    makeRequest: function (bus) {
-        getBusRoutesInfo(bus)
+    makeRequest: function (departureStation, arrivalStation) {
+        getBusForItinerary(departureStation, arrivalStation)
             .then(function (busData) {
                 this.setState({
                     isLoading: false,
-                    busData: busData
+                    busData: busData.hits.hits
                 });
             }.bind(this));
     },
@@ -29,16 +27,13 @@ var ItineraryContainer = React.createClass({
             busData: busData
         });
     },
-    onHoverStation: function (e) {
-        e.preventDefault();
-        var stationClicked = e.currentTarget.id;
-        this.setState({
-            currentStation: stationClicked
-        });
-    },
     render: function () {
         return (
-            <h1>{this.props.routeParams.departureStation} - {this.props.routeParams.arrivalStation}</h1>
+            <Itinerary
+                isLoading={this.state.isLoading}
+                buses={this.state.busData}
+                
+            />
         )
     }
 });

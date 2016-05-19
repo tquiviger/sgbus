@@ -39,6 +39,7 @@ var NearestBusStationContainer = React.createClass({
             <NearestBusStation
                 onSubmitNearestBusStation={this.state.buttonCallback}
                 isLoading={this.state.isLoading}
+                mode={this.props.mode}
                 nearestStations={this.state.nearestStations}
             />
         )

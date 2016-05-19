@@ -11,7 +11,8 @@ var SearchBusStationContainer = React.createClass({
                     mode={this.props.mode}
                     departureStation={this.props.departureStation}
                 />
-                <NearestBusStationContainer/>
+                <NearestBusStationContainer
+                    mode={this.props.mode}/>
             </div>
         )
     }
