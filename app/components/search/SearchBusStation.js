@@ -1,7 +1,7 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 var Searchkit = require('searchkit');
-var BusStationResultsContainer = require('../../containers/search/BusStationResultsContainer');
-var Itinerary = require('./Itinerary');
+var BusStationResults = require('./BusStationResults');
 var Config = require('Config');
 
 const searchkit = new Searchkit.SearchkitManager(
@@ -18,12 +18,35 @@ var styles = {
         color: '#333',
         fontWeight: 100,
         width: 300
+    },
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
+};
+
+
+var BusStationResultsStation = function (props) {
+    return (
+        BusStationResults(props.hits, '/detail/'))
+};
+
+var BusStationResultsItineraryD = function (props) {
+    return (
+        BusStationResults(props.hits, '/itinerary/'))
+};
+
+var BusStationResultsItineraryA = function (props) {
+    var finalPath = window.location.hash.split('?').shift().split('#').pop()+'/';
+    return (
+        BusStationResults(props.hits, finalPath))
 };
 
 var SearchBusStation = React.createClass({
     render: function () {
-        this.props.trucs=1;
+        var container = this.props.departureStation == null ? BusStationResultsItineraryD : BusStationResultsItineraryA
         return (
             <div>
                 <SearchkitProvider searchkit={searchkit}>
@@ -39,7 +62,7 @@ var SearchBusStation = React.createClass({
                         <Hits
                             hitsPerPage={5}
                             mod="sk-hits-list"
-                            listComponent={BusStationResultsContainer}
+                            listComponent={ this.props.mode==='station'?  BusStationResultsStation : container}
                         />
                     </div>
                 </SearchkitProvider>
@@ -47,6 +70,11 @@ var SearchBusStation = React.createClass({
         )
     }
 });
+
+SearchBusStation.propTypes = {
+    departureStation: PropTypes.string,
+    mode: PropTypes.string.isRequired
+};
 
 
 module.exports = SearchBusStation;

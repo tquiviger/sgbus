@@ -2,7 +2,6 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var SearchBusStationContainer = require('../containers/search/SearchBusStationContainer');
 var ToggleButton = require('../components/search/ToggleButton');
-var Itinerary = require('../components/search/Itinerary');
 var backgroundImage = require('file?name=[name].[ext]!../images/pattern.svg');
 
 var styles = {
@@ -34,6 +33,7 @@ var styles = {
 
 var Home = React.createClass({
     render: function () {
+        var text = this.props.departureStation == null ? 'Enter the departure Station' : 'Enter the arrival Station'
         return (
             <div style={styles.container}>
                 <ToggleButton
@@ -42,10 +42,11 @@ var Home = React.createClass({
                     buttonCallback={this.props.buttonCallback}/>
                 <div style={styles.stationContainer}>
                     <h1 style={styles.header}>
-                        {this.props.mode === 'station' ? 'Enter the name of a Bus Station' : 'Enter the departure Station'}
+                        {this.props.mode === 'station' ? 'Enter the name of a Bus Station' : text}
                     </h1>
                     <SearchBusStationContainer
                         mode={this.props.mode}
+                        departureStation={this.props.departureStation}
                     />
                 </div>
             </div>

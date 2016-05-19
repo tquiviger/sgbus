@@ -1,5 +1,4 @@
 var React = require('react');
-var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
 
 
@@ -12,33 +11,26 @@ var styles = {
     }
 };
 
+var BusStationResults = function (stations, path) {
+    return (
+        <div style={styles.container}>
+            {
+                stations.map(function (result) {
+                        return (
+                            <Link key={result._id} to={path+result._id}>
+                                <button
+                                    type='button'
+                                    style={{margin: 9}}
+                                    className='btn btn-info'>
+                                    {result._source.Description}
+                                </button>
+                            </Link>
+                        )
+                    }
+                )}
 
-var BusStationResults = React.createClass({
-    render: function () {
-        return (
-            <div style={styles.container}>
-                {
-                    this.props.busStations.hits.map(function (result) {
-                            return (
-                                <Link key={result._id} to={'/detail/'+result._id}>
-                                    <button
-                                        type='button'
-                                        style={{margin: 9}}
-                                        className='btn btn-info'>
-                                        {result._source.Description}
-                                    </button>
-                                </Link>
-                            )
-                        }
-                    )}
+        </div>)
+}
 
-            </div>
-        )
-    }
-});
-
-BusStationResults.propTypes = {
-    busStations: PropTypes.object.isRequired
-};
 
 module.exports = BusStationResults;
