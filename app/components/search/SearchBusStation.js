@@ -9,15 +9,9 @@ const searchkit = new Searchkit.SearchkitManager(
     {searchOnLoad: false, useHistory: false}
 );
 searchkit.setQueryProcessor((query)=> {
-    if (query.query) {
-        return query
-    }
-    else {
-        query = {
-            "size": 0
-        }
-        return query
-    }
+    query = query.query ? query : {"size": 0}
+    return query
+
 })
 const SearchkitProvider = Searchkit.SearchkitProvider;
 const SearchBox = Searchkit.SearchBox;
@@ -50,7 +44,7 @@ var BusStationResultsItineraryD = function (props) {
 };
 
 var BusStationResultsItineraryA = function (props) {
-    var finalPath = window.location.hash.split('?').shift().split('#').pop()+'/';
+    var finalPath = window.location.hash.split('?').shift().split('#').pop() + '/';
     return (
         BusStationResults(props.hits, finalPath))
 };
