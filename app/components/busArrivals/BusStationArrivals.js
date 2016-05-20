@@ -12,7 +12,7 @@ var styles = {
     table: {
         fontSize: 20,
         height: '70%',
-        overflow: 'scroll',
+        overflowY: 'scroll',
         textAlign: 'left'
     },
     icon: {

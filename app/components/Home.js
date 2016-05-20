@@ -47,8 +47,10 @@ var Home = React.createClass({
                         mode={this.props.mode}
                         departureStation={this.props.departureStation}
                     />
-                    <NearestBusStationContainer
-                        mode={this.props.mode}/>
+                    <div className="container-fluid">
+                        <NearestBusStationContainer
+                            mode={this.props.mode}/>
+                    </div>
                 </div>
             </div>
         )
