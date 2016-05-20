@@ -12,16 +12,18 @@ var ItineraryContainer = React.createClass({
     componentDidMount: function () {
         this.makeRequest(this.props.routeParams.departureStation, this.props.routeParams.arrivalStation);
     },
+    filterOnlyAvailableResultsInDepartureServices: function (busData) {
+        var availableBuses = busData.hits.hits.map(function (hit) {
+            return hit._id
+        });
+        return busData.departureStation.Services.filter(function (service) {
+            return availableBuses.includes(service.ServiceNo)
+        });
+    },
     makeRequest: function (departureStation, arrivalStation) {
         getItineraryInfo(departureStation, arrivalStation)
             .then(function (busData) {
-                var availableBuses = busData.hits.hits.map(function (hit) {
-                    return hit._id
-                });
-                busData.departureStation.Services = busData.departureStation.Services.filter(function (service) {
-                     return availableBuses.includes(service.ServiceNo)
-                });
-
+                busData.departureStation.Services = this.filterOnlyAvailableResultsInDepartureServices(busData);
                 this.setState({
                     isLoading: false,
                     busData: busData
@@ -39,7 +41,7 @@ var ItineraryContainer = React.createClass({
             <Itinerary
                 isLoading={this.state.isLoading}
                 buses={this.state.busData}
-                
+
             />
         )
     }

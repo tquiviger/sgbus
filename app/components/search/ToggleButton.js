@@ -6,7 +6,7 @@ var styles = {
     button: {
         float: 'right',
         fontWeight: 100,
-        margin: 10,
+        marginTop: 10,
         backgroundColor: 'Transparent',
         backgroundRepeat: 'no-repeat',
         cursor: 'pointer',

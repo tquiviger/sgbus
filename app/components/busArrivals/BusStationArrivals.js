@@ -1,13 +1,10 @@
 var React = require('react');
 var moment = require('moment');
-var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
 
 var styles = {
     container: {
-        backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImage + ')',
         fontWeight: 100,
         height: '70%',
         width: '100%'
@@ -50,7 +47,7 @@ var Detail = React.createClass({
             <div className="row" style={styles.container}>
 
                 {
-                    arrivalStation ?
+                    this.props.mode === 'itinerary' ?
                         <div className="col-md-4">
                             <h1>Available buses </h1>
                             <h4>From {stationData.stationDesc.Description}</h4>
@@ -105,6 +102,7 @@ var Detail = React.createClass({
 
 Detail.propTypes = {
     stationData: PropTypes.object.isRequired,
+    mode: PropTypes.string.isRequired,
     arrivalStation: PropTypes.object
 };
 

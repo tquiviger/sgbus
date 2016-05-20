@@ -6,23 +6,25 @@ var axios = require('axios');
 var fs = require('fs');
 
 var app = express();
+app.use(cors());
 
-var configurationFile = '/home/ec2-user/config/config.json';
+var configPath = '/home/ec2-user/config/'
+var configurationFile = configPath + 'config.json';
 var configuration = JSON.parse(fs.readFileSync(configurationFile));
 
 var _baseBusArrivalsUrl = 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival?SST=True&BusStopID=';
 
-var static_path = path.join(__dirname, 'public');
 
-app.use(cors());
+https.createServer(
+    {
+        key: fs.readFileSync(configPath + 'key.pem'),
+        cert: fs.readFileSync(configPath + 'cert.pem')
+    }, app)
+    .listen(8080, function () {
+        console.log("Express server listening on port " + 8080);
+    });
 
-https.createServer({
-    key: fs.readFileSync('/home/ec2-user/config/key.pem'),
-    cert: fs.readFileSync('/home/ec2-user/config/cert.pem')
-}, app).listen(8080, function () {
-    console.log("Express server listening on port " + 8080);
-});
-
+//This endpoint cannot be managed by app/helpers/api due to CORS matters
 app.get('/api/bus_arrivals/:bus_stop_id', function (req, res) {
     axios.get(_baseBusArrivalsUrl + req.params.bus_stop_id, {
         headers: {
@@ -35,7 +37,7 @@ app.get('/api/bus_arrivals/:bus_stop_id', function (req, res) {
         })
 });
 
-app.use(express.static(static_path))
+app.use(express.static(path.join(__dirname, 'public')))
     .get('/', function (req, res) {
         res.sendFile('index.html', {
             root: static_path

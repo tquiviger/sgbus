@@ -29,7 +29,6 @@ var Main = React.createClass({
                         <img src={logo} style={styles.image}/>
                     </Link>
                     <h2 style={{margin:7}}> Bus@Singapore</h2>
-
                 </div>
                 {this.props.children}
             </div>

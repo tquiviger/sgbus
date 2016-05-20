@@ -10,7 +10,7 @@ var HomeContainer = React.createClass({
     },
     switchToItinerayMode: function () {
         this.setState({
-            mode: 'itineray',
+            mode: 'itinerary',
             buttonCallback: this.switchToStationMode
         });
     },

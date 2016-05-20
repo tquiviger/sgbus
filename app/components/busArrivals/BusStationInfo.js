@@ -1,10 +1,13 @@
 var React = require('react');
 var BusStationArrivals = require('./BusStationArrivals');
 var BusStationMap = require('./BusStationMap');
+var backgroundImageBlue = require('file?name=[name].[ext]!../../images/pattern.svg');
 var PropTypes = React.PropTypes;
 
 var styles = {
     container: {
+        backgroundSize: 'cover',
+        backgroundImage: 'url(' + backgroundImageBlue + ')',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -21,12 +24,15 @@ var BusStationInfo = React.createClass({
                 {
                     this.props.isLoading
                         ? <h1 style={styles.header}> Loading </h1>
-                        : <BusStationMap stationData={this.props.stationData}/>
+                        : <BusStationMap
+                        stationData={this.props.stationData}/>
                 }
                 {
                     this.props.isLoading
                         ? ''
-                        : <BusStationArrivals stationData={this.props.stationData}/>
+                        : <BusStationArrivals
+                        mode="station"
+                        stationData={this.props.stationData}/>
                 }
             </div>
         )

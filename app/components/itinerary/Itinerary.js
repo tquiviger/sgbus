@@ -3,7 +3,7 @@ var Config = require('Config');
 var PropTypes = React.PropTypes;
 var BusStationArrivals = require('../busArrivals/BusStationArrivals');
 var ItineraryMap = require('./ItineraryMap');
-var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
+var backgroundImageGreen = require('file?name=[name].[ext]!../../images/pattern-itinerary.svg');
 
 
 var styles = {
@@ -13,7 +13,7 @@ var styles = {
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImage + ')',
+        backgroundImage: 'url(' + backgroundImageGreen + ')',
         height: '100%',
         width: '100%'
     },
@@ -38,9 +38,9 @@ var Itinerary = React.createClass({
                     this.props.isLoading
                         ? ''
                         : <BusStationArrivals
+                        mode="itinerary"
                         stationData={this.props.buses.departureStation}
-                        arrivalStation={this.props.buses.arrivalStation}
-                    />
+                        arrivalStation={this.props.buses.arrivalStation}/>
                 }
             </div>
         )
