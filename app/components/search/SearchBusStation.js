@@ -8,6 +8,17 @@ const searchkit = new Searchkit.SearchkitManager(
     Config.elasticSearchUrl + "/sgbus/bus_station",
     {searchOnLoad: false, useHistory: false}
 );
+searchkit.setQueryProcessor((query)=> {
+    if (query.query) {
+        return query
+    }
+    else {
+        query = {
+            "size": 0
+        }
+        return query
+    }
+})
 const SearchkitProvider = Searchkit.SearchkitProvider;
 const SearchBox = Searchkit.SearchBox;
 const Hits = Searchkit.Hits;
