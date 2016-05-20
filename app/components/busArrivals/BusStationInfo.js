@@ -19,12 +19,12 @@ var BusStationInfo = React.createClass({
         return (
             <div style={styles.container}>
                 {
-                    this.props.isLoading === true
+                    this.props.isLoading
                         ? <h1 style={styles.header}> Loading </h1>
                         : <BusStationMap stationData={this.props.stationData}/>
                 }
                 {
-                    this.props.isLoading === true
+                    this.props.isLoading
                         ? ''
                         : <BusStationArrivals stationData={this.props.stationData}/>
                 }

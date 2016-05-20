@@ -11,7 +11,6 @@ var configurationFile = '/home/ec2-user/config/config.json';
 var configuration = JSON.parse(fs.readFileSync(configurationFile));
 
 var _baseBusArrivalsUrl = 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival?SST=True&BusStopID=';
-var _baseBusStationsUrl = configuration.elasticSearchUrl + '/sgbus/bus_station/';
 
 var static_path = path.join(__dirname, 'public');
 
@@ -35,15 +34,6 @@ app.get('/api/bus_arrivals/:bus_stop_id', function (req, res) {
             res.send(response.data)
         })
 });
-
-
-app.get('/api/bus_stations/:bus_stop_id', function (req, res) {
-    axios.get(_baseBusStationsUrl + req.params.bus_stop_id)
-        .then(function (response) {
-            res.send(response.data)
-        })
-});
-
 
 app.use(express.static(static_path))
     .get('/', function (req, res) {

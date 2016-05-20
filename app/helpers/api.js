@@ -2,10 +2,11 @@ var axios = require('axios');
 var Config = require('Config');
 
 var _apiBusArrivalsUrl = Config.apiUrl + '/bus_arrivals/';
-var _apiBusServicesUrl = Config.apiUrl + '/bus_stations/';
-var _elasticSearchBusStationUrl = Config.elasticSearchUrl + '/sgbus/bus_station/_search';
+
 var _elasticSearchBusRoutesUrl = Config.elasticSearchUrl + '/sgbus/bus_route/';
+var _elasticSearchBusStationsUrl = Config.elasticSearchUrl + '/sgbus/bus_station/';
 var _elasticSearchBusRoutesSearchUrl = Config.elasticSearchUrl + '/sgbus/bus_route/_search';
+var _elasticSearchBusStationUrl = Config.elasticSearchUrl + '/sgbus/bus_station/_search';
 
 
 function getBusStationArrivalsInfo(bus) {
@@ -16,7 +17,7 @@ function getBusStationArrivalsInfo(bus) {
 }
 
 function getBusStationInfo(bus) {
-    return axios.get(_apiBusServicesUrl + bus)
+    return axios.get(_elasticSearchBusStationsUrl + bus)
         .then(function (currentBusData) {
             return currentBusData.data
         })
@@ -44,12 +45,12 @@ function getItineraryInfo(busStationDeparture, busStationArrival) {
     return axios.all(
         [
             getBusForItinerary(busStationDeparture, busStationArrival),
-            getBusStationInfo(busStationDeparture),
+            getBusStation(busStationDeparture),
             getBusStationInfo(busStationArrival)
         ])
         .then(axios.spread(function (itinerary, depInfo, arrInfo) {
-            itinerary.departureStation=depInfo._source;
-            itinerary.arrivalStation=arrInfo._source;
+            itinerary.departureStation = depInfo;
+            itinerary.arrivalStation = arrInfo._source;
             return itinerary
         }))
 }
@@ -61,7 +62,7 @@ function getNearestBusStationInfo(lat, lon) {
                 "filtered": {
                     "filter": {
                         "geo_distance": {
-                            "distance": "1km",
+                            "distance": "500m",
                             "location": {
                                 "lat": lat,
                                 "lon": lon
@@ -122,6 +123,7 @@ function getBusForItinerary(busStationDeparture, busStationArrival) {
 }
 
 module.exports = {
+    getBusStationInfo: getBusStationInfo,
     getBusStation: getBusStation,
     getBusStationArrivalsInfo: getBusStationArrivalsInfo,
     getBusRoutesInfo: getBusRoutesInfo,

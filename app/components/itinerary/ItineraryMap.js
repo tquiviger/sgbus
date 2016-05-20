@@ -13,7 +13,7 @@ const defaultCenterLongitude = 103.8200663;
 
 var ItineraryMap = React.createClass({
     render: function () {
-        var depStation = this.props.buses.departureStation;
+        var depStation = this.props.buses.departureStation.stationDesc;
         var arrStation = this.props.buses.arrivalStation;
         return (
             <GoogleMap

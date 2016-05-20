@@ -15,6 +15,13 @@ var ItineraryContainer = React.createClass({
     makeRequest: function (departureStation, arrivalStation) {
         getItineraryInfo(departureStation, arrivalStation)
             .then(function (busData) {
+                var availableBuses = busData.hits.hits.map(function (hit) {
+                    return hit._id
+                });
+                busData.departureStation.Services = busData.departureStation.Services.filter(function (service) {
+                     return availableBuses.includes(service.ServiceNo)
+                });
+
                 this.setState({
                     isLoading: false,
                     busData: busData

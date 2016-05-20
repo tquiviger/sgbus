@@ -45,13 +45,24 @@ function getInterval(status, date) {
 var Detail = React.createClass({
     render: function () {
         var stationData = this.props.stationData;
+        var arrivalStation = this.props.arrivalStation;
         return (
             <div className="row" style={styles.container}>
-                <div className="col-md-4">
-                    <h1>{stationData.stationDesc.Description} </h1>
-                    <h4>{stationData.stationDesc.RoadName}</h4>
-                    <h4>#{stationData.BusStopID}</h4>
-                </div>
+
+                {
+                    arrivalStation ?
+                        <div className="col-md-4">
+                            <h1>Available buses </h1>
+                            <h4>From {stationData.stationDesc.Description}</h4>
+                            <h4>To {arrivalStation.Description}</h4>
+                        </div>
+                        : <div className="col-md-4">
+                            <h1>{stationData.stationDesc.Description} </h1>
+                            <h4>{stationData.stationDesc.RoadName}</h4>
+                            <h4>#{stationData.BusStopID}</h4>
+                    </div>
+                }
+
                 <div style={styles.table} className="col-md-7">
                     <table className="table table-condensed">
                         <thead>
@@ -93,7 +104,8 @@ var Detail = React.createClass({
 });
 
 Detail.propTypes = {
-    stationData: PropTypes.object.isRequired
+    stationData: PropTypes.object.isRequired,
+    arrivalStation: PropTypes.object
 };
 
 module.exports = Detail;
