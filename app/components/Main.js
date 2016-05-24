@@ -6,7 +6,7 @@ var styles = {
     container: {
         width: '100%',
         height: '92%',
-        fontFamily: 'Raleway, sans-serif'
+        fontFamily: 'Open Sans, sans-serif'
     },
     header: {
         display: 'flex',
