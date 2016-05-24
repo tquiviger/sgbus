@@ -5,18 +5,24 @@ var logo = require('file?name=[name].[ext]!../images/logo.png');
 var styles = {
     container: {
         width: '100%',
-        height: '92%'
+        height: '92%',
+        fontFamily: 'Raleway, sans-serif'
     },
     header: {
         display: 'flex',
         alignItems: 'center',
         background: '#21618C',
-        color: '#fff',
-        padding: 5
+        color: '#fff'
     },
     image: {
         width: 40,
         align: 'middle'
+    },
+    title: {
+        fontSize: 30,
+        color: '#fff',
+        fontWeight: 100,
+        margin:7
     }
 };
 
@@ -28,7 +34,7 @@ var Main = React.createClass({
                     <Link to={'/'}>
                         <img src={logo} style={styles.image}/>
                     </Link>
-                    <h2 style={{margin:7}}> Bus@Singapore</h2>
+                    <h2 style={styles.title}> Bus@Singapore</h2>
                 </div>
                 {this.props.children}
             </div>

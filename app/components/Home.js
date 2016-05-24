@@ -7,13 +7,14 @@ var backgroundImageBlue = require('file?name=[name].[ext]!../images/pattern.svg'
 var backgroundImageGreen = require('file?name=[name].[ext]!../images/pattern-itinerary.svg');
 
 var styles = function (mode) {
-    var backgroundImage = mode === 'itinerary' ? backgroundImageGreen : backgroundImageBlue
+    var backgroundImage = mode === 'itinerary' ? backgroundImageGreen : backgroundImageBlue;
     return {
         container: {
             backgroundSize: 'cover',
             backgroundImage: 'url(' + backgroundImage + ')',
             height: '100%',
             width: '100%'
+            
         },
         stationContainer: {
             display: 'flex',
@@ -31,7 +32,7 @@ var styles = function (mode) {
 
 var Home = React.createClass({
     render: function () {
-        var text = this.props.departureStation == null ? 'Enter the departure Station' : 'Enter the arrival Station'
+        var text = this.props.departureStation == null ? 'Enter the departure Station' : 'Enter the arrival Station';
         return (
             <div style={styles(this.props.mode).container}>
                 <div className="container-fluid">
@@ -41,7 +42,7 @@ var Home = React.createClass({
                 </div>
                 <div style={styles().stationContainer}>
                     <h1 style={styles().header}>
-                        {this.props.mode === 'station' ? 'Enter the name of a Bus Station' : text}
+                        {this.props.mode === 'station' ? 'Enter a Bus Station' : text}
                     </h1>
                     <SearchBusStation
                         mode={this.props.mode}

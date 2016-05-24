@@ -30,7 +30,7 @@ var BusStationResults = function (stations, path) {
                 )}
 
         </div>)
-}
+};
 
 
 module.exports = BusStationResults;
