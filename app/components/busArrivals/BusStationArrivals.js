@@ -83,7 +83,7 @@ var Detail = React.createClass({
                                         }
                                     </td>
                                     <td>
-                                        <Link to={'/routes/'+result.ServiceNo}>Bus {result.ServiceNo}</Link>
+                                        <Link to={'/routes/'+result.ServiceNo}><strong>Bus {result.ServiceNo}</strong></Link>
                                     </td>
                                     <td>{result.Operator}</td>
                                     {getInterval(result.Status, result.NextBus.EstimatedArrival)}
