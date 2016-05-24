@@ -14,7 +14,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'index_bundle.js',
-        publicPath: '/assets/'
+        publicPath: '/'
     },
 
     plugins: [
@@ -38,15 +38,6 @@ module.exports = {
                 test: /\.js?$/,
                 loader: 'babel',
                 exclude: /node_modules/
-            },
-            {
-                test: /\.scss?$/,
-                loader: 'style!css!sass',
-                include: path.join(__dirname, 'src', 'styles')
-            },
-            {
-                test: /\.(svg|png)$/,
-                loader: 'file-loader?name=assets/[name].[ext]'
             }
         ]
     }
