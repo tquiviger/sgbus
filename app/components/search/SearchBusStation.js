@@ -8,11 +8,10 @@ const searchkit = new Searchkit.SearchkitManager(
     Config.elasticSearchUrl + "/sgbus/bus_station",
     {searchOnLoad: false, useHistory: false}
 );
-searchkit.setQueryProcessor((query)=> {
-    query = query.query ? query : {"size": 0}
-    return query
-
-})
+searchkit.setQueryProcessor(function(query){
+    query = query.query ? query : {"size": 0};
+    return query;
+});
 const SearchkitProvider = Searchkit.SearchkitProvider;
 const SearchBox = Searchkit.SearchBox;
 const Hits = Searchkit.Hits;
@@ -51,7 +50,7 @@ var BusStationResultsItineraryA = function (props) {
 
 var SearchBusStation = React.createClass({
     render: function () {
-        var container = this.props.departureStation == null ? BusStationResultsItineraryD : BusStationResultsItineraryA
+        var container = this.props.departureStation == null ? BusStationResultsItineraryD : BusStationResultsItineraryA;
         return (
             <div>
                 <SearchkitProvider searchkit={searchkit}>
