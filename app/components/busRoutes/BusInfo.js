@@ -29,7 +29,6 @@ var BusInfo = React.createClass({
                     this.props.isLoading === true
                         ? ''
                         : <BusRoutes
-                        bus={this.props.bus}
                         busData={this.props.busData}
                         onHoverStation={this.props.onHoverStation}/>
                 }
@@ -40,6 +39,8 @@ var BusInfo = React.createClass({
 
 BusInfo.propTypes = {
     busData: PropTypes.object.isRequired,
+    onHoverStation: PropTypes.func.isRequired,
+    currentStation: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired
 };
 

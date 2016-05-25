@@ -45,7 +45,8 @@ var BusRoutesMap = React.createClass({
 });
 
 BusRoutesMap.propTypes = {
-    busData: PropTypes.object.isRequired
+    busData: PropTypes.object.isRequired,
+    currentStation: PropTypes.string
 };
 
 module.exports = BusRoutesMap;

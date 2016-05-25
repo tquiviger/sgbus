@@ -40,7 +40,7 @@ function getInterval(status, date) {
 }
 
 
-var Detail = React.createClass({
+var BusStationArrivals = React.createClass({
     render: function () {
         var stationData = this.props.stationData;
         var arrivalStation = this.props.arrivalStation;
@@ -105,10 +105,10 @@ var Detail = React.createClass({
     }
 });
 
-Detail.propTypes = {
+BusStationArrivals.propTypes = {
     stationData: PropTypes.object.isRequired,
     mode: PropTypes.string.isRequired,
     arrivalStation: PropTypes.object
 };
 
-module.exports = Detail;
+module.exports = BusStationArrivals;

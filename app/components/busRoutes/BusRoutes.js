@@ -37,14 +37,12 @@ var BusRoutes = React.createClass({
                     </tr>
                 );
             }
-
         }
 
         return (
             <div className="row" style={styles.container}>
-
                 <div className="col-md-4">
-                    <h1>Bus { this.props.bus} </h1>
+                    <h1>Bus { this.props.busData.busInfo.ServiceNo} </h1>
                     <h4>Operator : { this.props.busData.busInfo.Operator} </h4>
                     <h4>Type : { this.props.busData.busInfo.Category} </h4>
                 </div>
@@ -68,8 +66,8 @@ var BusRoutes = React.createClass({
 });
 
 BusRoutes.propTypes = {
-    bus: PropTypes.string.isRequired,
-    busData: PropTypes.object.isRequired
+    busData: PropTypes.object.isRequired,
+    onHoverStation: PropTypes.func.isRequired
 };
 
 module.exports = BusRoutes;
