@@ -10,6 +10,9 @@ var styles = {
     },
     busLine: {
         borderTop: 'solid thin #3c8860'
+    },
+    title: {
+        textAlign:'center'
     }
 };
 
@@ -19,7 +22,7 @@ var ItineraryBusArrivals = React.createClass({
         var buses = this.props.buses;
         return (
             <div style={styles.container}>
-                <div className="container-fluid">
+                <div style={styles.title} className="container-fluid">
                     <h1>Available buses </h1>
                     <h4>From <b>{buses[0].departureStation.stationDesc.Description}</b></h4>
                 </div>

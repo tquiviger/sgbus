@@ -28,10 +28,10 @@ var BusRoutes = React.createClass({
             if (routes['BusStopRoad_' + index] != null) {
                 rows.push(
                     <tr key={'BusStopRoad_'+index} id={index} onMouseOver={this.props.onHoverStation}>
-                        <td>{routes['BusStopRoad_' + index]}</td>
                         <td>{index}</td>
+                        <td>{routes['BusStopRoad_' + index]}</td>
                         <td>
-                            <Link to={'/detail/'+routes['BusStopCode_' + index]}>{routes['BusStopName_' + index]}</Link>
+                            <Link to={'/detail/'+routes['BusStopCode_' + index]}><b>{routes['BusStopName_' + index]}</b></Link>
                         </td>
                         <td>{routes['Distance_' + index]} km</td>
                     </tr>
@@ -43,15 +43,15 @@ var BusRoutes = React.createClass({
             <div className="row" style={styles.container}>
                 <div className="col-md-4">
                     <h1>Bus { this.props.busData.busInfo.ServiceNo} </h1>
-                    <h4>Operator : { this.props.busData.busInfo.Operator} </h4>
-                    <h4>Type : { this.props.busData.busInfo.Category} </h4>
+                    <h4>Operator : <b>{ this.props.busData.busInfo.Operator}</b></h4>
+                    <h4>Type : <b>{ this.props.busData.busInfo.Category} </b></h4>
                 </div>
                 <div style={styles.table} className="col-md-7">
                     <table className="table table-condensed table-hover">
                         <thead>
                         <tr>
-                            <th>Road Name</th>
                             <th>Bus Stop #</th>
+                            <th>Road Name</th>
                             <th>Bus Stop Name</th>
                             <th>Distance</th>
                         </tr>
