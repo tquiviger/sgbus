@@ -23,7 +23,7 @@ var ToggleButton = React.createClass({
                 style={styles.button}
                 className='btn btn-primary'
                 onClick={this.props.buttonCallback}>
-                <span style={{marginRight :10}} className="glyphicon glyphicon-transfer"/>
+                <i style={{marginRight :10}} className="fa fa-exchange" aria-hidden="true"></i>
                 {this.props.mode === 'station' ? 'Switch to Itinerary' : 'Switch to Bus Station'}
             </button>
         )
