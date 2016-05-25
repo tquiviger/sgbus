@@ -4,6 +4,8 @@ var getItineraryInfo = require('../../helpers/api').getItineraryInfo;
 var getBusStationInfo = require('../../helpers/api').getBusStationInfo;
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
 
+const numResults = 5;
+
 var ItineraryContainer = React.createClass({
     getInitialState: function () {
         return {
@@ -25,7 +27,7 @@ var ItineraryContainer = React.createClass({
     makeRequest: function (departureStation, arrivalStation) {
         getBusStationInfo(arrivalStation)
             .then(function (arrivalStationData) {
-                getNearestBusStationInfo(arrivalStationData._source.Latitude, arrivalStationData._source.Longitude, 5)
+                getNearestBusStationInfo(arrivalStationData._source.Latitude, arrivalStationData._source.Longitude, numResults)
                     .then(function (nearestArrivalStations) {
                         nearestArrivalStations.hits.hits.map(function (hit) {
                             return hit
@@ -48,19 +50,11 @@ var ItineraryContainer = React.createClass({
             }.bind(this))
 
     },
-    updateData: function () {
-        var busData = this.state.busData;
-        this.setState({
-            busData: busData
-        });
-    },
     render: function () {
         return (
             <Itinerary
                 isLoading={this.state.isLoading}
-                buses={this.state.busData}
-
-            />
+                buses={this.state.busData}/>
         )
     }
 });

@@ -12,7 +12,7 @@ var styles = {
         borderTop: 'solid thin #3c8860'
     },
     title: {
-        textAlign:'center'
+        textAlign: 'left'
     }
 };
 
@@ -23,12 +23,11 @@ var ItineraryBusArrivals = React.createClass({
         return (
             <div style={styles.container}>
                 <div style={styles.title} className="container-fluid">
-                    <h1>Available buses </h1>
-                    <h4>From <b>{buses[0].departureStation.stationDesc.Description}</b></h4>
+                    <h3>Available buses From <b>{buses[0].departureStation.stationDesc.Description}</b> To </h3>
                 </div>
                 {buses.map(function (bus) {
                         return (
-                            <div className="row" style={styles.busLine} key={bus.arrivalStation.BusStopCode}>
+                            <div className="container-fluid" style={styles.busLine} key={bus.arrivalStation.BusStopCode}>
                                 <BusStationArrival
                                     mode="itinerary"
                                     var stationData={bus.departureStation}

@@ -5,11 +5,14 @@ var Link = require('react-router').Link;
 
 var styles = {
     container: {
-        fontSize: 15,
+        fontSize: 17,
         verticalAlign: 'center'
     },
     icon: {
         marginRight: 3
+    },
+    links: {
+        color: '#000'
     }
 };
 
@@ -20,16 +23,18 @@ function getInterval(status, date) {
         return <td/>
     }
     if (date) {
-        interval = moment(date).fromNow(true).replace('minute', 'min').replace('a min', ' 1 min');
+        interval = moment(date).fromNow(true)
+            .replace('minute', 'min')
+            .replace('a min', ' 1 min');
         if (interval === 'a few seconds') {
             interval = <b>Arrived</b>
         }
     }
-    return (
-        <td>
-            {interval}
-        </td>
-    )
+    return (<td>{interval}</td>)
+}
+
+function getDistance(distance){
+    return distance === 0?'':' ('+ Math.round(Number(distance))+ ' meters)'
 }
 
 function buildArrivalTab(stationData) {
@@ -40,32 +45,35 @@ function buildArrivalTab(stationData) {
                 <th>Status</th>
                 <th>Bus #</th>
                 <th>Operator</th>
-                <th><i style={styles.icon} className="fa fa-clock-o" aria-hidden="true"/>1st Bus</th>
-                <th><i style={styles.icon} className="fa fa-clock-o" aria-hidden="true"/>2nd Bus</th>
-                <th><i style={styles.icon} className="fa fa-clock-o" aria-hidden="true"/>3rd Bus</th>
+                <th><i style={styles.icon} className="fa fa-clock-o" />1st Bus</th>
+                <th><i style={styles.icon} className="fa fa-clock-o" />2nd Bus</th>
+                <th><i style={styles.icon} className="fa fa-clock-o" />3rd Bus</th>
             </tr>
             </thead>
             <tbody>
             {stationData.Services.map(function (result) {
-                return (
-                    <tr key={result.OriginatingID+result.ServiceNo}>
-                        <td>
-                            { result.Status === 'In Operation'
-                                ? <i className="fa fa-check-circle" aria-hidden="true"/>
-                                : <i className="fa fa-times-circle" aria-hidden="true"/>
-                            }
-                        </td>
-                        <td>
-                            <Link
-                                to={'/routes/'+result.ServiceNo}><strong>Bus {result.ServiceNo}</strong></Link>
-                        </td>
-                        <td dataToggle="tooltip" dataPlacement="left"
-                            title="Tooltip on left">{result.Operator}</td>
-                        {getInterval(result.Status, result.NextBus.EstimatedArrival)}
-                        {getInterval(result.Status, result.SubsequentBus.EstimatedArrival)}
-                        {getInterval(result.Status, result.SubsequentBus3.EstimatedArrival)}
-                    </tr>)
-            })}
+                    return (
+                        <tr key={result.OriginatingID+result.ServiceNo}>
+                            <td>
+                                { result.Status === 'In Operation'
+                                    ? <i className="fa fa-check-circle" />
+                                    : <i className="fa fa-times-circle" />
+                                }
+                            </td>
+                            <td>
+                                <Link style={styles.links} to={'/routes/'+result.ServiceNo}>
+                                    <strong>Bus {result.ServiceNo}</strong>
+                                </Link>
+                            </td>
+                            <td>{result.Operator}</td>
+                            {getInterval(result.Status, result.NextBus.EstimatedArrival)}
+                            {getInterval(result.Status, result.SubsequentBus.EstimatedArrival)}
+                            {getInterval(result.Status, result.SubsequentBus3.EstimatedArrival)}
+                        </tr>
+                    )
+                }
+            )
+            }
             </tbody>
         </table>
     )
@@ -77,26 +85,27 @@ var BusStationArrival = React.createClass({
         return (
             <div style={styles.container}>
                 {
-                    this.props.mode === 'itinerary' ?
+                    this.props.mode === 'itinerary'
+                        ?
                         <div className="col-md-4">
-                            <h4>To
-                                <Link style={{marginLeft:3}}
+                            <h4><i style={styles.icon} className="fa fa-arrow-circle-right" />
+                                <Link style={styles.links}
                                       to={'/detail/'+this.props.arrivalStation.BusStopCode}>
-                                    <b>{this.props.arrivalStation.Description}</b>{  ' ('
-                                + Math.round(Number(this.props.arrivalStation.distance))
-                                + ' meters)'}
+                                    <b>{this.props.arrivalStation.Description}</b>
+                                    { getDistance(this.props.arrivalStation.distance)}
                                 </Link>
                             </h4>
                         </div>
-                        : <div className="col-md-4">
-                        <h1>{this.props.stationData.stationDesc.Description} </h1>
-                        <h4>{this.props.stationData.stationDesc.RoadName}</h4>
-                        <h4>#{this.props.stationData.BusStopID}</h4>
-                    </div>
+                        :
+                        <div className="col-md-4">
+                            <h1>{this.props.stationData.stationDesc.Description} </h1>
+                            <h4>{this.props.stationData.stationDesc.RoadName}</h4>
+                            <h4>#{this.props.stationData.BusStopID}</h4>
+                        </div>
                 }
                 <div className="col-md-7">{
                     this.props.stationData.Services.length === 0
-                        ? <h4>No available bus</h4>
+                        ? <div/>
                         : (buildArrivalTab(this.props.stationData))}
                 </div>
             </div>

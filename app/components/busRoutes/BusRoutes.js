@@ -9,6 +9,7 @@ var styles = {
         backgroundSize: 'cover',
         backgroundImage: 'url(' + backgroundImage + ')',
         height: '50%',
+        fontSize: 17,
         width: '100%'
     },
     table: {
