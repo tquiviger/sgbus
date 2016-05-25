@@ -4,6 +4,7 @@ var Config = require('Config');
 var _apiBusArrivalsUrl = Config.apiUrl + '/bus_arrivals/';
 
 var _elasticSearchBusRoutesUrl = Config.elasticSearchUrl + '/sgbus/bus_route/';
+var _elasticSearchBusUrl = Config.elasticSearchUrl + '/sgbus/bus/';
 var _elasticSearchBusStationsUrl = Config.elasticSearchUrl + '/sgbus/bus_station/';
 var _elasticSearchBusRoutesSearchUrl = Config.elasticSearchUrl + '/sgbus/bus_route/_search';
 var _elasticSearchBusStationUrl = Config.elasticSearchUrl + '/sgbus/bus_station/_search';
@@ -11,13 +12,20 @@ var _elasticSearchBusStationUrl = Config.elasticSearchUrl + '/sgbus/bus_station/
 
 function getBusStationArrivalsInfo(bus) {
     return axios.get(_apiBusArrivalsUrl + bus)
-        .then(function (currentBusData) {
-            return currentBusData.data
+        .then(function (currentBusStationData) {
+            return currentBusStationData.data
         })
 }
 
 function getBusStationInfo(bus) {
     return axios.get(_elasticSearchBusStationsUrl + bus)
+        .then(function (currentBusStationData) {
+            return currentBusStationData.data
+        })
+}
+
+function getBusInfo(bus) {
+    return axios.get(_elasticSearchBusUrl + bus)
         .then(function (currentBusData) {
             return currentBusData.data
         })
@@ -28,6 +36,14 @@ function getBusRoutesInfo(bus) {
         .then(function (currentBusData) {
             return currentBusData.data
         })
+}
+
+function getBusAndRoutesInfo(bus) {
+    return axios.all([getBusRoutesInfo(bus),getBusInfo(bus)])
+        .then(axios.spread(function (routes, bus) {
+            routes.busInfo = bus._source;
+            return routes
+        }))
 }
 
 function getBusStation(bus) {
@@ -126,7 +142,7 @@ module.exports = {
     getBusStationInfo: getBusStationInfo,
     getBusStation: getBusStation,
     getBusStationArrivalsInfo: getBusStationArrivalsInfo,
-    getBusRoutesInfo: getBusRoutesInfo,
+    getBusAndRoutesInfo: getBusAndRoutesInfo,
     getNearestBusStationInfo: getNearestBusStationInfo,
     getItineraryInfo: getItineraryInfo
 };

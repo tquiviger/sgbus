@@ -45,10 +45,8 @@ var BusRoutes = React.createClass({
 
                 <div className="col-md-4">
                     <h1>Bus { this.props.bus} </h1>
-                    <h1>Bus { this.props.bus} </h1>
-                    <h1>Bus { this.props.bus} </h1>
-                    <h1>Bus { this.props.bus} </h1>
-                    <h1>Bus { this.props.bus} </h1>
+                    <h4>Operator : { this.props.busData.busInfo.Operator} </h4>
+                    <h4>Type : { this.props.busData.busInfo.Category} </h4>
                 </div>
                 <div style={styles.table} className="col-md-7">
                     <table className="table table-condensed table-hover">
