@@ -1,7 +1,7 @@
 var React = require('react');
 var Config = require('Config');
 var PropTypes = React.PropTypes;
-var BusStationArrivals = require('../busArrivals/BusStationArrivals');
+var ItineraryBusArrivals = require('./ItineraryBusArrivals');
 var ItineraryMap = require('./ItineraryMap');
 var backgroundImageGreen = require('file?name=[name].[ext]!../../images/pattern-itinerary.svg');
 
@@ -37,10 +37,9 @@ var Itinerary = React.createClass({
                 {
                     this.props.isLoading
                         ? ''
-                        : <BusStationArrivals
+                        : <ItineraryBusArrivals
                         mode="itinerary"
-                        stationData={this.props.buses.departureStation}
-                        arrivalStation={this.props.buses.arrivalStation}/>
+                        buses={this.props.buses}/>
                 }
             </div>
         )
@@ -49,7 +48,7 @@ var Itinerary = React.createClass({
 
 Itinerary.propTypes = {
     isLoading: PropTypes.bool.isRequired,
-    buses: PropTypes.object.isRequired
+    buses: PropTypes.array.isRequired
 };
 
 module.exports = Itinerary;

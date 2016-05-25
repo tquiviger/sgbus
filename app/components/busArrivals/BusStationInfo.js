@@ -31,7 +31,6 @@ var BusStationInfo = React.createClass({
                     this.props.isLoading
                         ? ''
                         : <BusStationArrivals
-                        mode="station"
                         stationData={this.props.stationData}/>
                 }
             </div>

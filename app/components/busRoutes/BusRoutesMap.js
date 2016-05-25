@@ -10,6 +10,7 @@ const defaultZoom = 11;
 const defaultCenterLatitude = 1.3634594;
 const defaultCenterLongitude = 103.8200663;
 
+
 var BusRoutesMap = React.createClass({
     render: function () {
         var routes = this.props.busData._source;

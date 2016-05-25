@@ -11,38 +11,43 @@ const defaultZoom = 11;
 const defaultCenterLatitude = 1.3634594;
 const defaultCenterLongitude = 103.8200663;
 
+
 var ItineraryMap = React.createClass({
     render: function () {
-        var depStation = this.props.buses.departureStation.stationDesc;
-        var arrStation = this.props.buses.arrivalStation;
+        var depStation = this.props.buses[0].departureStation.stationDesc;
         return (
-            <GoogleMap
-                bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
-                defaultCenter={{ lat: defaultCenterLatitude, lng: defaultCenterLongitude }}
-                defaultZoom={ defaultZoom }>
-                <StationMarker
-                    stationName={depStation.Description}
-                    stationId=""
-                    currentStation="NA"
-                    size={stationMarkerSize}
-                    lat={depStation.Latitude}
-                    lng={depStation.Longitude}
-                />
-                <StationMarker
-                    stationName={arrStation.Description}
-                    stationId=""
-                    currentStation="NA"
-                    size={stationMarkerSize}
-                    lat={arrStation.Latitude}
-                    lng={arrStation.Longitude}
-                />
-            </GoogleMap>
+                <GoogleMap
+                    bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
+                    defaultCenter={{ lat: defaultCenterLatitude, lng: defaultCenterLongitude }}
+                    defaultZoom={ defaultZoom }>
+                    <StationMarker
+                        stationName={depStation.Description}
+                        stationId=""
+                        currentStation="NA"
+                        size={stationMarkerSize}
+                        lat={depStation.Latitude}
+                        lng={depStation.Longitude}
+                    />
+                    {this.props.buses.map(function (bus) {
+                        return (
+                            <StationMarker
+                                key={bus.arrivalStation.BusStopCode}
+                                stationName={bus.arrivalStation.Description}
+                                stationId=""
+                                currentStation="NA"
+                                size={stationMarkerSize}
+                                lat={bus.arrivalStation.Latitude}
+                                lng={bus.arrivalStation.Longitude}
+                            />)
+                    })
+                    }
+                </GoogleMap>
         )
     }
 });
 
 ItineraryMap.propTypes = {
-    buses: PropTypes.object.isRequired
+    buses: PropTypes.array.isRequired
 };
 
 module.exports = ItineraryMap;
