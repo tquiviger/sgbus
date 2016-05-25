@@ -33,8 +33,8 @@ var ItineraryMap = React.createClass({
                             <StationMarker
                                 key={bus.arrivalStation.BusStopCode}
                                 stationName={bus.arrivalStation.Description}
-                                stationId=""
-                                currentStation="NA"
+                                stationId={bus.arrivalStation.BusStopCode}
+                                currentStation={bus.arrivalStation.BusStopCode}
                                 size={stationMarkerSize}
                                 lat={bus.arrivalStation.Latitude}
                                 lng={bus.arrivalStation.Longitude}
