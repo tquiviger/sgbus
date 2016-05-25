@@ -3,6 +3,8 @@ var NearestBusStation = require('../../components/search/NearestBusStation');
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
 var withRouter = require('react-router').withRouter;
 
+const numResults = 3;
+
 var NearestBusStationContainer = React.createClass({
     getInitialState: function () {
         return {
@@ -12,7 +14,7 @@ var NearestBusStationContainer = React.createClass({
         }
     },
     locationSuccess: function (position) {
-        getNearestBusStationInfo(position.coords.latitude, position.coords.longitude)
+        getNearestBusStationInfo(position.coords.latitude, position.coords.longitude, numResults)
             .then(function (stationData) {
                 this.setState({
                     isLoading: false,
@@ -23,14 +25,14 @@ var NearestBusStationContainer = React.createClass({
     searchNearestBusStation: function (e) {
         e.preventDefault();
         this.setState({
-            isLoading:true
+            isLoading: true
         });
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.locationSuccess);
         }
         else {
             this.setState({
-                isLoading:false
+                isLoading: false
             });
         }
     },

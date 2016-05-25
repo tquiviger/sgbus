@@ -6,23 +6,13 @@ var Link = require('react-router').Link;
 
 var styles = {
     container: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
         backgroundSize: 'cover',
         backgroundImage: 'url(' + backgroundImage + ')',
-        height: '100%',
+        height: '50%',
         width: '100%'
     },
-    header: {
-        fontSize: 45,
-        color: '#fff',
-        fontWeight: 100
-    },
     table: {
-        fontSize: 12,
-        height: '70%',
+        height: '100%',
         overflow: 'scroll',
         textAlign: 'left'
     }
@@ -51,9 +41,16 @@ var BusRoutes = React.createClass({
         }
 
         return (
-            <div style={styles.container}>
-                <h1>Bus { this.props.bus} </h1>
-                <div style={styles.table} className="col-md-8">
+            <div className="row" style={styles.container}>
+
+                <div className="col-md-4">
+                    <h1>Bus { this.props.bus} </h1>
+                    <h1>Bus { this.props.bus} </h1>
+                    <h1>Bus { this.props.bus} </h1>
+                    <h1>Bus { this.props.bus} </h1>
+                    <h1>Bus { this.props.bus} </h1>
+                </div>
+                <div style={styles.table} className="col-md-7">
                     <table className="table table-condensed table-hover">
                         <thead>
                         <tr>

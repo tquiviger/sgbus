@@ -55,9 +55,9 @@ function getItineraryInfo(busStationDeparture, busStationArrival) {
         }))
 }
 
-function getNearestBusStationInfo(lat, lon) {
+function getNearestBusStationInfo(lat, lon, numResults) {
     return axios.post(_elasticSearchBusStationUrl, {
-            "from": 0, "size": 3,
+            "from": 0, "size": numResults,
             "query": {
                 "filtered": {
                     "filter": {

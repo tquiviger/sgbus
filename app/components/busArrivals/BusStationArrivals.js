@@ -57,7 +57,7 @@ var Detail = React.createClass({
                             <h1>{stationData.stationDesc.Description} </h1>
                             <h4>{stationData.stationDesc.RoadName}</h4>
                             <h4>#{stationData.BusStopID}</h4>
-                    </div>
+                        </div>
                 }
 
                 <div style={styles.table} className="col-md-7">
