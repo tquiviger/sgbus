@@ -46,7 +46,12 @@ if __name__=="__main__":
             jsonObj2 = json.loads(content2.decode())["Services"]
 
             for bus_service in jsonObj2:
-                bus_service['stationId']=bus_station["BusStopCode"]
-                producer.send('sgbus', bus_service)
+                bus_stop_code = bus_station["BusStopCode"]
+                service_no = bus_service['ServiceNo']
+                status = bus_service['Status']
+                arrival = bus_service['SubsequentBus']['EstimatedArrival']
+                load = bus_service['SubsequentBus']['Load']
+                body= bus_stop_code + '|' + service_no + '|' + status + '|' +arrival + '|' + load
+                producer.send('sgbus_services', body)
 
         count = count + 50

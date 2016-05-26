@@ -6,10 +6,7 @@ var Config = require('Config');
 var PropTypes = React.PropTypes;
 
 const stationMarkerSize = 8;
-const defaultZoom = 11;
-const defaultCenterLatitude = 1.3634594;
-const defaultCenterLongitude = 103.8200663;
-
+const defaultZoom = 12;
 
 var BusRoutesMap = React.createClass({
     render: function () {
@@ -35,7 +32,7 @@ var BusRoutesMap = React.createClass({
         return (
             <GoogleMap
                 bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
-                defaultCenter={{ lat: defaultCenterLatitude, lng: defaultCenterLongitude }}
+                center={{ lat: this.props.currentStationLat, lng: this.props.currentStationLon }}
                 defaultZoom={ defaultZoom }>
                 {
                     rows
@@ -47,7 +44,9 @@ var BusRoutesMap = React.createClass({
 
 BusRoutesMap.propTypes = {
     busData: PropTypes.object.isRequired,
-    currentStation: PropTypes.string
+    currentStation: PropTypes.string,
+    currentStationLat: PropTypes.number,
+    currentStationLon: PropTypes.number
 };
 
 module.exports = BusRoutesMap;

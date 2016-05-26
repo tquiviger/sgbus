@@ -3,12 +3,17 @@ var BusInfo = require('../../components/busRoutes/BusInfo');
 var getBusRoutesInfo = require('../../helpers/api').getBusAndRoutesInfo;
 
 
+const defaultCenterLatitude = 1.3634594;
+const defaultCenterLongitude = 103.8200663;
+
 var BusRoutesContainer = React.createClass({
     getInitialState: function () {
         return {
             isLoading: true,
             busData: {},
             currentStation: '',
+            currentStationLat: defaultCenterLatitude,
+            currentStationLon: defaultCenterLongitude,
             onHoverStation: this.onHoverStation
         }
     },
@@ -20,7 +25,9 @@ var BusRoutesContainer = React.createClass({
             .then(function (busData) {
                 this.setState({
                     isLoading: false,
-                    busData: busData
+                    busData: busData,
+                    currentStationLat: busData._source['Latitude_01'],
+                    currentStationLon: busData._source['Longitude_01']
                 });
             }.bind(this));
     },
@@ -32,9 +39,12 @@ var BusRoutesContainer = React.createClass({
     },
     onHoverStation: function (e) {
         e.preventDefault();
-        var stationClicked = e.currentTarget.id;
+        var stationClicked = e.currentTarget.id.split('|');
+
         this.setState({
-            currentStation: stationClicked
+            currentStation: stationClicked[0],
+            currentStationLat: Number(stationClicked[1]),
+            currentStationLon: Number(stationClicked[2])
         });
     },
     render: function () {
@@ -43,6 +53,8 @@ var BusRoutesContainer = React.createClass({
                 isLoading={this.state.isLoading}
                 busData={this.state.busData}
                 currentStation={this.state.currentStation}
+                currentStationLat={this.state.currentStationLat}
+                currentStationLon={this.state.currentStationLon}
                 onHoverStation={this.state.onHoverStation}
             />
         )

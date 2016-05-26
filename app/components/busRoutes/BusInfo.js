@@ -23,7 +23,10 @@ var BusInfo = React.createClass({
                         ? <h1 style={styles.header}> Loading </h1>
                         : <BusRoutesMap
                         busData={this.props.busData}
-                        currentStation={this.props.currentStation}/>
+                        currentStation={this.props.currentStation}
+                        currentStationLat={this.props.currentStationLat}
+                        currentStationLon={this.props.currentStationLon}
+                    />
                 }
                 {
                     this.props.isLoading === true
@@ -41,6 +44,8 @@ BusInfo.propTypes = {
     busData: PropTypes.object.isRequired,
     onHoverStation: PropTypes.func.isRequired,
     currentStation: PropTypes.string.isRequired,
+    currentStationLat: PropTypes.number.isRequired,
+    currentStationLon: PropTypes.number.isRequired,
     isLoading: PropTypes.bool.isRequired
 };
 

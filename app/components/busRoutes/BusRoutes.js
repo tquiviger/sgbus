@@ -28,7 +28,9 @@ var BusRoutes = React.createClass({
             var index = (i < 10) ? '0' + i : i;
             if (routes['BusStopRoad_' + index] != null) {
                 rows.push(
-                    <tr key={'BusStopRoad_'+index} id={index} onMouseOver={this.props.onHoverStation}>
+                    <tr key={'BusStopRoad_'+index}
+                        id={index+'|'+routes['Latitude_' + index]+'|'+routes['Longitude_' + index]}
+                        onMouseOver={this.props.onHoverStation}>
                         <td>{index}</td>
                         <td>{routes['BusStopRoad_' + index]}</td>
                         <td>
