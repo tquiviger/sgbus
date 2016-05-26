@@ -37,3 +37,7 @@ node_modules
 
 # IntelliJ
 .idea
+
+#Image files in the output directory
+public/*.png
+public/*.svg

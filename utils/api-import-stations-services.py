@@ -3,7 +3,7 @@ import urllib
 import urlparse3
 import httplib2 as http #External library
 from datetime import datetime
-from elasticsearch import Elasticsearch
+from kafka import KafkaProducer
 
 
 if __name__=="__main__":
@@ -22,11 +22,12 @@ if __name__=="__main__":
     #Get handle to http
     h = http.Http()
 
-    es = Elasticsearch()
+    producer = KafkaProducer(bootstrap_servers='localhost:9092',value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
     #Obtain results
     count = 0
     while (count < 6000):
+        print(count)
         response, content = h.request(
             url+"?$skip="+str(count),
             method,
@@ -36,7 +37,6 @@ if __name__=="__main__":
         #Parse JSON to print
         jsonObj = json.loads(content.decode())["value"]
         for bus_station in jsonObj:
-            print(bus_station["BusStopCode"])
             url2 = 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival?BusStopID='+bus_station["BusStopCode"]+'&SST=True'
             response, content2 = h.request(
                         url2,
@@ -46,10 +46,7 @@ if __name__=="__main__":
             jsonObj2 = json.loads(content2.decode())["Services"]
 
             for bus_service in jsonObj2:
-                print(bus_service)
-                try:
-                    es.index(index="sgbus", doc_type='bus_arrival', id=bus_station["BusStopCode"]+"_"+bus_service["ServiceNo"], body=bus_service)
-                except Exception:
-                    pass
+                bus_service['stationId']=bus_station["BusStopCode"]
+                producer.send('sgbus', bus_service)
 
-    count = count + 50
+        count = count + 50
