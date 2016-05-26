@@ -6,35 +6,34 @@ var Config = require('Config');
 var PropTypes = React.PropTypes;
 
 const stationMarkerSize = 8;
-const defaultZoom = 11;
-
-const defaultCenterLatitude = 1.3634594;
-const defaultCenterLongitude = 103.8200663;
-
+const defaultZoom = 12;
 
 var ItineraryMap = React.createClass({
     render: function () {
         var depStation = this.props.buses[0].departureStation.stationDesc;
+        var initialArrivalStation = this.props.buses[0].arrivalStation;
         return (
                 <GoogleMap
                     bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
-                    defaultCenter={{ lat: defaultCenterLatitude, lng: defaultCenterLongitude }}
+                    defaultCenter={{ lat: initialArrivalStation.Latitude, lng: initialArrivalStation.Longitude }}
                     defaultZoom={ defaultZoom }>
                     <StationMarker
                         stationName={depStation.Description}
                         stationId=""
                         currentStation="NA"
-                        size={stationMarkerSize}
+                        rank="D"
+                        size={stationMarkerSize*2}//forcing size to be doubled
                         lat={depStation.Latitude}
                         lng={depStation.Longitude}
                     />
-                    {this.props.buses.map(function (bus) {
+                    {this.props.buses.map(function (bus,rank) {
                         return (
                             <StationMarker
                                 key={bus.arrivalStation.BusStopCode}
                                 stationName={bus.arrivalStation.Description}
-                                stationId={bus.arrivalStation.BusStopCode}
-                                currentStation={bus.arrivalStation.BusStopCode}
+                                stationId={bus.arrivalStation.BusStopCode}//forcing color to be yellow
+                                currentStation={bus.arrivalStation.BusStopCode}//forcing color to be yellow
+                                rank={rank}
                                 size={stationMarkerSize}
                                 lat={bus.arrivalStation.Latitude}
                                 lng={bus.arrivalStation.Longitude}

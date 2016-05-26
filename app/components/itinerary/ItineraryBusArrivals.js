@@ -25,17 +25,22 @@ var ItineraryBusArrivals = React.createClass({
                 <div style={styles.title} className="container-fluid">
                     <h3>Available buses From <b>{buses[0].departureStation.stationDesc.Description}</b> To </h3>
                 </div>
-                {buses.map(function (bus) {
-                        return (
-                            <div className="container-fluid" style={styles.busLine} key={bus.arrivalStation.BusStopCode}>
-                                <BusStationArrival
-                                    mode="itinerary"
-                                    var stationData={bus.departureStation}
-                                    arrivalStation={bus.arrivalStation}/>
-                            </div>
-                        )
-                    }
-                )
+                {buses
+                    .sort(function (a, b) {
+                        return parseFloat(a.arrivalStation.distance) - parseFloat(b.arrivalStation.distance)
+                    }).map(function (bus, rank) {
+                            return (
+                                <div className="container-fluid" style={styles.busLine}
+                                     key={bus.arrivalStation.BusStopCode}>
+                                    <BusStationArrival
+                                        mode="itinerary"
+                                        rank={rank}
+                                        stationData={bus.departureStation}
+                                        arrivalStation={bus.arrivalStation}/>
+                                </div>
+                            )
+                        }
+                    )
                 }</div>)
     }
 });

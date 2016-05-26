@@ -5,8 +5,8 @@ var Link = require('react-router').Link;
 
 var styles = {
     container: {
-        fontSize: 17,
-        verticalAlign: 'center'
+        fontSize: 17
+
     },
     icon: {
         marginRight: 3
@@ -33,8 +33,8 @@ function getInterval(status, date) {
     return (<td>{interval}</td>)
 }
 
-function getDistance(distance){
-    return distance === 0?'':' ('+ Math.round(Number(distance))+ ' meters)'
+function getDistance(distance) {
+    return distance === 0 ? '' : ' (' + Math.round(Number(distance)) + ' meters)'
 }
 
 function buildArrivalTab(stationData) {
@@ -45,9 +45,9 @@ function buildArrivalTab(stationData) {
                 <th>Status</th>
                 <th>Bus #</th>
                 <th>Operator</th>
-                <th><i style={styles.icon} className="fa fa-clock-o" />1st Bus</th>
-                <th><i style={styles.icon} className="fa fa-clock-o" />2nd Bus</th>
-                <th><i style={styles.icon} className="fa fa-clock-o" />3rd Bus</th>
+                <th><i style={styles.icon} className="fa fa-clock-o"/>1st Bus</th>
+                <th><i style={styles.icon} className="fa fa-clock-o"/>2nd Bus</th>
+                <th><i style={styles.icon} className="fa fa-clock-o"/>3rd Bus</th>
             </tr>
             </thead>
             <tbody>
@@ -56,8 +56,8 @@ function buildArrivalTab(stationData) {
                         <tr key={result.OriginatingID+result.ServiceNo}>
                             <td>
                                 { result.Status === 'In Operation'
-                                    ? <i className="fa fa-check-circle" />
-                                    : <i className="fa fa-times-circle" />
+                                    ? <i className="fa fa-check-circle"/>
+                                    : <i className="fa fa-times-circle"/>
                                 }
                             </td>
                             <td>
@@ -88,7 +88,10 @@ var BusStationArrival = React.createClass({
                     this.props.mode === 'itinerary'
                         ?
                         <div className="col-md-4">
-                            <h4><i style={styles.icon} className="fa fa-arrow-circle-right" />
+                            <h4>
+                                <b>{this.props.rank} </b>
+                                <i style={styles.icon} className="fa fa-arrow-circle-right"/>
+
                                 <Link style={styles.links}
                                       to={'/detail/'+this.props.arrivalStation.BusStopCode}>
                                     <b>{this.props.arrivalStation.Description}</b>
@@ -118,7 +121,10 @@ var BusStationArrival = React.createClass({
 BusStationArrival.propTypes = {
     stationData: PropTypes.object.isRequired,
     mode: PropTypes.string.isRequired,
-    arrivalStation: PropTypes.object
+    arrivalStation: PropTypes.object,
+    rank: PropTypes.number
+
+
 };
 
 module.exports = BusStationArrival;
