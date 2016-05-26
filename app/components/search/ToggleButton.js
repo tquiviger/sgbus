@@ -1,5 +1,4 @@
 var React = require('react');
-var Config = require('Config');
 var PropTypes = React.PropTypes;
 
 var styles = {

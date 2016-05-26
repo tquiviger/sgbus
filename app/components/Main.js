@@ -18,6 +18,9 @@ var styles = {
         width: 40,
         align: 'middle'
     },
+    icon: {
+        marginRight: 3
+    },
     title: {
         fontSize: 30,
         color: '#fff',
@@ -36,6 +39,18 @@ var Main = React.createClass({
                     </Link>
                     <h2 style={styles.title}> Bus@Singapore</h2>
                 </div>
+                <ul className="nav nav-tabs">
+                    <li role="presentation">
+                        <Link to={'/'}>
+                            <i style={styles.icon} className="fa fa-home"/>Home
+                        </Link>
+                    </li>
+                    <li role="presentation">
+                        <Link to={'/stats'}>
+                            <i style={styles.icon} className="fa fa-area-chart"/>Bus stats
+                        </Link>
+                    </li>
+                </ul>
                 {this.props.children}
             </div>
         )

@@ -14,7 +14,7 @@ var styles = function (mode) {
             backgroundImage: 'url(' + backgroundImage + ')',
             height: '100%',
             width: '100%'
-            
+
         },
         stationContainer: {
             display: 'flex',

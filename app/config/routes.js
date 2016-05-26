@@ -4,17 +4,20 @@ var Router = ReactRouter.Router;
 var Route = ReactRouter.Route;
 var hashHistory = ReactRouter.hashHistory;
 var IndexRoute = ReactRouter.IndexRoute;
+
 var Main = require('../components/Main');
 var HomeContainer = require('../containers/HomeContainer');
 var BusStationInfoContainer = require('../containers/busArrivals/BusStationInfoContainer');
 var ItineraryContainer = require('../containers/itinerary/ItineraryContainer');
 var BusRoutesContainer = require('../containers/busRoutes/BusRoutesContainer');
+var StatsContainer = require('../containers/stats/StatsContainer');
 
 
 var routes = (
     <Router history={hashHistory}>
         <Route path='/' component={Main}>
             <IndexRoute component={HomeContainer}/>
+            <Route path='stats' component={StatsContainer}/>
             <Route path='detail/:busStation' component={BusStationInfoContainer}/>
             <Route path='routes/:bus' component={BusRoutesContainer}/>
             <Route path='itinerary/:departureStation' component={HomeContainer}/>
