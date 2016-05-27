@@ -74,7 +74,7 @@ if __name__=="__main__":
                     delta3= (parse(arrival3) - _now).total_seconds()
                     if delta3 < 0:
                         delta3 = 0
-                body= str(_now)+ '|' +bus_stop_code + '|' + service_no + '|' + status + '|' +str(delta1) + '|' + load1+ '|' +str(delta2) + '|' + load2+ '|' +str(delta3) + '|' + load3
+                body= str(_now.strftime('%Y%m%d%H%M%S'))+ '|' +bus_stop_code + '|' + service_no + '|' + status + '|' +str(delta1) + '|' + load1+ '|' +str(delta2) + '|' + load2+ '|' +str(delta3) + '|' + load3
                 producer.send('sgbus_services', body)
 
         count = count + 50
