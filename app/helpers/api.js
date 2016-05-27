@@ -8,6 +8,7 @@ var _elasticSearchBusUrl = Config.elasticSearchUrl + '/sgbus/bus/';
 var _elasticSearchBusStationsUrl = Config.elasticSearchUrl + '/sgbus/bus_station/';
 var _elasticSearchBusRoutesSearchUrl = Config.elasticSearchUrl + '/sgbus/bus_route/_search';
 var _elasticSearchBusStationUrl = Config.elasticSearchUrl + '/sgbus/bus_station/_search';
+var _elasticSearchStatsUrl = Config.elasticSearchUrl + '/sgbus/stats/_search';
 
 
 function getBusStationArrivalsInfo(bus) {
@@ -39,7 +40,7 @@ function getBusRoutesInfo(bus) {
 }
 
 function getBusAndRoutesInfo(bus) {
-    return axios.all([getBusRoutesInfo(bus),getBusInfo(bus)])
+    return axios.all([getBusRoutesInfo(bus), getBusInfo(bus)])
         .then(axios.spread(function (routes, bus) {
             routes.busInfo = bus._source;
             return routes
@@ -138,8 +139,32 @@ function getBusForItinerary(busStationDeparture, busStationArrival) {
         })
 }
 
+function getLatestsStats(statType) {
+    return axios.post(_elasticSearchStatsUrl, {
+            "query": {
+                "match": {
+                    "stat_type": statType
+                }
+            },
+            "size": 1000,
+
+            "sort": [
+                {
+                    "timestamp": {
+                        "order": "desc"
+                    }
+                }
+            ]
+        }
+    )
+        .then(function (stats) {
+            return stats.data
+        })
+}
+
 module.exports = {
     getBusStationInfo: getBusStationInfo,
+    getLatestsStats: getLatestsStats,
     getBusStation: getBusStation,
     getBusStationArrivalsInfo: getBusStationArrivalsInfo,
     getBusAndRoutesInfo: getBusAndRoutesInfo,

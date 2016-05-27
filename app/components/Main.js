@@ -54,6 +54,7 @@ var Main = React.createClass({
                     </Link>
                     <h2 style={styles.title}> Bus@Singapore</h2>
                 </div>
+                {navBar()}
                 {this.props.children}
             </div>
         )

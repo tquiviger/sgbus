@@ -37,5 +37,19 @@ curl -XPUT 'http://localhost:9200/sgbus/_mapping/bus_station' -d '
     
 }
 '
+
+curl -XPUT 'http://localhost:9200/sgbus/_mapping/stats' -d '
+{
+
+            "properties": {
+                "timestamp": {"type": "date"},
+                "statType": {"type": "string"},
+                "key": {"type": "string"},
+                "value": {"type": "double"}
+            }
+
+
+}
+'
 ```
 
