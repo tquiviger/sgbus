@@ -29,6 +29,21 @@ var styles = {
     }
 };
 
+var navBar = function () {
+    return (<ul className="nav nav-tabs">
+        <li role="presentation">
+            <Link to={'/'}>
+                <i style={styles.icon} className="fa fa-home"/>Home
+            </Link>
+        </li>
+        <li role="presentation">
+            <Link to={'/stats'}>
+                <i style={styles.icon} className="fa fa-area-chart"/>Bus stats
+            </Link>
+        </li>
+    </ul>)
+}
+
 var Main = React.createClass({
     render: function () {
         return (
@@ -39,18 +54,6 @@ var Main = React.createClass({
                     </Link>
                     <h2 style={styles.title}> Bus@Singapore</h2>
                 </div>
-                <ul className="nav nav-tabs">
-                    <li role="presentation">
-                        <Link to={'/'}>
-                            <i style={styles.icon} className="fa fa-home"/>Home
-                        </Link>
-                    </li>
-                    <li role="presentation">
-                        <Link to={'/stats'}>
-                            <i style={styles.icon} className="fa fa-area-chart"/>Bus stats
-                        </Link>
-                    </li>
-                </ul>
                 {this.props.children}
             </div>
         )

@@ -28,7 +28,7 @@ if __name__=="__main__":
 
     #Obtain results
     count = 0
-    while (count < 300):
+    while (count < 6000):
         print(count)
         response, content = h.request(
             url+"?$skip="+str(count),
