@@ -4,6 +4,8 @@ import urlparse3
 import httplib2 as http #External library
 from datetime import datetime
 from kafka import KafkaProducer
+from datetime import datetime, timezone
+from dateutil.parser import parse
 
 
 if __name__=="__main__":
@@ -26,7 +28,7 @@ if __name__=="__main__":
 
     #Obtain results
     count = 0
-    while (count < 6000):
+    while (count < 300):
         print(count)
         response, content = h.request(
             url+"?$skip="+str(count),
@@ -37,6 +39,7 @@ if __name__=="__main__":
         #Parse JSON to print
         jsonObj = json.loads(content.decode())["value"]
         for bus_station in jsonObj:
+            _now = datetime.now(timezone.utc).astimezone().replace(microsecond=0)
             url2 = 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival?BusStopID='+bus_station["BusStopCode"]+'&SST=True'
             response, content2 = h.request(
                         url2,
@@ -49,9 +52,29 @@ if __name__=="__main__":
                 bus_stop_code = bus_station["BusStopCode"]
                 service_no = bus_service['ServiceNo']
                 status = bus_service['Status']
-                arrival = bus_service['SubsequentBus']['EstimatedArrival']
-                load = bus_service['SubsequentBus']['Load']
-                body= bus_stop_code + '|' + service_no + '|' + status + '|' +arrival + '|' + load
+                arrival1= bus_service['NextBus']['EstimatedArrival']
+                arrival2= bus_service['SubsequentBus']['EstimatedArrival']
+                arrival3= bus_service['SubsequentBus3']['EstimatedArrival']
+                load1 = bus_service['NextBus']['Load']
+                load2 = bus_service['SubsequentBus']['Load']
+                load3 = bus_service['SubsequentBus3']['Load']
+
+                delta1=''
+                delta2=''
+                delta3=''
+                if arrival1:
+                    delta1= (parse(arrival1) - _now).total_seconds()
+                    if delta1 < 0:
+                        delta1 = 0
+                if arrival2:
+                    delta2= (parse(arrival2) - _now).total_seconds()
+                    if delta2 < 0:
+                        delta2 = 0
+                if arrival3:
+                    delta3= (parse(arrival3) - _now).total_seconds()
+                    if delta3 < 0:
+                        delta3 = 0
+                body= str(_now)+ '|' +bus_stop_code + '|' + service_no + '|' + status + '|' +str(delta1) + '|' + load1+ '|' +str(delta2) + '|' + load2+ '|' +str(delta3) + '|' + load3
                 producer.send('sgbus_services', body)
 
         count = count + 50
