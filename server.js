@@ -18,7 +18,7 @@ var configuration = JSON.parse(fs.readFileSync(configurationFile));
 var _baseBusArrivalsUrl = 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival?SST=True&BusStopID=';
 
 app.use('/search/*', function (req, res) {
-    var url = configuration.elasticSearchUrl +'/'+ req.params['0'];
+    var url = configuration.elasticSearchUrl + '/' + req.params['0'];
     req.pipe(request(url)).pipe(res);
 });
 
