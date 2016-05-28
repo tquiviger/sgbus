@@ -2,9 +2,10 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var Searchkit = require('searchkit');
 var BusStationResults = require('./BusStationResults');
+var Config = require('Config');
 
 const searchkit = new Searchkit.SearchkitManager(
-    "/search/sgbus/bus_station",
+    Config.apiUrl + "/search/sgbus/bus_station",
     {searchOnLoad: false, useHistory: false}
 );
 searchkit.setQueryProcessor(function(query){
