@@ -4,14 +4,10 @@ import urlparse3
 import httplib2 as http #External library
 from datetime import datetime
 from elasticsearch import Elasticsearch
+import apiconfig
 
 
 if __name__=="__main__":
-    #Authentication parameters
-    headers = { 'AccountKey' : 'aY3i4Kl7xgWb7rtqvhtS8A==',
-                'UniqueUserID' : '1371ad3d-333e-447a-a4ef-22660b11271c',
-                'accept' : 'application/json'} #Request results in JSON
-
     #API parameters
     url = 'http://datamall2.mytransport.sg/ltaodataservice/BusStops'
 
@@ -22,7 +18,7 @@ if __name__=="__main__":
     #Get handle to http
     h = http.Http()
 
-    es = Elasticsearch()
+    es = Elasticsearch(apiconfig.api["elasticSearchUrlHttp"], port=apiconfig.api["elasticSearchPort"])
 
     #Obtain results
     count = 0
@@ -31,7 +27,7 @@ if __name__=="__main__":
             url+"?$skip="+str(count),
             method,
             body,
-            headers)
+            apiconfig.headers)
 
         #Parse JSON to print
         jsonObj = json.loads(content.decode())["value"]
