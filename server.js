@@ -4,15 +4,23 @@ var path = require('path');
 var cors = require('cors')
 var axios = require('axios');
 var fs = require('fs');
+var request = require('request');
+
 
 var app = express();
 app.use(cors());
+
 
 var configPath = '/home/ec2-user/config/'
 var configurationFile = configPath + 'config.json';
 var configuration = JSON.parse(fs.readFileSync(configurationFile));
 
 var _baseBusArrivalsUrl = 'http://datamall2.mytransport.sg/ltaodataservice/BusArrival?SST=True&BusStopID=';
+
+app.use('/search/*', function (req, res) {
+    var url = configuration.elasticSearchUrl +'/'+ req.params['0'];
+    req.pipe(request(url)).pipe(res);
+});
 
 
 https.createServer(

@@ -3,12 +3,12 @@ var Config = require('Config');
 
 var _apiBusArrivalsUrl = Config.apiUrl + '/bus_arrivals/';
 
-var _elasticSearchBusRoutesUrl = Config.elasticSearchUrl + '/sgbus/bus_route/';
-var _elasticSearchBusUrl = Config.elasticSearchUrl + '/sgbus/bus/';
-var _elasticSearchBusStationsUrl = Config.elasticSearchUrl + '/sgbus/bus_station/';
-var _elasticSearchBusRoutesSearchUrl = Config.elasticSearchUrl + '/sgbus/bus_route/_search';
-var _elasticSearchBusStationUrl = Config.elasticSearchUrl + '/sgbus/bus_station/_search';
-var _elasticSearchStatsUrl = Config.elasticSearchUrl + '/sgbus/stats/_search';
+var _elasticSearchBusRoutesUrl = '/search/sgbus/bus_route/';
+var _elasticSearchBusUrl = '/search/sgbus/bus/';
+var _elasticSearchBusStationsUrl = '/search/sgbus/bus_station/';
+var _elasticSearchBusRoutesSearchUrl = '/search/sgbus/bus_route/_search';
+var _elasticSearchBusStationUrl = '/search/sgbus/bus_station/_search';
+var _elasticSearchStatsUrl = '/search/sgbus/stats/_search';
 
 
 function getBusStationArrivalsInfo(bus) {
