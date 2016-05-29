@@ -14,10 +14,10 @@ var StatsContainer = React.createClass({
         getLatestsStats('meanWaitingTimeByBus')
             .then(function (statsData) {
                 var data = statsData.hits.hits
-                    .map(s=> s._source)
+                    .map(function(s){return s._source})
                 this.setState({
-                    labels: data.map(stat=>stat.timestamp),
-                    values: data.map(stat=>stat.value)
+                    labels: data.map(function(s){return s.timestamp}),
+                    values: data.map(function(s){return s.value})
                 })
                 new Chart(ctx, {
                     type: 'line',
