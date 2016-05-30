@@ -20,7 +20,7 @@ var Stats = React.createClass({
     render: function () {
         return (
             <div style={styles.container}>
-                <canvas id="myChart" width="600" height="400"></canvas>
+                <canvas id="myChart" width="800" height="600"></canvas>
             </div>
         )
     }
