@@ -22,7 +22,7 @@ module.exports = {
         'Config': JSON.stringify(require('/Users/thomas/sgbus/config.json'))
     },
     output: {
-        path: __dirname + '/public',
+        path: __dirname + '/dist',
         filename: "index_bundle.js"
     },
     module: {

@@ -146,7 +146,7 @@ function getLatestsStats(statType) {
                     "stat_type": statType
                 }
             },
-            "size": 1000,
+            "size": 20,
 
             "sort": [
                 {

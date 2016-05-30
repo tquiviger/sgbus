@@ -6,10 +6,8 @@ var axios = require('axios');
 var fs = require('fs');
 var request = require('request');
 
-
 var app = express();
 app.use(cors());
-
 
 var configPath = '/home/ec2-user/config/'
 var configurationFile = configPath + 'config.json';

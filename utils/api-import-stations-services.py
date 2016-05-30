@@ -62,14 +62,14 @@ if __name__=="__main__":
                     delta1= (parse(arrival1) - _now).total_seconds()
                     if delta1 < 0:
                         delta1 = 0
-                if arrival2:
-                    delta2= (parse(arrival2) - _now).total_seconds()
-                    if delta2 < 0:
-                        delta2 = 0
-                if arrival3:
-                    delta3= (parse(arrival3) - _now).total_seconds()
-                    if delta3 < 0:
-                        delta3 = 0
+                    if arrival2:
+                        delta2= (parse(arrival2) - parse(arrival1)).total_seconds()
+                        if delta2 < 0:
+                            delta2 = 0
+                        if arrival3:
+                            delta3= (parse(arrival3) - parse(arrival2)).total_seconds()
+                            if delta3 < 0:
+                                delta3 = 0
                 body= str(_now.strftime('%Y%m%d%H%M%S'))+ '|' +bus_stop_code + '|' + service_no + '|' + status + '|' +str(delta1) + '|' + load1+ '|' +str(delta2) + '|' + load2+ '|' +str(delta3) + '|' + load3
                 producer.send('sgbus_services', body)
 

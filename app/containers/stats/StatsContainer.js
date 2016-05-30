@@ -16,15 +16,15 @@ var StatsContainer = React.createClass({
                 var data = statsData.hits.hits
                     .map(function(s){return s._source})
                 this.setState({
-                    labels: data.map(function(s){return s.timestamp}),
+                    labels: data.map(function(s){return s.key}),
                     values: data.map(function(s){return s.value})
                 })
                 new Chart(ctx, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: this.state.labels,
                         datasets: [{
-                            label: 'Mean waiting time',
+                            label: 'Mean waiting time (sec)',
                             fill: false,
                             lineTension: 0.1,
                             backgroundColor: "#000",
