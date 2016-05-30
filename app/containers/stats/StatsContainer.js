@@ -60,19 +60,10 @@ var StatsContainer = React.createClass({
                         },
                         legend: {
                             position: 'bottom'
-                        },
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
                         }
                     }
                 });
             }.bind(this));
-
-
     },
     render: function () {
         return (
