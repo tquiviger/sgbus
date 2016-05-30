@@ -1,14 +1,11 @@
 var https = require('https');
 var express = require('express');
 var path = require('path');
-var cors = require('cors')
 var axios = require('axios');
 var fs = require('fs');
 var request = require('request');
 
-
 var app = express();
-app.use(cors());
 
 
 var configPath = '/home/ec2-user/config/'
