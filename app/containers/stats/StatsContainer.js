@@ -1,5 +1,6 @@
 var React = require('react');
 var Stats = require('../../components/stats/Stats');
+var moment = require('moment');
 var getLatestsStats = require('../../helpers/api').getLatestsStats;
 var Chart = require('chart.js')
 var _ = require('underscore')
@@ -41,8 +42,10 @@ var StatsContainer = React.createClass({
                     }
                 }
                 this.setState({
-                    labels: _.uniq(_.pluck(data, 'timestamp')).sort()
-                })
+                    labels: _.uniq(data.map(function (stat) {
+                        return moment(stat.timestamp).format('DD/MM/YYYY HH:mm:ss');
+                    })).sort()
+                });
                 new Chart(ctx, {
                     type: 'line',
                     data: {
