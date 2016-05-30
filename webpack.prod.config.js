@@ -2,6 +2,11 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
+    resolve: {
+        alias: {
+            react: path.resolve('./node_modules/react'),
+        }
+    },
     loader: {
         configEnvironment: 'production'
     },

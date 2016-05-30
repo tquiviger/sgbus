@@ -1,3 +1,4 @@
+const path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     template: __dirname + '/app/index.html',
@@ -6,6 +7,11 @@ var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 })
 
 module.exports = {
+    resolve: {
+        alias: {
+            react: path.resolve('./node_modules/react'),
+        }
+    },
     loader: {
         configEnvironment: 'development'
     },
