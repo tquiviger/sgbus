@@ -3,16 +3,21 @@ var moment = require('moment');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
 
-var styles = {
-    container: {
-        fontSize: 17
+var styles = function (isInOperation) {
+    return {
+        container: {
+            fontSize: 17
 
-    },
-    icon: {
-        marginRight: 3
-    },
-    links: {
-        color: '#000'
+        },
+        icon: {
+            marginRight: 3
+        },
+        links: {
+            color: '#000'
+        },
+        row: {
+            opacity: isInOperation ? 1 : 0.3
+        }
     }
 };
 
@@ -45,15 +50,16 @@ function buildArrivalTab(stationData) {
                 <th>Status</th>
                 <th>Bus #</th>
                 <th>Operator</th>
-                <th><i style={styles.icon} className="fa fa-clock-o"/>1st Bus</th>
-                <th><i style={styles.icon} className="fa fa-clock-o"/>2nd Bus</th>
-                <th><i style={styles.icon} className="fa fa-clock-o"/>3rd Bus</th>
+                <th><i style={styles().icon} className="fa fa-clock-o"/>1st Bus</th>
+                <th><i style={styles().icon} className="fa fa-clock-o"/>2nd Bus</th>
+                <th><i style={styles().icon} className="fa fa-clock-o"/>3rd Bus</th>
             </tr>
             </thead>
             <tbody>
             {stationData.Services.map(function (result) {
                     return (
-                        <tr key={result.OriginatingID+result.ServiceNo}>
+                        <tr key={result.OriginatingID+result.ServiceNo}
+                            style={styles(result.Status === 'In Operation').row}>
                             <td>
                                 { result.Status === 'In Operation'
                                     ? <i className="fa fa-check-circle"/>
@@ -61,7 +67,7 @@ function buildArrivalTab(stationData) {
                                 }
                             </td>
                             <td>
-                                <Link style={styles.links} to={'/routes/'+result.ServiceNo}>
+                                <Link style={styles().links} to={'/routes/'+result.ServiceNo}>
                                     <strong>Bus {result.ServiceNo}</strong>
                                 </Link>
                             </td>
@@ -83,16 +89,16 @@ function buildArrivalTab(stationData) {
 var BusStationArrival = React.createClass({
     render: function () {
         return (
-            <div style={styles.container}>
+            <div style={styles().container}>
                 {
                     this.props.mode === 'itinerary'
                         ?
                         <div className="col-md-4">
                             <h4>
                                 <b>{this.props.rank} </b>
-                                <i style={styles.icon} className="fa fa-arrow-circle-right"/>
+                                <i style={styles().icon} className="fa fa-arrow-circle-right"/>
 
-                                <Link style={styles.links}
+                                <Link style={styles().links}
                                       to={'/detail/'+this.props.arrivalStation.BusStopCode}>
                                     <b>{this.props.arrivalStation.Description}</b>
                                     { getDistance(this.props.arrivalStation.distance)}
