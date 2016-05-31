@@ -22,7 +22,7 @@ var Stats = React.createClass({
     render: function () {
         return (
             <div style={styles.container}>
-                <canvas id="myChart" width="900" height="500"></canvas>
+                <canvas id="meanWaitingTime" width="900" height="500"/>
                 <div className="form-group">
                     <input
                         className="form-control input-sm"
@@ -37,7 +37,6 @@ var Stats = React.createClass({
 });
 
 Stats.propTypes = {
-    busArray: PropTypes.array.isRequired,
     callbackSelect: PropTypes.func.isRequired
 };
 
