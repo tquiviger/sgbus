@@ -1,5 +1,5 @@
 LINE_OPTIONS = {
-    responsive: false,
+    responsive: true,
     hover: {
         mode: 'dataset'
     },

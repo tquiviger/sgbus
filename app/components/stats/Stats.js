@@ -9,10 +9,15 @@ var styles = {
         backgroundImage: 'url(' + backgroundImageBlue + ')',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'flex-start',
         height: '100%',
         width: '100%'
+    },
+    chartContainer: {
+        height: '70%',
+        width: '70%',
+        marginBottom:50
     }
 };
 
@@ -22,13 +27,17 @@ var Stats = React.createClass({
     render: function () {
         return (
             <div style={styles.container}>
-                <canvas id="meanWaitingTime" width="900" height="500"/>
-                <div className="form-group">
-                    <input
-                        className="form-control input-sm"
-                        type="text"
-                        placeholder="Enter a bus number"
-                        onChange={this.props.callbackSelect}/>
+                <div className="container-fluid" style={styles.chartContainer}>
+                    <canvas id="meanWaitingTime"/>
+                </div>
+                <div className="container-fluid" >
+                    <div className="form-group">
+                        <input
+                            className="form-control input-sm"
+                            type="text"
+                            placeholder="Enter a bus number"
+                            onChange={this.props.callbackSelect}/>
+                    </div>
                 </div>
 
             </div>
