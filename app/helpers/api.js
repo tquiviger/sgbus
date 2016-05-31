@@ -139,22 +139,31 @@ function getBusForItinerary(busStationDeparture, busStationArrival) {
         })
 }
 
-function getLatestsStats(statType) {
+function getLatestsStats(statType, selectedBus) {
     return axios.post(_elasticSearchStatsUrl, {
             "query": {
-                "match": {
-                    "stat_type": statType
-                }
-            },
-            "size": 1000,
-
-            "sort": [
-                {
-                    "timestamp": {
-                        "order": "desc"
+                "filtered": {
+                    "query": {
+                        "match": {
+                            "stat_type": statType
+                        },
+                        "filter": {
+                            "terms": {
+                                "key": selectedBus
+                            }
+                        }
                     }
-                }
-            ]
+                },
+                "size": 1000,
+                "sort": [
+                    {
+                        "timestamp": {
+                            "order": "desc"
+                        }
+                    }
+                ]
+            }
+
         }
     )
         .then(function (stats) {

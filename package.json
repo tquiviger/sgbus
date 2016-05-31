@@ -26,6 +26,7 @@
     "google-map-react": "^0.12.1",
     "html-webpack-plugin": "^2.18.0",
     "moment": "^2.13.0",
+    "randomcolor": "^0.4.4",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-router": "^2.4.0",
