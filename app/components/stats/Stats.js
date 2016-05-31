@@ -25,7 +25,7 @@ var Stats = React.createClass({
                 <canvas id="myChart" width="900" height="500"></canvas>
                 <div className="form-group">
                     <input
-                        className="form-control"
+                        className="form-control input-sm"
                         type="text"
                         placeholder="Enter a bus number"
                         onChange={this.props.callbackSelect}/>
