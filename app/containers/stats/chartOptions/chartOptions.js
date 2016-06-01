@@ -13,6 +13,12 @@ LINE_OPTIONS = {
             boxWidth: 10,
             fontColor: '#fff'
         }
+    },scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true
+            }
+        }]
     }
 };
 
