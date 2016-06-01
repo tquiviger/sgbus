@@ -15,7 +15,7 @@ var defaultBusDisplayed = _.first(BUSES, 15)
 
 var StatsContainer = React.createClass({
     callbackSelect: function (e) {
-        getLatestsStats('meanWaitingTime', e.target.value ? [e.target.value] : defaultBusDisplayed)
+        getLatestsStats('meanwaitingtime', e.target.value ? [e.target.value] : defaultBusDisplayed)
             .then(function (statsData) {
                 var __ret = this.generateLabelsAndDatasets(statsData);
                 this.state.myChart.data.datasets = __ret.datasets;
@@ -25,7 +25,7 @@ var StatsContainer = React.createClass({
 
     },
     componentDidMount: function () {
-        getLatestsStats('meanWaitingTime', defaultBusDisplayed)
+        getLatestsStats('meanwaitingtime', defaultBusDisplayed)
             .then(function (statsData) {
                 var __ret = this.generateLabelsAndDatasets(statsData);
                 var labels = __ret.labels;
@@ -46,13 +46,13 @@ var StatsContainer = React.createClass({
         this.setState({myChart: myChart})
     },
     generateLabelsAndDatasets: function (statsData) {
-        var data = _.pluck(statsData.hits.hits, '_source');
+        var data = statsData.hits.hits.map(function (h) {
+            return h._source;
+        })
         var labels = _.uniq(data.map(function (stat) {
                 return moment(stat.timestamp).format(OUTPUT_DATE_FORMAT);
             }
-        )).sort(function (a, b) {
-            return moment(a,OUTPUT_DATE_FORMAT) - moment(b,OUTPUT_DATE_FORMAT);
-        });
+        ));
         var hits = _.groupBy(data, 'key');
         var datasets = [];
         for (var i = 0; i < 300; i++) {

@@ -43,9 +43,9 @@ curl -XPUT 'http://localhost:9200/sgbus/_mapping/stats' -d '
 
             "properties": {
                 "timestamp": {"type": "date"},
-                "statType": {"type": "string"},
+                "stattype": {"type": "string"},
                 "key": {"type": "string"},
-                "value": {"type": "double"}
+                "value" {"type": "double"}
             }
 
 
