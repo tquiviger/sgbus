@@ -50,7 +50,9 @@ var StatsContainer = React.createClass({
         var labels = _.uniq(data.map(function (stat) {
                 return moment(stat.timestamp).format(OUTPUT_DATE_FORMAT);
             }
-        )).sort();
+        )).sort(function (a, b) {
+            return moment(a,OUTPUT_DATE_FORMAT) - moment(b,OUTPUT_DATE_FORMAT);
+        });
         var hits = _.groupBy(data, 'key');
         var datasets = [];
         for (var i = 0; i < 300; i++) {
