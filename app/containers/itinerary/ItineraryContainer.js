@@ -35,13 +35,13 @@ var ItineraryContainer = React.createClass({
                                 getItineraryInfo(departureStation, arrivalSt._id)
                                     .then(function (currentBusData) {
                                             currentBusData.departureStation.Services = this.filterOnlyAvailableResultsInDepartureServices(currentBusData);
-                                            currentBusData.arrivalStation.distance = arrivalSt.sort[0]
-                                            var newData = this.state.busData
-                                            newData.push(currentBusData)
+                                            currentBusData.arrivalStation.distance = arrivalSt.sort[0];
+                                            var newData = this.state.busData;
+                                            newData.push(currentBusData);
                                             this.setState({
                                                 isLoading: false,
                                                 busData: newData
-                                            })
+                                            });
                                         }.bind(this)
                                     )
                             }.bind(this)
