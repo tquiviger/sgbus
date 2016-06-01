@@ -24,7 +24,7 @@ var styles = {
     title: {
         fontSize: 30,
         color: '#fff',
-        fontWeight: 100,
+        fontWeight: 600,
         margin:7
     }
 };

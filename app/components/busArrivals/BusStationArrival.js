@@ -7,7 +7,6 @@ var styles = function (isInOperation) {
     return {
         container: {
             fontSize: 17
-
         },
         icon: {
             marginRight: 3
@@ -114,7 +113,7 @@ var BusStationArrival = React.createClass({
                 }
                 <div className="col-md-7">{
                     this.props.stationData.Services.length === 0
-                        ? <div/>
+                        ? <h4 style={{opacity:0.4}}>No bus found</h4>
                         : (buildArrivalTab(this.props.stationData))}
                 </div>
             </div>

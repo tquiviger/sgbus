@@ -9,7 +9,7 @@ var getLatestsStats = require('../../helpers/api').getLatestsStats;
 var chartOptions = require('./chartOptions/chartOptions');
 
 const BUSES = require('../../data/busData').BUSES;
-const OUTPUT_DATE_FORMAT = 'DD/MM/YYYY HH:mm:ss';
+const OUTPUT_DATE_FORMAT = 'DD/MM/YYYY HH:mm';
 const SINGLE_BUS_STATS = ['meanwaitingtimebybus', 'maxwaitingtimebybus'];
 const MULTI_BUS_STATS = ['meanwaitingtimebybus'];
 

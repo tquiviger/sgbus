@@ -17,7 +17,8 @@ var styles = {
     chartContainer: {
         height: '70%',
         width: '70%',
-        marginBottom:30
+        marginBottom:10,
+        paddingBottom:20
     }
 };
 
@@ -26,7 +27,7 @@ var Stats = React.createClass({
     render: function () {
         return (
             <div style={styles.container}>
-                <h2>Stats of Bus <b>{this.props.selectedBus}</b></h2>
+                <h3>Stats of Bus <b>{this.props.selectedBus}</b></h3>
                 <div className="container-fluid" style={styles.chartContainer}>
                     <canvas id="waitingTime"/>
                 </div>
