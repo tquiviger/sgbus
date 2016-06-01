@@ -16,14 +16,22 @@ const MULTI_BUS_STATS = ['meanwaitingtimebybus'];
 var defaultBusDisplayed = _.first(BUSES, 15);
 
 var StatsContainer = React.createClass({
+    getInitialState: function () {
+        return {
+            selectedBus: ''
+        }
+    },
     callbackSelect: function (e) {
-        var isSingleBus = e.target.value;
-        getLatestsStats(isSingleBus ? SINGLE_BUS_STATS : MULTI_BUS_STATS, isSingleBus ? [e.target.value] : defaultBusDisplayed, isSingleBus)
+        var busNumber = e.target.value;
+        getLatestsStats(busNumber ? SINGLE_BUS_STATS : MULTI_BUS_STATS, busNumber ? [e.target.value] : defaultBusDisplayed, busNumber)
             .then(function (statsData) {
-                var __ret = this.generateLabelsAndDatasets(statsData, isSingleBus);
+                var __ret = this.generateLabelsAndDatasets(statsData, busNumber);
                 this.state.myChart.data.datasets = __ret.datasets;
                 this.state.myChart.data.labels = __ret.labels;
-                if (__ret.datasets.length) this.state.myChart.update()
+                if (__ret.datasets.length) {
+                    this.setState({selectedBus: busNumber});
+                    this.state.myChart.update()
+                }
             }.bind(this))
 
     },
@@ -66,7 +74,7 @@ var StatsContainer = React.createClass({
         });
         return color;
     },
-    generateLabelsAndDatasets: function (statsData, isSingleBus) {
+    generateLabelsAndDatasets: function (statsData, busNumber) {
         var data = statsData.hits.hits.map(function (h) {
             return h._source;
         });
@@ -74,9 +82,9 @@ var StatsContainer = React.createClass({
                 return moment(stat.timestamp).format(OUTPUT_DATE_FORMAT);
             }
         ));
-        var hits = _.groupBy(data, isSingleBus ? 'stattype' : 'key');
+        var hits = _.groupBy(data, busNumber ? 'stattype' : 'key');
         var datasets = [];
-        if (!isSingleBus) {
+        if (!busNumber) {
             for (var i = 0; i < 300; i++) {
                 if (hits[i] != null) {
                     this.generateDatasets(datasets, hits[i], hits[i][0].key);
@@ -96,6 +104,7 @@ var StatsContainer = React.createClass({
     render: function () {
         return (
             <Stats
+                selectedBus={this.state.selectedBus}
                 callbackSelect={this.callbackSelect}/>
         )
     }

@@ -5,7 +5,7 @@ LINE_OPTIONS = {
     },
     title: {
         display: true,
-        text: 'Average waiting time bys bus (in minutes)'
+        text: 'Waiting time (in minutes)'
     },
     legend: {
         position: 'bottom',
@@ -13,10 +13,10 @@ LINE_OPTIONS = {
             boxWidth: 10,
             fontColor: '#fff'
         }
-    },scales: {
+    }, scales: {
         yAxes: [{
             ticks: {
-                beginAtZero:true
+                beginAtZero: true
             }
         }]
     }
