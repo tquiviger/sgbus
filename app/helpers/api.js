@@ -147,7 +147,7 @@ function getLatestsStats(statType, selectedBus) {
                         "bool": {
                             "must": [
                                 {
-                                    "term": {
+                                    "terms": {
                                         "stattype": statType
                                     }
                                 },

@@ -28,7 +28,7 @@ var Stats = React.createClass({
         return (
             <div style={styles.container}>
                 <div className="container-fluid" style={styles.chartContainer}>
-                    <canvas id="meanWaitingTime"/>
+                    <canvas id="waitingTime"/>
                 </div>
                 <div className="container-fluid" >
                     <div className="form-group">
