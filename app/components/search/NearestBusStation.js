@@ -49,7 +49,7 @@ var FindNearestButton = function (props) {
                         style={styles.button}
                         className='btn btn-primary'
                         value={props.nearestStationId}>
-                    <i style={styles.icon} className="fa fa-map-marker" aria-hidden="true"/> {getStationNameAndDistance(result)}
+                    <i style={styles.icon} className="fa fa-map-marker"/> {getStationNameAndDistance(result)}
                 </button>
             </Link>
         )
@@ -63,7 +63,7 @@ var FindNearestButton = function (props) {
                           style={styles.button}
                           className='btn btn-warning'
                           onClick={props.onSubmitNearestBusStation}>
-                <i style={styles.icon} className="fa fa-map-o" aria-hidden="true"/>Find the nearest stations
+                <i style={styles.icon} className="fa fa-map-o"/>Find the nearest stations
             </button>
             }
             <div style={styles.buttons}>{nearestStationsButtons}</div>

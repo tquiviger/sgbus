@@ -22,7 +22,7 @@ var ToggleButton = React.createClass({
                 style={styles.button}
                 className='btn btn-primary'
                 onClick={this.props.buttonCallback}>
-                <i style={{marginRight :10}} className="fa fa-exchange" aria-hidden="true"></i>
+                <i style={{marginRight :10}} className="fa fa-exchange"></i>
                 {this.props.mode === 'station' ? 'Switch to Itinerary' : 'Switch to Bus Station'}
             </button>
         )

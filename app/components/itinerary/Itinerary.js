@@ -3,6 +3,7 @@ var Config = require('Config');
 var PropTypes = React.PropTypes;
 var ItineraryBusArrivals = require('./ItineraryBusArrivals');
 var ItineraryMap = require('./ItineraryMap');
+var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
 var backgroundImageGreen = require('file?name=[name].[ext]!../../images/pattern-itinerary.svg');
 
 
@@ -30,7 +31,7 @@ var Itinerary = React.createClass({
             <div style={styles.container}>
                 {
                     this.props.isLoading
-                        ? <h1 style={styles.header}> Loading </h1>
+                        ? <h1 style={styles.header}> <img src={loadingImage} style={styles.image}/>Loading </h1>
                         : <ItineraryMap
                         buses={this.props.buses}/>
                 }

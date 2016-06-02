@@ -2,6 +2,7 @@ var React = require('react');
 var moment = require('moment');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
+var ReactTooltip = require("react-tooltip")
 
 var styles = function (isInOperation) {
     return {
@@ -21,7 +22,8 @@ var styles = function (isInOperation) {
 };
 
 
-function getInterval(status, date) {
+function getIntervalAndLoad(status, date, load, feature, key) {
+    var type = load === 'Seats Available' ? 'info' : (load === 'Standing Available' ? 'warning' : 'error')
     var interval = '';
     if (status != 'In Operation') {
         return <td/>
@@ -34,7 +36,15 @@ function getInterval(status, date) {
             interval = <b>Arrived</b>
         }
     }
-    return (<td>{interval}</td>)
+    return (
+        <td data-tip data-for={'loadAndFeatureTooltip'+key}>{interval}
+            <ReactTooltip id={'loadAndFeatureTooltip'+key} type={type} effect="float">
+                <span>{load}</span>
+                <br/>
+                <span><i style={styles().icon} className="fa fa-wheelchair-alt"/>: {feature ? 'Yes' : 'No'}</span>
+            </ReactTooltip>
+        </td>
+    )
 }
 
 function getDistance(distance) {
@@ -56,8 +66,9 @@ function buildArrivalTab(stationData) {
             </thead>
             <tbody>
             {stationData.Services.map(function (result) {
+                    var key = result.OriginatingID + result.ServiceNo
                     return (
-                        <tr key={result.OriginatingID+result.ServiceNo}
+                        <tr key={key}
                             style={styles(result.Status === 'In Operation').row}>
                             <td>
                                 { result.Status === 'In Operation'
@@ -71,9 +82,9 @@ function buildArrivalTab(stationData) {
                                 </Link>
                             </td>
                             <td>{result.Operator}</td>
-                            {getInterval(result.Status, result.NextBus.EstimatedArrival)}
-                            {getInterval(result.Status, result.SubsequentBus.EstimatedArrival)}
-                            {getInterval(result.Status, result.SubsequentBus3.EstimatedArrival)}
+                            {getIntervalAndLoad(result.Status, result.NextBus.EstimatedArrival, result.NextBus.Load, result.NextBus.Feature, key + '1')}
+                            {getIntervalAndLoad(result.Status, result.SubsequentBus.EstimatedArrival, result.SubsequentBus.Load, result.SubsequentBus.Feature, key + '2')}
+                            {getIntervalAndLoad(result.Status, result.SubsequentBus3.EstimatedArrival, result.SubsequentBus3.Load, result.SubsequentBus3.Feature, key + '3')}
                         </tr>
                     )
                 }
@@ -128,8 +139,6 @@ BusStationArrival.propTypes = {
     mode: PropTypes.string.isRequired,
     arrivalStation: PropTypes.object,
     rank: PropTypes.number
-
-
 };
 
 module.exports = BusStationArrival;

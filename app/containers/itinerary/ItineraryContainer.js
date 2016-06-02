@@ -4,7 +4,7 @@ var getItineraryInfo = require('../../helpers/api').getItineraryInfo;
 var getBusStationInfo = require('../../helpers/api').getBusStationInfo;
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
 
-const numResults = 5;
+const numResults = 6;
 
 var ItineraryContainer = React.createClass({
     getInitialState: function () {

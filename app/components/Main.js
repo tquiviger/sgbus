@@ -52,7 +52,7 @@ var Main = React.createClass({
                     <Link to={'/'}>
                         <img src={logo} style={styles.image}/>
                     </Link>
-                    <h2 style={styles.title}> Bus@Singapore</h2>
+                    <h2 style={styles.title}> SG Bus</h2>
                 </div>
                 {navBar()}
                 {this.props.children}
