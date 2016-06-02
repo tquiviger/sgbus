@@ -21,15 +21,14 @@ var styles = {
 
 
 var BusRoutes = React.createClass({
-    render: function () {
-        var routes = this.props.busData._source;
+    getRoutes: function (routes, direction) {
         var rows = [];
         for (var i = 0; i < 110; i++) {
             var index = (i < 10) ? '0' + i : i;
             if (routes['BusStopRoad_' + index] != null) {
                 rows.push(
                     <tr key={'BusStopRoad_'+index}
-                        id={index+'|'+routes['Latitude_' + index]+'|'+routes['Longitude_' + index]}
+                        id={index+'_'+direction+'|'+routes['Latitude_' + index]+'|'+routes['Longitude_' + index]}
                         onMouseOver={this.props.onHoverStation}>
                         <td>{index}</td>
                         <td>{routes['BusStopRoad_' + index]}</td>
@@ -41,25 +40,44 @@ var BusRoutes = React.createClass({
                 );
             }
         }
+        return rows;
+    }, render: function () {
+        var rowsRoutes1 = this.getRoutes(this.props.busData.routes_1, 1);
+        var rowsRoutes2 = this.getRoutes(this.props.busData.routes_2, 2);
 
         return (
             <div className="row" style={styles.container}>
-                <div className="col-md-4">
+                <div className="col-md-3">
                     <h1>Bus { this.props.busData.busInfo.ServiceNo} </h1>
                     <h4>Operator : <b>{ this.props.busData.busInfo.Operator}</b></h4>
                     <h4>Type : <b>{ this.props.busData.busInfo.Category} </b></h4>
                 </div>
-                <div style={styles.table} className="col-md-7">
+                <div style={styles.table} className="col-md-4">
+                    <h3>Direction 1</h3>
                     <table className="table table-condensed table-hover">
                         <thead>
                         <tr>
-                            <th>Bus Stop #</th>
+                            <th>Stop #</th>
                             <th>Road Name</th>
                             <th>Bus Stop Name</th>
                             <th>Distance</th>
                         </tr>
                         </thead>
-                        <tbody>{rows}</tbody>
+                        <tbody>{rowsRoutes1}</tbody>
+                    </table>
+                </div>
+                <div style={styles.table} className="col-md-4">
+                    <h3>Direction 2</h3>
+                    <table className="table table-condensed table-hover">
+                        <thead>
+                        <tr>
+                            <th>Stop #</th>
+                            <th>Road Name</th>
+                            <th>Bus Stop Name</th>
+                            <th>Distance</th>
+                        </tr>
+                        </thead>
+                        <tbody>{rowsRoutes2}</tbody>
                     </table>
                 </div>
             </div>

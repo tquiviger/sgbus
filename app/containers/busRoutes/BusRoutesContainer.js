@@ -1,6 +1,6 @@
 var React = require('react');
 var BusInfo = require('../../components/busRoutes/BusInfo');
-var getBusRoutesInfo = require('../../helpers/api').getBusAndRoutesInfo;
+var getBusAndRoutesInfo = require('../../helpers/api').getBusAndRoutesInfo;
 
 
 const defaultCenterLatitude = 1.3634594;
@@ -21,13 +21,13 @@ var BusRoutesContainer = React.createClass({
         this.makeRequest(this.props.routeParams.bus);
     },
     makeRequest: function (bus) {
-        getBusRoutesInfo(bus)
+        getBusAndRoutesInfo(bus)
             .then(function (busData) {
                 this.setState({
                     isLoading: false,
                     busData: busData,
-                    currentStationLat: busData._source['Latitude_01'],
-                    currentStationLon: busData._source['Longitude_01']
+                    currentStationLat: busData.routes_1['Latitude_01'],
+                    currentStationLon: busData.routes_1['Longitude_01']
                 });
             }.bind(this));
     },

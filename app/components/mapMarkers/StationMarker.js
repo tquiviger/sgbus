@@ -3,11 +3,12 @@ var PropTypes = React.PropTypes;
 
 const placeStyle = function (size, currentStation, stationId) {
     var isCurrentStation = (currentStation.localeCompare(stationId));
+    var isRoutes2 = stationId.endsWith('_2')
     var newSize = isCurrentStation ? size : size * 2;
     return {
         position: 'absolute',
         border: newSize / 5 + 'px solid #000',
-        backgroundColor: isCurrentStation ? '#2980B9' : '#F7DC6F',
+        backgroundColor: isCurrentStation ?(isRoutes2 ? '#FFFFF' : '#2980B9'): '#F7DC6F'  ,
         textAlign: 'center',
         verticalAlign: 'center',
         width: newSize,

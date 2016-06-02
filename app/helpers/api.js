@@ -40,10 +40,9 @@ function getBusRoutesInfo(bus) {
 }
 
 function getBusAndRoutesInfo(bus) {
-    return axios.all([getBusRoutesInfo(bus), getBusInfo(bus)])
-        .then(axios.spread(function (routes, bus) {
-            routes.busInfo = bus._source;
-            return routes
+    return axios.all([getBusRoutesInfo(bus + '_1'), getBusRoutesInfo(bus + '_2'), getBusInfo(bus)])
+        .then(axios.spread(function (routes_1, routes_2, bus) {
+            return {routes_1: routes_1._source, routes_2: routes_2._source, busInfo: bus._source}
         }))
 }
 
