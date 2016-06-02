@@ -2,6 +2,7 @@ var React = require('react');
 var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
+var ToggleDirectionButton = require('./ToggleDirectionButton');
 
 
 var styles = {
@@ -22,6 +23,7 @@ var styles = {
 
 var BusRoutes = React.createClass({
     getRoutes: function (routes, direction) {
+        routes = direction === '1' ? routes.routes_1 : routes.routes_2;
         var rows = [];
         for (var i = 0; i < 110; i++) {
             var index = (i < 10) ? '0' + i : i;
@@ -42,18 +44,20 @@ var BusRoutes = React.createClass({
         }
         return rows;
     }, render: function () {
-        var rowsRoutes1 = this.getRoutes(this.props.busData.routes_1, 1);
-        var rowsRoutes2 = this.getRoutes(this.props.busData.routes_2, 2);
 
         return (
             <div className="row" style={styles.container}>
-                <div className="col-md-3">
+                <div className="col-md-4">
                     <h1>Bus { this.props.busData.busInfo.ServiceNo} </h1>
                     <h4>Operator : <b>{ this.props.busData.busInfo.Operator}</b></h4>
                     <h4>Type : <b>{ this.props.busData.busInfo.Category} </b></h4>
+
                 </div>
-                <div style={styles.table} className="col-md-4">
-                    <h3>Direction 1</h3>
+                <div style={styles.table} className="col-md-7">
+                        <ToggleDirectionButton
+                            style={{float:'right'}}
+                            currentDirection={this.props.currentDirection}
+                            buttonCallback={this.props.switchButonCallback}/>
                     <table className="table table-condensed table-hover">
                         <thead>
                         <tr>
@@ -63,21 +67,7 @@ var BusRoutes = React.createClass({
                             <th>Distance</th>
                         </tr>
                         </thead>
-                        <tbody>{rowsRoutes1}</tbody>
-                    </table>
-                </div>
-                <div style={styles.table} className="col-md-4">
-                    <h3>Direction 2</h3>
-                    <table className="table table-condensed table-hover">
-                        <thead>
-                        <tr>
-                            <th>Stop #</th>
-                            <th>Road Name</th>
-                            <th>Bus Stop Name</th>
-                            <th>Distance</th>
-                        </tr>
-                        </thead>
-                        <tbody>{rowsRoutes2}</tbody>
+                        <tbody>{this.getRoutes(this.props.busData, this.props.currentDirection)}</tbody>
                     </table>
                 </div>
             </div>

@@ -14,7 +14,7 @@ var styles = {
 };
 
 
-var ToggleButton = React.createClass({
+var ToggleModeButton = React.createClass({
     render: function () {
         return (
             <button
@@ -22,16 +22,16 @@ var ToggleButton = React.createClass({
                 style={styles.button}
                 className='btn btn-primary'
                 onClick={this.props.buttonCallback}>
-                <i style={{marginRight :10}} className="fa fa-exchange"></i>
+                <i style={{marginRight :10}} className="fa fa-exchange"/>
                 {this.props.mode === 'station' ? 'Switch to Itinerary' : 'Switch to Bus Station'}
             </button>
         )
     }
 });
 
-ToggleButton.propTypes = {
+ToggleModeButton.propTypes = {
     buttonCallback: PropTypes.func.isRequired,
     mode: PropTypes.string.isRequired
 };
 
-module.exports = ToggleButton;
+module.exports = ToggleModeButton;

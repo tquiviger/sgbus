@@ -24,6 +24,7 @@ var BusInfo = React.createClass({
                         ? <h1 style={styles.header}><img src={loadingImage} style={styles.image}/>Loading </h1>
                         : <BusRoutesMap
                         busData={this.props.busData}
+                        currentDirection={this.props.currentDirection}
                         currentStation={this.props.currentStation}
                         currentStationLat={this.props.currentStationLat}
                         currentStationLon={this.props.currentStationLon}
@@ -34,6 +35,8 @@ var BusInfo = React.createClass({
                         ? ''
                         : <BusRoutes
                         busData={this.props.busData}
+                        currentDirection={this.props.currentDirection}
+                        switchButonCallback={this.props.switchButonCallback}
                         onHoverStation={this.props.onHoverStation}/>
                 }
             </div>
@@ -44,7 +47,9 @@ var BusInfo = React.createClass({
 BusInfo.propTypes = {
     busData: PropTypes.object.isRequired,
     onHoverStation: PropTypes.func.isRequired,
+    switchButonCallback: PropTypes.func.isRequired,
     currentStation: PropTypes.string.isRequired,
+    currentDirection: PropTypes.string.isRequired,
     currentStationLat: PropTypes.number.isRequired,
     currentStationLon: PropTypes.number.isRequired,
     isLoading: PropTypes.bool.isRequired

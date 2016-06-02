@@ -6,10 +6,11 @@ var Config = require('Config');
 var PropTypes = React.PropTypes;
 
 const stationMarkerSize = 8;
-const defaultZoom = 12;
+const defaultZoom = 11;
 
 var BusRoutesMap = React.createClass({
     getStationsMarkers: function (routes, direction) {
+        routes = direction === '1' ? routes.routes_1 : routes.routes_2
         var rows = [];
         for (var i = 0; i < 110; i++) {
             var index = i < 10 ? '0' + i : i;
@@ -30,15 +31,13 @@ var BusRoutesMap = React.createClass({
         }
         return rows;
     }, render: function () {
-        var rowsRoutes1 = this.getStationsMarkers(this.props.busData.routes_1, 1);
-        var rowsRoutes2 = this.getStationsMarkers(this.props.busData.routes_2, 2);
+
         return (
             <GoogleMap
                 bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
                 center={{ lat: this.props.currentStationLat, lng: this.props.currentStationLon }}
                 defaultZoom={ defaultZoom }>
-                { rowsRoutes1 }
-                { rowsRoutes2 }
+                {this.getStationsMarkers(this.props.busData, this.props.currentDirection)}
             </GoogleMap>
         )
     }

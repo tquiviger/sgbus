@@ -1,7 +1,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var SearchBusStation = require('../components/search/SearchBusStation');
-var ToggleButton = require('../components/search/ToggleButton');
+var ToggleModeButton = require('../components/search/ToggleModeButton');
 var NearestBusStationContainer = require('../containers/search/NearestBusStationContainer');
 var backgroundImageBlue = require('file?name=[name].[ext]!../images/pattern.svg');
 var backgroundImageGreen = require('file?name=[name].[ext]!../images/pattern-itinerary.svg');
@@ -36,7 +36,7 @@ var Home = React.createClass({
         return (
             <div style={styles(this.props.mode).container}>
                 <div className="container-fluid">
-                    <ToggleButton
+                    <ToggleModeButton
                         mode={this.props.mode}
                         buttonCallback={this.props.buttonCallback}/>
                 </div>
