@@ -115,17 +115,13 @@ function getBusForItinerary(busStationDeparture, busStationArrival) {
                         {
                             "multi_match": {
                                 "query": busStationDeparture,
-                                "type": "cross_fields",
-                                "fields": ["BusStopCode*"],
-                                "minimum_should_match": "50%"
+                                "fields": ["BusStopCode*"]
                             }
                         },
                         {
                             "multi_match": {
                                 "query": busStationArrival,
-                                "type": "cross_fields",
-                                "fields": ["BusStopCode*"],
-                                "minimum_should_match": "50%"
+                                "fields": ["BusStopCode*"]
                             }
                         }
                     ]

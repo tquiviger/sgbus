@@ -18,7 +18,7 @@ var ItineraryContainer = React.createClass({
     },
     filterOnlyAvailableResultsInDepartureServices: function (busData) {
         var availableBuses = busData.hits.hits.map(function (hit) {
-            return hit._id
+            return hit._id.split('_')[0]
         });
         return busData.departureStation.Services.filter(function (service) {
             return availableBuses.includes(service.ServiceNo)
