@@ -33,9 +33,10 @@ if __name__ == "__main__":
         jsonObj = json.loads(content.decode())["value"]
         for bus in jsonObj:
             try:
-                print(bus['ServiceNo'])
                 res = es.get(index="sgbus", doc_type='bus_station', id=bus["BusStopCode"])
                 stopId = bus['StopSequence']
+                key = str(bus['ServiceNo'])+"_"+str(bus['Direction'])
+                print(key)
                 if stopId < 10:
                     stopId = '0' + str(stopId)
                 else:
@@ -47,17 +48,17 @@ if __name__ == "__main__":
                           "Longitude" + '_' + stopId: res['_source']['Longitude'],
                           "Distance" + '_' + stopId: bus['Distance']
                           }
-                if bus["ServiceNo"] in busDict:
-                    tutu = busDict[bus["ServiceNo"]]
+                if key in busDict:
+                    tutu = busDict[key]
                     tutu["BusStopCode" + '_' + stopId] = res['_source']['BusStopCode']
                     tutu["BusStopName" + '_' + stopId] = res['_source']['Description']
                     tutu["BusStopRoad" + '_' + stopId] = res['_source']['RoadName']
                     tutu["Latitude" + '_' + stopId] = res['_source']['Latitude']
                     tutu["Longitude" + '_' + stopId] = res['_source']['Longitude']
                     tutu["Distance" + '_' + stopId] = bus['Distance']
-                    busDict[bus["ServiceNo"]] = tutu
+                    busDict[key] = tutu
                 else:
-                    busDict[bus["ServiceNo"]] = newVal
+                    busDict[key] = newVal
             except Exception:
                 pass
 
