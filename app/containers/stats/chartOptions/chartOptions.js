@@ -24,4 +24,4 @@ LINE_OPTIONS = {
 
 module.exports = {
     LINE_OPTIONS: LINE_OPTIONS
-}
+};

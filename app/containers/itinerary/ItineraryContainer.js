@@ -5,14 +5,22 @@ var getBusStationInfo = require('../../helpers/api').getBusStationInfo;
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
 var _ = require('underscore');
 
-const numResults = 1;
+const numResults = 6;
 
 var ItineraryContainer = React.createClass({
     getInitialState: function () {
         return {
             isLoading: true,
-            arrivalStationsWithBus: []
+            arrivalStationsWithBus: [],
+            routeClicked: ''
         }
+    },
+    callBackFunction: function (e) {
+        e.preventDefault();
+        var routeClicked = e.currentTarget.id;
+        this.setState({
+            routeClicked: routeClicked
+        });
     },
     componentDidMount: function () {
         this.makeRequest(this.props.routeParams.departureStation, this.props.routeParams.arrivalStation);
@@ -42,7 +50,11 @@ var ItineraryContainer = React.createClass({
                             initialDistance = route['Distance_' + index];
                         }
                         if (toInsert) {
-                            rows.push({lat: route['Latitude_' + index], lon: route['Longitude_' + index]});
+                            rows.push({
+                                id: route['BusStopCode_' + index],
+                                lat: route['Latitude_' + index],
+                                lng: route['Longitude_' + index]
+                            });
                             routeDistance = parseFloat(route['Distance_' + index]) - initialDistance;
                             numStops++;
                         }
@@ -58,7 +70,7 @@ var ItineraryContainer = React.createClass({
         });
 
         busData.hits = {};
-        busData.departureStation.Services =  busData.departureStation.Services.filter(function (service) {
+        busData.departureStation.Services = busData.departureStation.Services.filter(function (service) {
             //in the departure station Service, keeping only buses included in a route going to the arrival station
             return availableBusesId.includes(service.ServiceNo)
         })
@@ -93,6 +105,8 @@ var ItineraryContainer = React.createClass({
         return (
             <Itinerary
                 isLoading={this.state.isLoading}
+                callBackFunction={this.callBackFunction}
+                routeClicked={this.state.routeClicked}
                 arrivalStationsWithBus={this.state.arrivalStationsWithBus}/>
         )
     }

@@ -42,7 +42,7 @@ var navBar = function () {
             </Link>
         </li>
     </ul>)
-}
+};
 
 var Main = React.createClass({
     render: function () {

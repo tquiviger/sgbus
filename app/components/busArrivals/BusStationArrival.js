@@ -2,7 +2,7 @@ var React = require('react');
 var moment = require('moment');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
-var ReactTooltip = require("react-tooltip")
+var ReactTooltip = require("react-tooltip");
 
 var styles = function (isInOperation) {
     return {
@@ -17,13 +17,19 @@ var styles = function (isInOperation) {
         },
         row: {
             opacity: isInOperation ? 1 : 0.3
+        },
+        button: {
+            backgroundColor: 'Transparent',
+            backgroundRepeat: 'no-repeat',
+            cursor: 'pointer',
+            outline: 'none'
         }
     }
 };
 
 
 function getIntervalAndLoad(status, date, load, feature, key) {
-    var type = load === 'Seats Available' ? 'info' : (load === 'Standing Available' ? 'warning' : 'error')
+    var type = load === 'Seats Available' ? 'info' : (load === 'Standing Available' ? 'warning' : 'error');
     var interval = '';
     if (status != 'In Operation') {
         return <td/>
@@ -51,11 +57,12 @@ function getDistance(distance) {
     return distance === 0 ? '' : ' (' + Math.round(Number(distance)) + ' meters)'
 }
 
-function buildArrivalTab(stationData, mode) {
+function buildArrivalTab(stationData, mode, arrivalStationId, callBackFunction) {
     return (
         <table className="table table-condensed">
             <thead>
             <tr style={{textAlign:'center'}}>
+                { mode === 'itinerary' ? <th></th> : null}
                 <th>Status</th>
                 <th>Bus #</th>
                 <th>{ mode === 'itinerary' ? 'Distance' : 'Operator'}</th>
@@ -66,10 +73,20 @@ function buildArrivalTab(stationData, mode) {
             </thead>
             <tbody>
             {stationData.Services.map(function (result) {
-                    var key = result.OriginatingID + result.ServiceNo
+                    var key = arrivalStationId + '_' + result.ServiceNo;
                     return (
                         <tr key={key}
                             style={styles(result.Status === 'In Operation').row}>
+                            {mode === 'itinerary' ? <td>
+                                <button
+                                    id={key}
+                                    type='button btn-sm'
+                                    style={styles().button}
+                                    className='btn'
+                                    onClick={callBackFunction}>
+                                    <i className="fa fa-map"/>
+                                </button>
+                            </td> : null}
                             <td>
                                 { result.Status === 'In Operation'
                                     ? <i className="fa fa-check-circle"/>
@@ -98,6 +115,7 @@ function buildArrivalTab(stationData, mode) {
 
 var BusStationArrival = React.createClass({
     render: function () {
+        var keyStationId = this.props.arrivalStation ? this.props.arrivalStation.BusStopCode : this.props.stationData.BusStopID;
         return (
             <div style={styles().container}>
                 {
@@ -125,7 +143,7 @@ var BusStationArrival = React.createClass({
                 <div className="col-md-7">{
                     this.props.stationData.Services.length === 0
                         ? <h4 style={{opacity:0.4}}>No bus found</h4>
-                        : (buildArrivalTab(this.props.stationData, this.props.mode))}
+                        : (buildArrivalTab(this.props.stationData, this.props.mode, keyStationId, this.props.callBackFunction))}
                 </div>
             </div>
         )

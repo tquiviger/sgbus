@@ -21,7 +21,7 @@ var styles = {
 
 var BusRoutesMap = React.createClass({
     getStationsMarkers: function (routes, direction) {
-        routes = direction === '1' ? routes.routes_1 : routes.routes_2
+        routes = direction === '1' ? routes.routes_1 : routes.routes_2;
         var rows = [];
         for (var i = 0; i < 110; i++) {
             var index = i < 10 ? '0' + i : i;

@@ -75,12 +75,7 @@ var FindNearestButton = function (props) {
 var NearestBusStation = React.createClass({
     render: function () {
         return (
-            <FindNearestButton
-                onSubmitNearestBusStation={this.props.onSubmitNearestBusStation}
-                isLoading={this.props.isLoading}
-                mode={this.props.mode}
-                nearestStations={this.props.nearestStations}
-            />
+            <FindNearestButton {...this.props}/>
         )
     }
 });

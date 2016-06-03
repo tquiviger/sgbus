@@ -23,8 +23,8 @@ var StatsContainer = React.createClass({
     },
     callbackSelect: function (e) {
         var busNumber = e.target.value;
-        var typeOfStats = busNumber ? SINGLE_BUS_STATS : MULTI_BUS_STATS
-        var busesToFetch = busNumber ? [busNumber] : defaultBusDisplayed
+        var typeOfStats = busNumber ? SINGLE_BUS_STATS : MULTI_BUS_STATS;
+        var busesToFetch = busNumber ? [busNumber] : defaultBusDisplayed;
         getLatestsStats(typeOfStats, busesToFetch, busNumber)
             .then(function (statsData) {
                 var __ret = this.generateLabelsAndDatasets(statsData, busNumber);

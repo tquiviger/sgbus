@@ -26,21 +26,19 @@ var styles = {
 };
 
 var Itinerary = React.createClass({
+    
     render: function () {
         return (
             <div style={styles.container}>
                 {
                     this.props.isLoading
-                        ? <h1 style={styles.header}> <img src={loadingImage} style={styles.image}/>Loading </h1>
-                        : <ItineraryMap
-                        arrivalStationsWithBus={this.props.arrivalStationsWithBus}/>
+                        ? <h1 style={styles.header}><img src={loadingImage} style={styles.image}/>Loading </h1>
+                        : <ItineraryMap {...this.props}/>
                 }
                 {
                     this.props.isLoading
                         ? ''
-                        : <ItineraryBusArrivals
-                        mode="itinerary"
-                        arrivalStationsWithBus={this.props.arrivalStationsWithBus}/>
+                        : <ItineraryBusArrivals {...this.props}/>
                 }
             </div>
         )

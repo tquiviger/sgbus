@@ -33,11 +33,8 @@ var BusInfo = React.createClass({
                 {
                     this.props.isLoading === true
                         ? ''
-                        : <BusRoutes
-                        busData={this.props.busData}
-                        currentDirection={this.props.currentDirection}
-                        switchButonCallback={this.props.switchButonCallback}
-                        onHoverStation={this.props.onHoverStation}/>
+                        : <BusRoutes {...this.props}
+                        />
                 }
             </div>
         )
