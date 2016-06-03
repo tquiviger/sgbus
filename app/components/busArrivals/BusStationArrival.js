@@ -51,14 +51,14 @@ function getDistance(distance) {
     return distance === 0 ? '' : ' (' + Math.round(Number(distance)) + ' meters)'
 }
 
-function buildArrivalTab(stationData) {
+function buildArrivalTab(stationData, mode) {
     return (
         <table className="table table-condensed">
             <thead>
             <tr style={{textAlign:'center'}}>
                 <th>Status</th>
                 <th>Bus #</th>
-                <th>Operator</th>
+                <th>{ mode === 'itinerary' ? 'Distance' : 'Operator'}</th>
                 <th><i style={styles().icon} className="fa fa-clock-o"/>1st Bus</th>
                 <th><i style={styles().icon} className="fa fa-clock-o"/>2nd Bus</th>
                 <th><i style={styles().icon} className="fa fa-clock-o"/>3rd Bus</th>
@@ -81,7 +81,7 @@ function buildArrivalTab(stationData) {
                                     <strong>Bus {result.ServiceNo}</strong>
                                 </Link>
                             </td>
-                            <td>{result.Operator}</td>
+                            <td>{ mode === 'itinerary' ? result.numStops + ' stops / ' + Math.round(Number(result.routeDistance * 100)) / 100 + ' km' : result.Operator}</td>
                             {getIntervalAndLoad(result.Status, result.NextBus.EstimatedArrival, result.NextBus.Load, result.NextBus.Feature, key + '1')}
                             {getIntervalAndLoad(result.Status, result.SubsequentBus.EstimatedArrival, result.SubsequentBus.Load, result.SubsequentBus.Feature, key + '2')}
                             {getIntervalAndLoad(result.Status, result.SubsequentBus3.EstimatedArrival, result.SubsequentBus3.Load, result.SubsequentBus3.Feature, key + '3')}
@@ -125,7 +125,7 @@ var BusStationArrival = React.createClass({
                 <div className="col-md-7">{
                     this.props.stationData.Services.length === 0
                         ? <h4 style={{opacity:0.4}}>No bus found</h4>
-                        : (buildArrivalTab(this.props.stationData))}
+                        : (buildArrivalTab(this.props.stationData, this.props.mode))}
                 </div>
             </div>
         )

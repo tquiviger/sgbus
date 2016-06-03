@@ -3,26 +3,65 @@ var Itinerary = require('../../components/itinerary/Itinerary');
 var getItineraryInfo = require('../../helpers/api').getItineraryInfo;
 var getBusStationInfo = require('../../helpers/api').getBusStationInfo;
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
+var _ = require('underscore');
 
-const numResults = 6;
+const numResults = 1;
 
 var ItineraryContainer = React.createClass({
     getInitialState: function () {
         return {
             isLoading: true,
-            busData: []
+            arrivalStationsWithBus: []
         }
     },
     componentDidMount: function () {
         this.makeRequest(this.props.routeParams.departureStation, this.props.routeParams.arrivalStation);
     },
     filterOnlyAvailableResultsInDepartureServices: function (busData) {
-        var availableBuses = busData.hits.hits.map(function (hit) {
+        var availableBusesId = busData.hits.hits.map(function (hit) {
             return hit._id.split('_')[0]
         });
-        return busData.departureStation.Services.filter(function (service) {
-            return availableBuses.includes(service.ServiceNo)
+
+        busData.departureStation.Services.forEach(function (service) {
+            var rows = [];
+            var initialDistance = 0;
+            var routeDistance = 0;
+            var numStops = 0;
+            var busRoute = _.find(busData.hits.hits, function (hit) {
+                return hit._id.split('_')[0] == service.ServiceNo
+            });
+            var toInsert = false;
+            if (busRoute) {
+                var route = busRoute._source;
+                for (var i = 1; i < 110; i++) {
+                    var index = (i < 10) ? '0' + i : i;
+
+                    if (route['BusStopCode_' + index] != null) {
+                        if (route['BusStopCode_' + index] == busData.departureStation.BusStopID) {
+                            toInsert = true;
+                            initialDistance = route['Distance_' + index];
+                        }
+                        if (toInsert) {
+                            rows.push({lat: route['Latitude_' + index], lon: route['Longitude_' + index]});
+                            routeDistance = parseFloat(route['Distance_' + index]) - initialDistance;
+                            numStops++;
+                        }
+                        if (route['BusStopCode_' + index] == busData.arrivalStation.BusStopCode) {
+                            toInsert = false;
+                        }
+                    }
+                }
+            }
+            service.routeDistance = routeDistance;
+            service.numStops = numStops;
+            service.route = rows;
         });
+
+        busData.hits = {};
+        busData.departureStation.Services =  busData.departureStation.Services.filter(function (service) {
+            //in the departure station Service, keeping only buses included in a route going to the arrival station
+            return availableBusesId.includes(service.ServiceNo)
+        })
     },
     makeRequest: function (departureStation, arrivalStation) {
         getBusStationInfo(arrivalStation)
@@ -34,13 +73,13 @@ var ItineraryContainer = React.createClass({
                         }).forEach(function (arrivalSt) {
                                 getItineraryInfo(departureStation, arrivalSt._id)
                                     .then(function (currentBusData) {
-                                            currentBusData.departureStation.Services = this.filterOnlyAvailableResultsInDepartureServices(currentBusData);
+                                            this.filterOnlyAvailableResultsInDepartureServices(currentBusData);
                                             currentBusData.arrivalStation.distance = arrivalSt.sort[0];
-                                            var newData = this.state.busData;
+                                            var newData = this.state.arrivalStationsWithBus;
                                             newData.push(currentBusData);
                                             this.setState({
                                                 isLoading: false,
-                                                busData: newData
+                                                arrivalStationsWithBus: newData
                                             });
                                         }.bind(this)
                                     )
@@ -54,7 +93,7 @@ var ItineraryContainer = React.createClass({
         return (
             <Itinerary
                 isLoading={this.state.isLoading}
-                buses={this.state.busData}/>
+                arrivalStationsWithBus={this.state.arrivalStationsWithBus}/>
         )
     }
 });

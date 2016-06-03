@@ -33,14 +33,14 @@ var Itinerary = React.createClass({
                     this.props.isLoading
                         ? <h1 style={styles.header}> <img src={loadingImage} style={styles.image}/>Loading </h1>
                         : <ItineraryMap
-                        buses={this.props.buses}/>
+                        arrivalStationsWithBus={this.props.arrivalStationsWithBus}/>
                 }
                 {
                     this.props.isLoading
                         ? ''
                         : <ItineraryBusArrivals
                         mode="itinerary"
-                        buses={this.props.buses}/>
+                        arrivalStationsWithBus={this.props.arrivalStationsWithBus}/>
                 }
             </div>
         )
@@ -49,7 +49,7 @@ var Itinerary = React.createClass({
 
 Itinerary.propTypes = {
     isLoading: PropTypes.bool.isRequired,
-    buses: PropTypes.array.isRequired
+    arrivalStationsWithBus: PropTypes.array.isRequired
 };
 
 module.exports = Itinerary;

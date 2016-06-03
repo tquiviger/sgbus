@@ -19,13 +19,13 @@ var styles = {
 
 var ItineraryBusArrivals = React.createClass({
     render: function () {
-        var buses = this.props.buses;
+        var arrivalStationsWithBus = this.props.arrivalStationsWithBus;
         return (
             <div style={styles.container}>
                 <div style={styles.title} className="container-fluid">
-                    <h3>Available buses From <b>{buses[0].departureStation.stationDesc.Description}</b> To </h3>
+                    <h3>Available buses From <b>{arrivalStationsWithBus[0].departureStation.stationDesc.Description}</b> To </h3>
                 </div>
-                {buses
+                {arrivalStationsWithBus
                     .sort(function (a, b) {
                         return parseFloat(a.arrivalStation.distance) - parseFloat(b.arrivalStation.distance)
                     }).map(function (bus, rank) {
@@ -46,7 +46,7 @@ var ItineraryBusArrivals = React.createClass({
 });
 
 ItineraryBusArrivals.propTypes = {
-    buses: PropTypes.array.isRequired
+    arrivalStationsWithBus: PropTypes.array.isRequired
 };
 
 module.exports = ItineraryBusArrivals;
