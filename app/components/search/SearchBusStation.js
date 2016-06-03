@@ -8,7 +8,7 @@ const searchkit = new Searchkit.SearchkitManager(
     Config.apiUrl + "/search/sgbus/bus_station",
     {searchOnLoad: false, useHistory: false}
 );
-searchkit.setQueryProcessor(function(query){
+searchkit.setQueryProcessor(function (query) {
     query = query.query ? query : {"size": 0};
     return query;
 });

@@ -57,7 +57,7 @@ function getDistance(distance) {
     return distance === 0 ? '' : ' (' + Math.round(Number(distance)) + ' meters)'
 }
 
-function buildArrivalTab(stationData, mode, arrivalStationId, callBackFunction) {
+function buildArrivalTab(services, mode, arrivalStationId, callBackFunction) {
     return (
         <table className="table table-condensed">
             <thead>
@@ -72,7 +72,7 @@ function buildArrivalTab(stationData, mode, arrivalStationId, callBackFunction) 
             </tr>
             </thead>
             <tbody>
-            {stationData.Services.map(function (result) {
+            {services.map(function (result) {
                     var key = arrivalStationId + '_' + result.ServiceNo;
                     return (
                         <tr key={key}
@@ -141,9 +141,9 @@ var BusStationArrival = React.createClass({
                         </div>
                 }
                 <div className="col-md-7">{
-                    this.props.stationData.Services.length === 0
+                    this.props.services.length === 0
                         ? <h4 style={{opacity:0.4}}>No bus found</h4>
-                        : (buildArrivalTab(this.props.stationData, this.props.mode, keyStationId, this.props.callBackFunction))}
+                        : (buildArrivalTab(this.props.services, this.props.mode, keyStationId, this.props.callBackFunction))}
                 </div>
             </div>
         )
@@ -154,6 +154,7 @@ var BusStationArrival = React.createClass({
 
 BusStationArrival.propTypes = {
     stationData: PropTypes.object.isRequired,
+    services: PropTypes.array.isRequired,
     mode: PropTypes.string.isRequired,
     arrivalStation: PropTypes.object,
     rank: PropTypes.number

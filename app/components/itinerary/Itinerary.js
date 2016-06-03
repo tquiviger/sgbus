@@ -47,7 +47,8 @@ var Itinerary = React.createClass({
 
 Itinerary.propTypes = {
     isLoading: PropTypes.bool.isRequired,
-    arrivalStationsWithBus: PropTypes.array.isRequired
+    arrivalStationsWithBus: PropTypes.array.isRequired,
+    departureStation: PropTypes.object.isRequired
 };
 
 module.exports = Itinerary;

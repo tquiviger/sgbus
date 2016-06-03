@@ -17,6 +17,7 @@ var BusStationArrivals = React.createClass({
         return (
             <div className="row" style={styles.container}>
                 <BusStationArrival {...this.props}
+                    services={this.props.stationData.Services}
                     mode="station"/>
             </div>
         )

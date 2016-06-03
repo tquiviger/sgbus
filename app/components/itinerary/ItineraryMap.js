@@ -10,11 +10,11 @@ const defaultZoom = 14;
 
 var ItineraryMap = React.createClass({
         render: function () {
-            var depStation = this.props.arrivalStationsWithBus[0].departureStation.stationDesc;
+            var depStation = this.props.departureStation;
             var initialArrivalStation = this.props.arrivalStationsWithBus[0].arrivalStation;
             var busMap = {};
             this.props.arrivalStationsWithBus.forEach(function (station) {
-                station.departureStation.Services.forEach(function (bus) {
+                station.services.forEach(function (bus) {
                     busMap[(station.arrivalStation.BusStopCode + '_' + bus.ServiceNo)] = bus.route
                 })
             });
