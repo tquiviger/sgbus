@@ -2,6 +2,7 @@ var React = require('react');
 var BusStationArrivals = require('./BusStationArrivals');
 var BusStationMap = require('./BusStationMap');
 var backgroundImageBlue = require('file?name=[name].[ext]!../../images/pattern.svg');
+var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
 var PropTypes = React.PropTypes;
 
 var styles = {
@@ -23,7 +24,8 @@ var BusStationInfo = React.createClass({
             <div style={styles.container}>
                 {
                     this.props.isLoading
-                        ? <h1 style={styles.header}> Loading </h1>
+                        ? <h1 style={styles.header}><img src={loadingImage} style={styles.image}/>
+                            Loading </h1>
                         : <BusStationMap
                         stationData={this.props.stationData}/>
                 }
