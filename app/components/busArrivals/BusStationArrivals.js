@@ -5,7 +5,7 @@ var PropTypes = React.PropTypes;
 
 var styles = {
     container: {
-        height: '80%',
+        height: '60%',
         overflowY: 'scroll',
         width: '100%'
     }

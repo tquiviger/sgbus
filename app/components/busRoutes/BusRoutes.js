@@ -9,13 +9,13 @@ var styles = {
     container: {
         backgroundSize: 'cover',
         backgroundImage: 'url(' + backgroundImage + ')',
-        height: '50%',
-        fontSize: 17,
+        height: '60%',
+        fontSize: 14,
+        overflowY: 'scroll',
         width: '100%'
     },
     table: {
-        height: '100%',
-        overflow: 'scroll',
+
         textAlign: 'left'
     }
 };

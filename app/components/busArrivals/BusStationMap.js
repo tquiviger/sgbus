@@ -8,10 +8,22 @@ var PropTypes = React.PropTypes;
 const stationMarkerSize = 20;
 const defaultZoom = 15;
 
+var styles = {
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '40%',
+        width: '100%'
+    }
+};
+
 var BusStationMap = React.createClass({
     render: function () {
         var stationDesc = this.props.stationData.stationDesc;
         return (
+            <div className="row" style={styles.container}>
                 <GoogleMap
                     bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
                     center={{ lat: stationDesc.Latitude, lng: stationDesc.Longitude }}
@@ -35,6 +47,7 @@ var BusStationMap = React.createClass({
                         lng={stationDesc.Longitude}
                     />
                 </GoogleMap>
+            </div>
         )
     }
 });
