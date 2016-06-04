@@ -41,9 +41,11 @@ function getStationNameAndDistance(stationData) {
 
 var FindNearestButton = function (props) {
     var path = props.mode === 'station' ? '/detail/' : '/itinerary/';
+
     var nearestStationsButtons = props.nearestStations.map(function (result) {
+        var itinerayPath = props.mode == 'itinerary2' ? result._id + '/' + props.originalArrivalStation._id : result._id
         return (
-            <Link to={path+result._id} key={result._id}>
+            <Link to={path+itinerayPath} key={result._id}>
                 <button type='button'
                         key={result._id}
                         style={styles.button}
@@ -63,7 +65,7 @@ var FindNearestButton = function (props) {
                           style={styles.button}
                           className='btn btn-warning'
                           onClick={props.callbackFunction}>
-                <i style={styles.icon} className="fa fa-map-o"/>Find the nearest stations
+                <i style={styles.icon} className="fa fa-map-o"/>{props.text}
             </button>
             }
             <div style={styles.buttons}>{nearestStationsButtons}</div>
@@ -82,9 +84,11 @@ var NearestBusStation = React.createClass({
 
 NearestBusStation.propTypes = {
     callbackFunction: PropTypes.func.isRequired,
+    text: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired,
     nearestStations: PropTypes.array.isRequired,
-    mode: PropTypes.string.isRequired
+    mode: PropTypes.string.isRequired,
+    originalArrivalStation: PropTypes.object
 };
 
 module.exports = NearestBusStation;

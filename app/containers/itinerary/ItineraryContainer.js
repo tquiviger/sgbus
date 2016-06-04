@@ -5,7 +5,8 @@ var getBusStationInfo = require('../../helpers/api').getBusStationInfo;
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
 var _ = require('underscore');
 
-const numResults = 6;
+const numItineraryResults = 6;
+const numDepartureStationsAround = 4;
 
 var ItineraryContainer = React.createClass({
     getInitialState: function () {
@@ -14,7 +15,11 @@ var ItineraryContainer = React.createClass({
             arrivalStationsWithBus: [],
             routeClicked: '',
             departureStation: {},
-            callbackFunction: this.callbackFunction
+            callbackFunction: this.callbackFunction,
+            callbackNotFoundFunction: this.noItineraryFound,
+            nearestStations: [],
+            originalArrivalStation: {},
+            departureId: 0
         }
     },
     callbackFunction: function (e) {
@@ -27,12 +32,20 @@ var ItineraryContainer = React.createClass({
     componentDidMount: function () {
         this.makeRequest(this.props.routeParams.departureStation, this.props.routeParams.arrivalStation);
     },
+    componentWillReceiveProps: function (nextProps) {
+        if (this.state.departureId != nextProps.routeParams.departureStation) {
+            this.makeRequest(nextProps.routeParams.departureStation, nextProps.routeParams.arrivalStation);
+        }
+        this.setState({
+            departureId: nextProps.routeParams.departureStation
+        });
+    },
     filterOnlyAvailableResultsInDepartureServices: function (busData) {
         var availableBusesId = busData.hits.hits.map(function (hit) {
             return hit._id.split('_')[0]
         });
 
-        var services = busData.departureStation.Services
+        var services = busData.departureStation.Services;
         services.forEach(function (service) {
             var routeStations = [];
             var busRoute = _.find(busData.hits.hits, function (hit) {
@@ -70,9 +83,13 @@ var ItineraryContainer = React.createClass({
         });
     },
     makeRequest: function (departureStation, arrivalStation) {
+        this.setState({
+            isLoading: true,
+            arrivalStationsWithBus: []
+        });
         getBusStationInfo(arrivalStation)
             .then(function (arrivalStationData) {
-                getNearestBusStationInfo(arrivalStationData._source.Latitude, arrivalStationData._source.Longitude, numResults)
+                getNearestBusStationInfo(arrivalStationData._source.Latitude, arrivalStationData._source.Longitude, numItineraryResults)
                     .then(function (nearestArrivalStations) {
                         nearestArrivalStations.hits.hits.map(function (hit) {
                             return hit
@@ -90,7 +107,8 @@ var ItineraryContainer = React.createClass({
                                             this.setState({
                                                 isLoading: false,
                                                 departureStation: currentBusData.departureStation.stationDesc,
-                                                arrivalStationsWithBus: stateData
+                                                arrivalStationsWithBus: stateData,
+                                                originalArrivalStation: arrivalStationData
                                             });
                                         }.bind(this)
                                     )
@@ -99,6 +117,18 @@ var ItineraryContainer = React.createClass({
                     }.bind(this))
             }.bind(this))
 
+    },
+    noItineraryFound: function () {
+        this.setState({
+            isLoading: true
+        });
+        getNearestBusStationInfo(this.state.departureStation.Latitude, this.state.departureStation.Longitude, numDepartureStationsAround)
+            .then(function (stationData) {
+                this.setState({
+                    isLoading: false,
+                    nearestStations: stationData.hits.hits
+                })
+            }.bind(this));
     },
     render: function () {
         return (

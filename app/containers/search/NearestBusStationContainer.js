@@ -39,7 +39,7 @@ var NearestBusStationContainer = React.createClass({
     render: function () {
         return (
             <NearestBusStation {...this.state}
-                mode={this.props.mode}
+                {...this.props}
             />
         )
     }

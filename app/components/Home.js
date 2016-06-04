@@ -51,6 +51,7 @@ var Home = React.createClass({
                     />
                     <div className="container-fluid">
                         <NearestBusStationContainer
+                            text="Find the nearest stations"
                             mode={this.props.mode}/>
                     </div>
                 </div>

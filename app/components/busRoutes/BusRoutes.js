@@ -15,7 +15,6 @@ var styles = {
         width: '100%'
     },
     table: {
-
         textAlign: 'left'
     }
 };
