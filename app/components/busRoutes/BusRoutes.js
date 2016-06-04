@@ -53,9 +53,14 @@ var BusRoutes = React.createClass({
 
                 </div>
                 <div style={styles.table} className="col-md-7">
-                    <ToggleButton
-                        text={"Direction "+this.props.currentDirection}
-                        buttonCallback={this.props.callbackFunction}/>
+                    <div className="container-fluid">
+                        <ToggleButton
+                            additionalStyle={{float: 'right'}}
+                            text={"Switch direction"}
+                            buttonCallback={this.props.callbackFunction}/>
+
+                       <h3><b>Direction {this.props.currentDirection}</b></h3>
+                    </div>
                     <table className="table table-condensed table-hover">
                         <thead>
                         <tr>
