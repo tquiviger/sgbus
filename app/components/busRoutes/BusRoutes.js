@@ -43,7 +43,13 @@ var BusRoutes = React.createClass({
         }
         return rows;
     }, render: function () {
-
+        var toggleButon;
+        if (this.props.busData.routes_2) {
+            toggleButon = <ToggleButton
+                additionalStyle={{float: 'right'}}
+                text={"Switch direction"}
+                buttonCallback={this.props.callbackFunction}/>
+        }
         return (
             <div className="row" style={styles.container}>
                 <div className="col-md-4">
@@ -54,12 +60,8 @@ var BusRoutes = React.createClass({
                 </div>
                 <div style={styles.table} className="col-md-7">
                     <div className="container-fluid">
-                        <ToggleButton
-                            additionalStyle={{float: 'right'}}
-                            text={"Switch direction"}
-                            buttonCallback={this.props.callbackFunction}/>
-
-                       <h3><b>Direction {this.props.currentDirection}</b></h3>
+                        {toggleButon}
+                        <h3><b>Direction {this.props.currentDirection}</b></h3>
                     </div>
                     <table className="table table-condensed table-hover">
                         <thead>

@@ -36,7 +36,9 @@ function getBusRoutesInfo(bus) {
     return axios.get(_elasticSearchBusRoutesUrl + bus)
         .then(function (currentBusData) {
             return currentBusData.data
-        })
+        }).catch(function () {
+            return {}
+        });
 }
 
 function getBusAndRoutesInfo(bus) {
