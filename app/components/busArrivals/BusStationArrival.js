@@ -57,7 +57,7 @@ function getDistance(distance) {
     return distance === 0 ? '' : ' (' + Math.round(Number(distance)) + ' meters)'
 }
 
-function buildArrivalTab(services, mode, arrivalStationId, callBackFunction) {
+function buildArrivalTab(services, mode, arrivalStation, callBackFunction) {
     return (
         <table className="table table-condensed">
             <thead>
@@ -73,7 +73,7 @@ function buildArrivalTab(services, mode, arrivalStationId, callBackFunction) {
             </thead>
             <tbody>
             {services.map(function (result) {
-                    var key = arrivalStationId + '_' + result.ServiceNo;
+                    var key = (arrivalStation ? arrivalStation.BusStopCode : result.OriginatingID) + '_' + result.ServiceNo;
                     return (
                         <tr key={key}
                             style={styles(result.Status === 'In Operation').row}>
@@ -98,7 +98,7 @@ function buildArrivalTab(services, mode, arrivalStationId, callBackFunction) {
                                     <strong>Bus {result.ServiceNo}</strong>
                                 </Link>
                             </td>
-                            <td>{ mode === 'itinerary' ? result.numStops + ' stops / ' + Math.round(Number(result.routeDistance * 100)) / 100 + ' km' : result.Operator}</td>
+                            <td>{ mode === 'itinerary' ? result.numStops + ' stops / ' + result.routeDistance + ' km' : result.Operator}</td>
                             {getIntervalAndLoad(result.Status, result.NextBus.EstimatedArrival, result.NextBus.Load, result.NextBus.Feature, key + '1')}
                             {getIntervalAndLoad(result.Status, result.SubsequentBus.EstimatedArrival, result.SubsequentBus.Load, result.SubsequentBus.Feature, key + '2')}
                             {getIntervalAndLoad(result.Status, result.SubsequentBus3.EstimatedArrival, result.SubsequentBus3.Load, result.SubsequentBus3.Feature, key + '3')}
@@ -115,7 +115,6 @@ function buildArrivalTab(services, mode, arrivalStationId, callBackFunction) {
 
 var BusStationArrival = React.createClass({
     render: function () {
-        var keyStationId = this.props.arrivalStation ? this.props.arrivalStation.BusStopCode : this.props.stationData.BusStopID;
         return (
             <div style={styles().container}>
                 {
@@ -143,7 +142,7 @@ var BusStationArrival = React.createClass({
                 <div className="col-md-7">{
                     this.props.services.length === 0
                         ? <h4 style={{opacity:0.4}}>No bus found</h4>
-                        : (buildArrivalTab(this.props.services, this.props.mode, keyStationId, this.props.callBackFunction))}
+                        : (buildArrivalTab(this.props.services, this.props.mode, this.props.arrivalStation, this.props.callbackFunction))}
                 </div>
             </div>
         )
@@ -157,7 +156,8 @@ BusStationArrival.propTypes = {
     services: PropTypes.array.isRequired,
     mode: PropTypes.string.isRequired,
     arrivalStation: PropTypes.object,
-    rank: PropTypes.number
+    rank: PropTypes.number,
+    callbackFunction: PropTypes.func
 };
 
 module.exports = BusStationArrival;

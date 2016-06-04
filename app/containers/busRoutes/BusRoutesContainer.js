@@ -15,7 +15,8 @@ var BusRoutesContainer = React.createClass({
             currentDirection: '1',
             currentStationLat: defaultCenterLatitude,
             currentStationLon: defaultCenterLongitude,
-            onHoverStation: this.onHoverStation
+            onHoverStation: this.onHoverStation,
+            callbackFunction:this.switchButonCallback
         }
     },
     switchButonCallback: function () {
@@ -58,16 +59,7 @@ var BusRoutesContainer = React.createClass({
     },
     render: function () {
         return (
-            <BusInfo
-                isLoading={this.state.isLoading}
-                busData={this.state.busData}
-                currentStation={this.state.currentStation}
-                currentDirection={this.state.currentDirection}
-                switchButonCallback={this.switchButonCallback}
-                currentStationLat={this.state.currentStationLat}
-                currentStationLon={this.state.currentStationLon}
-                onHoverStation={this.state.onHoverStation}
-            />
+            <BusInfo {...this.state}/>
         )
     }
 });

@@ -1,5 +1,5 @@
 var React = require('react');
-var Itinerary = require('../../components/itinerary/Itinerary');
+var ItineraryInfo = require('../../components/itinerary/ItineraryInfo');
 var getItineraryInfo = require('../../helpers/api').getItineraryInfo;
 var getBusStationInfo = require('../../helpers/api').getBusStationInfo;
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
@@ -13,10 +13,11 @@ var ItineraryContainer = React.createClass({
             isLoading: true,
             arrivalStationsWithBus: [],
             routeClicked: '',
-            departureStation:{}
+            departureStation: {},
+            callbackFunction: this.callbackFunction
         }
     },
-    callBackFunction: function (e) {
+    callbackFunction: function (e) {
         e.preventDefault();
         var routeClicked = e.currentTarget.id;
         this.setState({
@@ -31,50 +32,40 @@ var ItineraryContainer = React.createClass({
             return hit._id.split('_')[0]
         });
 
-        var services = busData.departureStation.Services;
+        var services = busData.departureStation.Services.filter(function (service) {
+            return availableBusesId.includes(service.ServiceNo)
+        });
         services.forEach(function (service) {
-            var rows = [];
-            var initialDistance = 0;
-            var routeDistance = 0;
-            var numStops = 0;
+            var routeStations = [];
             var busRoute = _.find(busData.hits.hits, function (hit) {
                 return hit._id.split('_')[0] == service.ServiceNo
             });
-            var toInsert = false;
             if (busRoute) {
                 var route = busRoute._source;
-                for (var i = 1; i < 110; i++) {
+                var invertedRoute = _.invert(route);
+                var depIndex = invertedRoute[busData.departureStation.BusStopID].split('_')[1];
+                var arrIndex = invertedRoute[busData.arrivalStation.BusStopCode].split('_')[1];
+                var numStops = arrIndex - depIndex;
+                var routeDistance = Math.round(Number(
+                        (parseFloat(route['Distance_' + arrIndex]) - parseFloat(route['Distance_' + depIndex]))
+                        * 100))
+                    / 100;
+                for (var i = Number(depIndex); i < Number(arrIndex); i++) {
                     var index = (i < 10) ? '0' + i : i;
-
-                    if (route['BusStopCode_' + index] != null) {
-                        if (route['BusStopCode_' + index] == busData.departureStation.BusStopID) {
-                            toInsert = true;
-                            initialDistance = route['Distance_' + index];
-                        }
-                        if (toInsert) {
-                            rows.push({
-                                id: route['BusStopCode_' + index],
-                                lat: route['Latitude_' + index],
-                                lng: route['Longitude_' + index]
-                            });
-                            routeDistance = parseFloat(route['Distance_' + index]) - initialDistance;
-                            numStops++;
-                        }
-                        if (route['BusStopCode_' + index] == busData.arrivalStation.BusStopCode) {
-                            toInsert = false;
-                        }
-                    }
+                    routeStations.push({
+                        id: route['BusStopCode_' + index],
+                        lat: route['Latitude_' + index],
+                        lng: route['Longitude_' + index]
+                    });
                 }
+                service.routeDistance = routeDistance;
+                service.numStops = numStops;
+                service.route = routeStations;
             }
-            service.routeDistance = routeDistance;
-            service.numStops = numStops;
-            service.route = rows;
+
         });
 
-        return services.filter(function (service) {
-            //in the departure station Service, keeping only buses included in a route going to the arrival station
-            return availableBusesId.includes(service.ServiceNo)
-        })
+        return services
     },
     makeRequest: function (departureStation, arrivalStation) {
         getBusStationInfo(arrivalStation)
@@ -109,13 +100,7 @@ var ItineraryContainer = React.createClass({
     },
     render: function () {
         return (
-            <Itinerary
-                isLoading={this.state.isLoading}
-                callBackFunction={this.callBackFunction}
-                routeClicked={this.state.routeClicked}
-                arrivalStationsWithBus={this.state.arrivalStationsWithBus}
-                departureStation={this.state.departureStation}
-            />
+            <ItineraryInfo {...this.state}/>
         )
     }
 });

@@ -18,7 +18,8 @@ var defaultBusDisplayed = _.first(BUSES, 15);
 var StatsContainer = React.createClass({
     getInitialState: function () {
         return {
-            selectedBus: ''
+            selectedBus: '',
+            callbackFunction: this.callbackSelect
         }
     },
     callbackSelect: function (e) {
@@ -105,9 +106,7 @@ var StatsContainer = React.createClass({
     },
     render: function () {
         return (
-            <Stats
-                selectedBus={this.state.selectedBus}
-                callbackSelect={this.callbackSelect}/>
+            <Stats {...this.state}/>
         )
     }
 });

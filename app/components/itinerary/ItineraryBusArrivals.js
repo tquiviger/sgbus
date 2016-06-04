@@ -35,7 +35,7 @@ var ItineraryBusArrivals = React.createClass({
                                     <BusStationArrival
                                         mode="itinerary"
                                         rank={rank}
-                                        callBackFunction={this.props.callBackFunction}
+                                        callbackFunction={this.props.callbackFunction}
                                         services={arrivalStation.services}
                                         stationData={this.props.departureStation}
                                         arrivalStation={arrivalStation.arrivalStation}/>
@@ -49,7 +49,8 @@ var ItineraryBusArrivals = React.createClass({
 
 ItineraryBusArrivals.propTypes = {
     arrivalStationsWithBus: PropTypes.array.isRequired,
-    callBackFunction: PropTypes.func
+    departureStation: PropTypes.object.isRequired,
+    callbackFunction: PropTypes.func
 };
 
 module.exports = ItineraryBusArrivals;

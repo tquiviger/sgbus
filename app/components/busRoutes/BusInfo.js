@@ -44,7 +44,7 @@ var BusInfo = React.createClass({
 BusInfo.propTypes = {
     busData: PropTypes.object.isRequired,
     onHoverStation: PropTypes.func.isRequired,
-    switchButonCallback: PropTypes.func.isRequired,
+    callbackFunction: PropTypes.func.isRequired,
     currentStation: PropTypes.string.isRequired,
     currentDirection: PropTypes.string.isRequired,
     currentStationLat: PropTypes.number.isRequired,

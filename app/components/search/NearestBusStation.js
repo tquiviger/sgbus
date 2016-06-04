@@ -62,7 +62,7 @@ var FindNearestButton = function (props) {
                 : <button type='button'
                           style={styles.button}
                           className='btn btn-warning'
-                          onClick={props.onSubmitNearestBusStation}>
+                          onClick={props.callbackFunction}>
                 <i style={styles.icon} className="fa fa-map-o"/>Find the nearest stations
             </button>
             }
@@ -81,7 +81,7 @@ var NearestBusStation = React.createClass({
 });
 
 NearestBusStation.propTypes = {
-    onSubmitNearestBusStation: PropTypes.func.isRequired,
+    callbackFunction: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
     nearestStations: PropTypes.array.isRequired,
     mode: PropTypes.string.isRequired

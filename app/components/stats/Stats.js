@@ -37,7 +37,7 @@ var Stats = React.createClass({
                             className="form-control input-sm"
                             type="text"
                             placeholder="Enter a bus number"
-                            onChange={this.props.callbackSelect}/>
+                            onChange={this.props.callbackFunction}/>
                     </div>
                 </div>
 
@@ -47,7 +47,7 @@ var Stats = React.createClass({
 });
 
 Stats.propTypes = {
-    callbackSelect: PropTypes.func.isRequired,
+    callbackFunction: PropTypes.func.isRequired,
     selectedBus:PropTypes.string
 };
 

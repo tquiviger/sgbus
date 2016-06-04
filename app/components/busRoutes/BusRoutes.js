@@ -2,7 +2,7 @@ var React = require('react');
 var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
-var ToggleDirectionButton = require('./ToggleDirectionButton');
+var ToggleButton = require('../_common/ToggleButton');
 
 
 var styles = {
@@ -54,10 +54,9 @@ var BusRoutes = React.createClass({
 
                 </div>
                 <div style={styles.table} className="col-md-7">
-                        <ToggleDirectionButton
-                            style={{float:'right'}}
-                            currentDirection={this.props.currentDirection}
-                            buttonCallback={this.props.switchButonCallback}/>
+                    <ToggleButton
+                        text={"Direction "+this.props.currentDirection}
+                        buttonCallback={this.props.callbackFunction}/>
                     <table className="table table-condensed table-hover">
                         <thead>
                         <tr>
@@ -78,7 +77,9 @@ var BusRoutes = React.createClass({
 
 BusRoutes.propTypes = {
     busData: PropTypes.object.isRequired,
-    onHoverStation: PropTypes.func.isRequired
+    onHoverStation: PropTypes.func.isRequired,
+    callbackFunction: PropTypes.func.isRequired,
+    currentDirection: PropTypes.string.isRequired
 };
 
 module.exports = BusRoutes;

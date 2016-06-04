@@ -60,7 +60,8 @@ BusRoutesMap.propTypes = {
     busData: PropTypes.object.isRequired,
     currentStation: PropTypes.string,
     currentStationLat: PropTypes.number,
-    currentStationLon: PropTypes.number
+    currentStationLon: PropTypes.number,
+    currentDirection: PropTypes.string.isRequired
 };
 
 module.exports = BusRoutesMap;

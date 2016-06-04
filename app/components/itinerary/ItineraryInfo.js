@@ -25,7 +25,7 @@ var styles = {
     }
 };
 
-var Itinerary = React.createClass({
+var ItineraryInfo = React.createClass({
     
     render: function () {
         return (
@@ -45,10 +45,11 @@ var Itinerary = React.createClass({
     }
 });
 
-Itinerary.propTypes = {
+ItineraryInfo.propTypes = {
     isLoading: PropTypes.bool.isRequired,
     arrivalStationsWithBus: PropTypes.array.isRequired,
-    departureStation: PropTypes.object.isRequired
+    departureStation: PropTypes.object.isRequired,
+    callbackFunction: PropTypes.func.isRequired
 };
 
-module.exports = Itinerary;
+module.exports = ItineraryInfo;

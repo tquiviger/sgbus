@@ -10,7 +10,7 @@ var NearestBusStationContainer = React.createClass({
         return {
             isLoading: false,
             nearestStations: [],
-            buttonCallback: this.searchNearestBusStation
+            callbackFunction: this.onSubmitNearestBusStation
         }
     },
     locationSuccess: function (position) {
@@ -22,7 +22,7 @@ var NearestBusStationContainer = React.createClass({
                 })
             }.bind(this));
     },
-    searchNearestBusStation: function (e) {
+    onSubmitNearestBusStation: function (e) {
         e.preventDefault();
         this.setState({
             isLoading: true
@@ -38,11 +38,8 @@ var NearestBusStationContainer = React.createClass({
     },
     render: function () {
         return (
-            <NearestBusStation
-                onSubmitNearestBusStation={this.state.buttonCallback}
-                isLoading={this.state.isLoading}
+            <NearestBusStation {...this.state}
                 mode={this.props.mode}
-                nearestStations={this.state.nearestStations}
             />
         )
     }

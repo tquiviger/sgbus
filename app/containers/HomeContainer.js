@@ -22,10 +22,8 @@ var HomeContainer = React.createClass({
     },
     render: function () {
         return (
-            <Home
-                mode={this.state.mode}
+            <Home {...this.state}
                 departureStation={this.props.routeParams.departureStation}
-                buttonCallback={this.state.buttonCallback}
             />
         )
     }

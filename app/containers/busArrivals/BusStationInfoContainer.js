@@ -35,11 +35,7 @@ var BusStationInfoContainer = React.createClass({
     },
     render: function () {
         return (
-            <BusStationInfo
-                busStation={this.props.routeParams.busStation}
-                isLoading={this.state.isLoading}
-                stationData={this.state.stationData}
-            />
+            <BusStationInfo {...this.state}/>
         )
     }
 });

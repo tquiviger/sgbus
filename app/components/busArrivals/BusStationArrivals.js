@@ -25,7 +25,8 @@ var BusStationArrivals = React.createClass({
 });
 
 BusStationArrivals.propTypes = {
-    stationData: PropTypes.object.isRequired
+    stationData: PropTypes.object.isRequired,
+    callbackFunction: PropTypes.func
 };
 
 module.exports = BusStationArrivals;
