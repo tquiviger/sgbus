@@ -32,9 +32,7 @@ var ItineraryContainer = React.createClass({
             return hit._id.split('_')[0]
         });
 
-        var services = busData.departureStation.Services.filter(function (service) {
-            return availableBusesId.includes(service.ServiceNo)
-        });
+        var services = busData.departureStation.Services
         services.forEach(function (service) {
             var routeStations = [];
             var busRoute = _.find(busData.hits.hits, function (hit) {
@@ -61,11 +59,15 @@ var ItineraryContainer = React.createClass({
                 service.routeDistance = routeDistance;
                 service.numStops = numStops;
                 service.route = routeStations;
+                service.goingInCorrectDirection = depIndex < arrIndex;
             }
 
         });
 
-        return services
+        return services.filter(function (service) {
+            //in the departure station Service, keeping only buses included in a route going to the arrival station
+            return availableBusesId.includes(service.ServiceNo) && service.goingInCorrectDirection
+        });
     },
     makeRequest: function (departureStation, arrivalStation) {
         getBusStationInfo(arrivalStation)
