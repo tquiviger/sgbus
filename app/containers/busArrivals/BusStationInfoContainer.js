@@ -12,14 +12,14 @@ var BusStationInfoContainer = React.createClass({
         }
     },
     componentDidMount: function () {
-        this.makeRequest(this.props.routeParams.busStation);
-        myInterval = setInterval(this.updateData, 5000)
+        this.makeRequest();
+        myInterval = setInterval(this.makeRequest, 5000)
     },
     componentWillUnmount: function () {
         clearInterval(myInterval);
     },
-    makeRequest: function (busStation) {
-        getBusStation(busStation)
+    makeRequest: function () {
+        getBusStation(this.props.routeParams.busStation)
             .then(function (stationData) {
                 this.setState({
                     isLoading: false,
