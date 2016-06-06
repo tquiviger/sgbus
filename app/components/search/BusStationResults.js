@@ -11,7 +11,7 @@ var styles = {
     }
 };
 
-var BusStationResults = function (stations, path) {
+var BusStationResults = function (stations, path,onClickReset) {
     return (
         <div style={styles.container}>
             {
@@ -21,7 +21,9 @@ var BusStationResults = function (stations, path) {
                                 <button
                                     type='button'
                                     style={{margin: 9}}
-                                    className='btn btn-info'>
+                                    className='btn btn-info'
+                                    onClick={onClickReset}
+                                    >
                                     {result._source.Description}
                                 </button>
                             </Link>

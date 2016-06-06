@@ -29,7 +29,14 @@ var styles = function (isInOperation) {
 
 
 function getIntervalAndLoad(status, date, load, feature, key) {
-    var type = load === 'Seats Available' ? 'info' : (load === 'Standing Available' ? 'warning' : 'error');
+    var loadStyle = load === 'Seats Available' ? {
+        type: 'info', borderStyle: {}
+    } : (load === 'Standing Available' ? {
+            type: 'warning', borderStyle: {borderBottom: "4px solid #F0AD4E"}
+        } : {
+            type: 'error', borderStyle: {borderBottom: "4px solid #BE6464"}
+        }
+    );
     var interval = '';
     if (status != 'In Operation') {
         return <td/>
@@ -43,8 +50,9 @@ function getIntervalAndLoad(status, date, load, feature, key) {
         }
     }
     return (
-        <td data-tip data-for={'loadAndFeatureTooltip'+key}>{interval}
-            <ReactTooltip id={'loadAndFeatureTooltip'+key} type={type} effect="float">
+        <td data-tip data-for={'loadAndFeatureTooltip'+key}>
+            <span style={loadStyle.borderStyle}>{interval}</span>
+            <ReactTooltip id={'loadAndFeatureTooltip'+key} type={loadStyle.type} effect="float">
                 <span>{load}</span>
                 <br/>
                 <span><i style={styles().icon} className="fa fa-wheelchair-alt"/>: {feature ? 'Yes' : 'No'}</span>

@@ -56,6 +56,23 @@ var BusRoutes = React.createClass({
                     <h1>Bus { this.props.busData.busInfo.ServiceNo} </h1>
                     <h4>Operator : <b>{ this.props.busData.busInfo.Operator}</b></h4>
                     <h4>Type : <b>{ this.props.busData.busInfo.Category} </b></h4>
+                    <h4>Scheduled bus frequency (in min) :</h4>
+                    <table className="table table-condensed table-striped table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>06:30 - 08:30</td>
+                            <td>08:30 - 17:00</td>
+                            <td>17:00 - 19:00</td>
+                            <td>19:00 - 06:30</td>
+                        </tr>
+                        <tr>
+                            <td>{this.props.busData.busInfo.AM_Peak_Freq}</td>
+                            <td>{this.props.busData.busInfo.AM_Offpeak_Freq}</td>
+                            <td>{this.props.busData.busInfo.PM_Peak_Freq}</td>
+                            <td>{this.props.busData.busInfo.PM_Offpeak_Freq}</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
                 </div>
                 <div style={styles.table} className="col-md-7">

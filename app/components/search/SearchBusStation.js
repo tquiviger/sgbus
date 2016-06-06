@@ -32,25 +32,28 @@ var styles = {
 };
 
 
-var BusStationResultsStation = function (props) {
-    return (
-        BusStationResults(props.hits, '/detail/'))
-};
-
-var BusStationResultsItineraryD = function (props) {
-    return (
-        BusStationResults(props.hits, '/itinerary/'))
-};
-
-var BusStationResultsItineraryA = function (props) {
-    var finalPath = window.location.hash.split('?').shift().split('#').pop() + '/';
-    return (
-        BusStationResults(props.hits, finalPath))
-};
-
 var SearchBusStation = React.createClass({
+    BusStationResultsStation: function (props) {
+        return (
+            BusStationResults(props.hits, '/detail/', this.onClickReset)
+        )
+    },
+    BusStationResultsItineraryD: function (props) {
+        return (
+            BusStationResults(props.hits, '/itinerary/', this.onClickReset)
+        )
+    },
+    BusStationResultsItineraryA: function (props) {
+        var finalPath = window.location.hash.split('?').shift().split('#').pop() + '/';
+        return (
+            BusStationResults(props.hits, finalPath, this.onClickReset)
+        )
+    },
+    onClickReset: function () {
+        searchkit.resetState();
+    },
     render: function () {
-        var container = this.props.departureStation == null ? BusStationResultsItineraryD : BusStationResultsItineraryA;
+        var container = this.props.departureStation == null ? this.BusStationResultsItineraryD : this.BusStationResultsItineraryA;
         return (
             <div>
                 <SearchkitProvider searchkit={searchkit}>
@@ -66,7 +69,7 @@ var SearchBusStation = React.createClass({
                         <Hits
                             hitsPerPage={5}
                             mod="sk-hits-list"
-                            listComponent={ this.props.mode==='station'?  BusStationResultsStation : container}
+                            listComponent={ this.props.mode==='station'?  this.BusStationResultsStation : container}
                         />
                     </div>
                 </SearchkitProvider>
