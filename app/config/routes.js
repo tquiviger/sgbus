@@ -11,6 +11,7 @@ var BusStationInfoContainer = require('../containers/busArrivals/BusStationInfoC
 var ItineraryContainer = require('../containers/itinerary/ItineraryContainer');
 var BusRoutesContainer = require('../containers/busRoutes/BusRoutesContainer');
 var StatsContainer = require('../containers/stats/StatsContainer');
+var SearchMainContainer = require('../containers/search/SearchMainContainer');
 
 
 var routes = (
@@ -18,10 +19,13 @@ var routes = (
         <Route path='/' component={Main}>
             <IndexRoute component={HomeContainer}/>
             <Route path='stats' component={StatsContainer}/>
-            <Route path='detail/:busStation' component={BusStationInfoContainer}/>
-            <Route path='routes/:bus' component={BusRoutesContainer}/>
-            <Route path='itinerary/:departureStation' component={HomeContainer}/>
-            <Route path='itinerary/:departureStation/:arrivalStation' component={ItineraryContainer}/>
+            <Route path='stations' component={SearchMainContainer}/>
+            <Route path='stations/:busStation' component={BusStationInfoContainer}/>
+            <Route path='buses' component={SearchMainContainer}/>
+            <Route path='buses/:bus' component={BusRoutesContainer}/>
+            <Route path='itineraries' component={SearchMainContainer}/>
+            <Route path='itineraries/:departureStation' component={HomeContainer}/>
+            <Route path='itineraries/:departureStation/:arrivalStation' component={ItineraryContainer}/>
         </Route>
     </Router>
 );

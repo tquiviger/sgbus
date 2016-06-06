@@ -35,12 +35,12 @@ var styles = {
 var SearchBusStation = React.createClass({
     BusStationResultsStation: function (props) {
         return (
-            BusStationResults(props.hits, '/detail/', this.onClickReset)
+            BusStationResults(props.hits, '/stations/', this.onClickReset)
         )
     },
     BusStationResultsItineraryD: function (props) {
         return (
-            BusStationResults(props.hits, '/itinerary/', this.onClickReset)
+            BusStationResults(props.hits, '/itineraries/', this.onClickReset)
         )
     },
     BusStationResultsItineraryA: function (props) {
@@ -53,6 +53,7 @@ var SearchBusStation = React.createClass({
         searchkit.resetState();
     },
     render: function () {
+        //TODO faire un case
         var container = this.props.departureStation == null ? this.BusStationResultsItineraryD : this.BusStationResultsItineraryA;
         return (
             <div>
@@ -69,7 +70,7 @@ var SearchBusStation = React.createClass({
                         <Hits
                             hitsPerPage={5}
                             mod="sk-hits-list"
-                            listComponent={ this.props.mode==='station'?  this.BusStationResultsStation : container}
+                            listComponent={ this.props.mode==='stations'?  this.BusStationResultsStation : container}
                         />
                     </div>
                 </SearchkitProvider>

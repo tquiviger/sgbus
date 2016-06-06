@@ -30,7 +30,7 @@ var ItineraryNotFound = React.createClass({
                     <h4>You might want to check an itinerary from another station</h4>
                 </div>
                 <NearestBusStation {...this.props}
-                    mode="itinerary2"
+                    mode="itineraries2"
                     text="Find other departure stations"
                     callbackFunction={this.props.callbackNotFoundFunction}
                 /></div>)

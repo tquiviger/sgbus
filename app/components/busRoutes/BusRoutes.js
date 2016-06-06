@@ -37,7 +37,7 @@ var BusRoutes = React.createClass({
                         <td>{index}</td>
                         <td>{routes['BusStopRoad_' + index]}</td>
                         <td>
-                            <Link to={'/detail/'+routes['BusStopCode_' + index]}><b>{routes['BusStopName_' + index]}</b></Link>
+                            <Link to={'/stations/'+routes['BusStopCode_' + index]}><b>{routes['BusStopName_' + index]}</b></Link>
                         </td>
                         <td>{routes['Distance_' + index]} km</td>
                     </tr>

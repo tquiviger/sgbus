@@ -97,7 +97,7 @@ function buildArrivalTab(services, mode, arrivalStation, callBackFunction) {
                                 }
                             </td>
                             <td>
-                                <Link style={styles().links} to={'/routes/'+result.ServiceNo}>
+                                <Link style={styles().links} to={'/buses/'+result.ServiceNo}>
                                     <strong>Bus {result.ServiceNo}</strong>
                                 </Link>
                             </td>
@@ -129,7 +129,7 @@ var BusStationArrival = React.createClass({
                                 <i style={styles().icon} className="fa fa-arrow-circle-right"/>
 
                                 <Link style={styles().links}
-                                      to={'/detail/'+this.props.arrivalStation.BusStopCode}>
+                                      to={'/stations/'+this.props.arrivalStation.BusStopCode}>
                                     <b>{this.props.arrivalStation.Description}</b>
                                     { getDistance(this.props.arrivalStation.distance)}
                                 </Link>
