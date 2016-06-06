@@ -1,5 +1,4 @@
 var React = require('react');
-var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
 var ToggleButton = require('../_common/ToggleButton');
@@ -7,8 +6,7 @@ var ToggleButton = require('../_common/ToggleButton');
 
 var styles = {
     container: {
-        backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImage + ')',
+       
         height: '60%',
         fontSize: 14,
         overflowY: 'scroll',
@@ -16,6 +14,11 @@ var styles = {
     },
     table: {
         textAlign: 'left'
+    },
+    tabHeader: {
+        color: "#FFF",
+        background: "#21618C",
+        fontWeight: 400
     }
 };
 
@@ -42,7 +45,8 @@ var BusRoutes = React.createClass({
             }
         }
         return rows;
-    }, render: function () {
+    },
+    render: function () {
         var toggleButon;
         if (this.props.busData.routes_2) {
             toggleButon = <ToggleButton
@@ -56,20 +60,22 @@ var BusRoutes = React.createClass({
                     <h1>Bus { this.props.busData.busInfo.ServiceNo} </h1>
                     <h4>Operator : <b>{ this.props.busData.busInfo.Operator}</b></h4>
                     <h4>Type : <b>{ this.props.busData.busInfo.Category} </b></h4>
-                    <h4>Scheduled bus frequency (in min) :</h4>
                     <table className="table table-condensed table-striped table-bordered">
                         <tbody>
-                        <tr>
+                        <tr style={styles.tabHeader}>
+                            <td colSpan="4" style={{textAlign:"center"}}>Scheduled bus frequency</td>
+                        </tr>
+                        <tr style={styles.tabHeader}>
                             <td>06:30 - 08:30</td>
                             <td>08:30 - 17:00</td>
                             <td>17:00 - 19:00</td>
                             <td>19:00 - 06:30</td>
                         </tr>
                         <tr>
-                            <td>{this.props.busData.busInfo.AM_Peak_Freq}</td>
-                            <td>{this.props.busData.busInfo.AM_Offpeak_Freq}</td>
-                            <td>{this.props.busData.busInfo.PM_Peak_Freq}</td>
-                            <td>{this.props.busData.busInfo.PM_Offpeak_Freq}</td>
+                            <td>{this.props.busData.busInfo.AM_Peak_Freq} min</td>
+                            <td>{this.props.busData.busInfo.AM_Offpeak_Freq} min</td>
+                            <td>{this.props.busData.busInfo.PM_Peak_Freq} min</td>
+                            <td>{this.props.busData.busInfo.PM_Offpeak_Freq} min</td>
                         </tr>
                         </tbody>
                     </table>
@@ -77,8 +83,10 @@ var BusRoutes = React.createClass({
                 </div>
                 <div style={styles.table} className="col-md-7">
                     <div className="container-fluid">
-                        {toggleButon}
-                        <h3><b>Direction {this.props.currentDirection}</b></h3>
+                        <div className="row">
+                            {toggleButon}
+                            <h3 style={{marginTop:15}}><b>Direction {this.props.currentDirection}</b></h3>
+                        </div>
                     </div>
                     <table className="table table-condensed table-hover">
                         <thead>

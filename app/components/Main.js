@@ -1,12 +1,12 @@
 var React = require('react');
 var Link = require('react-router').Link;
-var logo = require('file?name=[name].[ext]!../images/logo.png');
+var logo = require('file?name=[name].[ext]!../images/logo_large.png');
 
 var styles = {
     container: {
         width: '100%',
         height: '100%',
-        fontFamily: 'Raleway, sans-serif'
+        fontFamily: 'Open Sans, sans-serif'
     },
     header: {
         display: 'flex',
@@ -15,8 +15,8 @@ var styles = {
         color: '#fff'
     },
     image: {
-        width: 40,
-        align: 'middle'
+        width: 200,
+        align: 'top'
     },
     icon: {
         marginRight: 3
@@ -52,7 +52,6 @@ var Main = React.createClass({
                     <Link to={'/'}>
                         <img src={logo} style={styles.image}/>
                     </Link>
-                    <h2 style={styles.title}> SG Bus</h2>
                 </div>
                 {navBar()}
                 {this.props.children}

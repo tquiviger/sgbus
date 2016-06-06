@@ -18,11 +18,8 @@ var styles = function (isInOperation) {
         row: {
             opacity: isInOperation ? 1 : 0.3
         },
-        button: {
-            backgroundColor: 'Transparent',
-            backgroundRepeat: 'no-repeat',
-            cursor: 'pointer',
-            outline: 'none'
+        mapButton: {
+            cursor: "pointer"
         }
     }
 };
@@ -70,7 +67,7 @@ function buildArrivalTab(services, mode, arrivalStation, callBackFunction) {
         <table className="table table-condensed">
             <thead>
             <tr style={{textAlign:'center'}}>
-                { mode === 'itinerary' ? <th></th> : null}
+                { mode === 'itinerary' ? <th/> : null}
                 <th>Status</th>
                 <th>Bus #</th>
                 <th>{ mode === 'itinerary' ? 'Distance' : 'Operator'}</th>
@@ -86,14 +83,12 @@ function buildArrivalTab(services, mode, arrivalStation, callBackFunction) {
                         <tr key={key}
                             style={styles(result.Status === 'In Operation').row}>
                             {mode === 'itinerary' ? <td>
-                                <button
+                                <span
                                     id={key}
-                                    type='button btn-sm'
-                                    style={styles().button}
-                                    className='btn'
+                                    style={styles().mapButton}
                                     onClick={callBackFunction}>
                                     <i className="fa fa-map"/>
-                                </button>
+                                </span>
                             </td> : null}
                             <td>
                                 { result.Status === 'In Operation'
