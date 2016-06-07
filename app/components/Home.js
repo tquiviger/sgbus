@@ -2,7 +2,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
 
-var backgroundImageBlue = require('file?name=[name].[ext]!../images/pattern.svg');
+var backgroundImage = require('file?name=[name].[ext]!../images/pattern-buses.svg');
 var busLogo = require('file?name=[name].[ext]!../images/busLogo.png');
 var busStopLogo = require('file?name=[name].[ext]!../images/busStopLogo.png');
 var itineraryLogo = require('file?name=[name].[ext]!../images/itineraryLogo.png');
@@ -10,7 +10,7 @@ var itineraryLogo = require('file?name=[name].[ext]!../images/itineraryLogo.png'
 var styles = {
     container: {
         backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImageBlue + ')',
+        backgroundImage: 'url(' + backgroundImage + ')',
         height: '100%',
         width: '100%'
     },

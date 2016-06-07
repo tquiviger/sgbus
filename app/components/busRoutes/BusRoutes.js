@@ -1,12 +1,9 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
-var ToggleButton = require('../_common/ToggleButton');
-
 
 var styles = {
     container: {
-       
         height: '60%',
         fontSize: 14,
         overflowY: 'scroll',
@@ -19,6 +16,15 @@ var styles = {
         color: "#FFF",
         background: "#21618C",
         fontWeight: 400
+    },
+    button: {
+        fontWeight: 100,
+        marginTop: 10,
+        backgroundColor: 'Transparent',
+        backgroundRepeat: 'no-repeat',
+        cursor: 'pointer',
+        outline: 'none',
+        float: 'right'
     }
 };
 
@@ -37,7 +43,8 @@ var BusRoutes = React.createClass({
                         <td>{index}</td>
                         <td>{routes['BusStopRoad_' + index]}</td>
                         <td>
-                            <Link to={'/stations/'+routes['BusStopCode_' + index]}><b>{routes['BusStopName_' + index]}</b></Link>
+                            <Link
+                                to={'/stations/'+routes['BusStopCode_' + index]}><b>{routes['BusStopName_' + index]}</b></Link>
                         </td>
                         <td>{routes['Distance_' + index]} km</td>
                     </tr>
@@ -49,10 +56,14 @@ var BusRoutes = React.createClass({
     render: function () {
         var toggleButon;
         if (this.props.busData.routes_2) {
-            toggleButon = <ToggleButton
-                additionalStyle={{float: 'right'}}
-                text={"Switch direction"}
-                buttonCallback={this.props.callbackFunction}/>
+            toggleButon = <button
+                type='button'
+                style={styles.button}
+                className='btn btn-primary'
+                onClick={this.props.callbackFunction}>
+                <i style={{marginRight :10}} className="fa fa-exchange"/>
+                Switch direction
+            </button>
         }
         return (
             <div className="row" style={styles.container}>

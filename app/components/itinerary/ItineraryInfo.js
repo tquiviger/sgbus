@@ -5,7 +5,7 @@ var ItineraryBusArrivals = require('./ItineraryBusArrivals');
 var ItineraryNotFound = require('./ItineraryNotFound');
 var ItineraryMap = require('./ItineraryMap');
 var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
-var backgroundImageGreen = require('file?name=[name].[ext]!../../images/pattern-itinerary.svg');
+var backgroundImageItineraries = require('file?name=[name].[ext]!../../images/pattern-itineraries.svg');
 
 var styles = {
     container: {
@@ -14,7 +14,7 @@ var styles = {
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImageGreen + ')',
+        backgroundImage: 'url(' + backgroundImageItineraries + ')',
         height: '100%',
         width: '100%'
     },

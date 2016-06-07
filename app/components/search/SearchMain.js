@@ -2,15 +2,15 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var SearchBusStation = require('./SearchBusStation');
 var NearestBusStationContainer = require('../../containers/search/NearestBusStationContainer');
-var backgroundImageBlue = require('file?name=[name].[ext]!../../images/pattern.svg');
-var backgroundImageGreen = require('file?name=[name].[ext]!../../images/pattern-itinerary.svg');
+var backgroundImageBuses = require('file?name=[name].[ext]!../../images/pattern-buses.svg');
+var backgroundImageStations = require('file?name=[name].[ext]!../../images/pattern-stations.svg');
+var backgroundImageItineraries = require('file?name=[name].[ext]!../../images/pattern-itineraries.svg');
 
 var busLogo = require('file?name=[name].[ext]!../../images/busLogo.png');
 var busStopLogo = require('file?name=[name].[ext]!../../images/busStopLogo.png');
 var itineraryLogo = require('file?name=[name].[ext]!../../images/itineraryLogo.png');
 
-var styles = function (mode) {
-    var backgroundImage = backgroundImageBlue;
+var styles = function (backgroundImage) {
     return {
         container: {
             backgroundSize: 'cover',
@@ -49,6 +49,8 @@ var SearchMain = React.createClass({
     render: function () {
         var text;
         var image;
+        var backgroundImage;
+
         var nearestBusStationContainer = <div className="container-fluid">
             <NearestBusStationContainer
                 text="Find the nearest stations"
@@ -59,22 +61,26 @@ var SearchMain = React.createClass({
             case "stations":
                 text = "Enter a bus station";
                 image = busStopLogo;
+                backgroundImage = backgroundImageStations;
                 break;
             case "buses":
                 text = "Enter a bus #";
                 image = busLogo;
+                backgroundImage = backgroundImageBuses;
                 nearestBusStationContainer = null;
                 break;
             case "itineraries":
                 text = "Enter the departure Station";
                 image = itineraryLogo;
+                backgroundImage = backgroundImageItineraries;
                 break;
             case "itineraries2":
                 text = "Enter the arrival Station";
                 image = itineraryLogo;
+                backgroundImage = backgroundImageItineraries;
         }
         return (
-            <div style={styles(this.props.mode).container}>
+            <div style={styles(backgroundImage).container}>
                 <div style={styles().mainIcons}>
                     <img src={image} style={styles().images}/>
                 </div>

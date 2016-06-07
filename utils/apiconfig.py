@@ -1,6 +1,6 @@
 import json
 
-config_directory='/home/ec2-user/config/config.json'
+config_directory='/Users/thomas/sgbus/config.json'
 json_data=open(config_directory).read()
 api = json.loads(json_data)
 
