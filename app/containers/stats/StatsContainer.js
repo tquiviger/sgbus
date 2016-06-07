@@ -10,7 +10,7 @@ var chartOptions = require('./chartOptions/chartOptions');
 
 const BUSES = require('../../data/busData').BUSES;
 const OUTPUT_DATE_FORMAT = 'DD/MM/YYYY HH:mm';
-const SINGLE_BUS_STATS = ['meanwaitingtimebybus', 'maxwaitingtimebybus'];
+const SINGLE_BUS_STATS = ['meanwaitingtimebybus', 'maxwaitingtimebybus', 'minwaitingtimebybus'];
 const MULTI_BUS_STATS = ['meanwaitingtimebybus'];
 
 var defaultBusDisplayed = _.first(BUSES, 15);
@@ -59,8 +59,8 @@ var StatsContainer = React.createClass({
         });
         this.setState({myChart: myChart})
     },
-    generateDatasets: function (datasets, values, label) {
-        var color = randomColor({luminosity: 'bright'});
+    generateDatasets: function (datasets, values, label, color) {
+        var color = color ? color : randomColor({luminosity: 'bright'});
         datasets.push({
             label: label,
             fill: false,
@@ -96,10 +96,13 @@ var StatsContainer = React.createClass({
         }
         else {
             if (hits['meanWaitingTimeByBus'] != null) {
-                this.generateDatasets(datasets, hits['meanWaitingTimeByBus'], 'Average');
+                this.generateDatasets(datasets, hits['meanWaitingTimeByBus'], 'Average', "#F39C12");
             }
             if (hits['maxWaitingTimeByBus'] != null) {
-                this.generateDatasets(datasets, hits['maxWaitingTimeByBus'], 'Max');
+                this.generateDatasets(datasets, hits['maxWaitingTimeByBus'], 'Max', "#D35400");
+            }
+            if (hits['minWaitingTimeByBus'] != null) {
+                this.generateDatasets(datasets, hits['minWaitingTimeByBus'], 'Min', "#F4D03F");
             }
         }
         return {labels: labels, datasets: datasets};
