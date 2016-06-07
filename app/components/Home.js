@@ -6,6 +6,7 @@ var backgroundImage = require('file?name=[name].[ext]!../images/pattern-buses.sv
 var busLogo = require('file?name=[name].[ext]!../images/busLogo.png');
 var busStopLogo = require('file?name=[name].[ext]!../images/busStopLogo.png');
 var itineraryLogo = require('file?name=[name].[ext]!../images/itineraryLogo.png');
+var statsLogo = require('file?name=[name].[ext]!../images/statsLogo.png');
 
 var styles = {
     container: {
@@ -29,11 +30,11 @@ var styles = {
 
     },
     images: {
-        width: 150,
+        width: 100,
         paddingLeft: 100,
         paddingTop: 100,
         paddingRight: 100,
-        paddingBottom: 50
+        paddingBottom: 10
     },
     caption: {
         display: "block",
@@ -68,6 +69,15 @@ var Home = React.createClass({
                         </Link>
                         <h3 style={styles.caption}><i style={styles.icon} className="fa fa-search"/>Itinerary</h3>
                     </div>
+                </div>
+                <div style={styles.mainIcons}>
+                    <div style={styles.mainIcon}>
+                        <Link to={'/stats'}>
+                            <img src={statsLogo} style={styles.images}/>
+                        </Link>
+                        <h3 style={styles.caption}>Statistics</h3>
+                    </div>
+
                 </div>
             </div>
         )

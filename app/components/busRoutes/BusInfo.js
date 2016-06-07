@@ -2,7 +2,7 @@ var React = require('react');
 var BusRoutes = require('./BusRoutes');
 var BusRoutesMap = require('./BusRoutesMap');
 var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
-var backgroundImageBuses = require('file?name=[name].[ext]!../../images/pattern-buses.svg');
+var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 var PropTypes = React.PropTypes;
 
 var styles = {
@@ -11,7 +11,7 @@ var styles = {
         flexDirection: 'column',
         justifyContent: 'center',
         backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImageBuses + ')',
+        backgroundImage: 'url(' + backgroundImage + ')',
         alignItems: 'center',
         height: '100%',
         width: '100%'
