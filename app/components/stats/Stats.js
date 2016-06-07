@@ -1,7 +1,7 @@
 var React = require('react');
 var Config = require('Config');
 var PropTypes = React.PropTypes;
-var backgroundImageBlue = require('file?name=[name].[ext]!../../images/pattern.svg');
+var backgroundImageBlue = require('file?name=[name].[ext]!../../images/pattern-buses.svg');
 
 var styles = {
     container: {
