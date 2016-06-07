@@ -33,7 +33,7 @@ if __name__ == "__main__":
         jsonObj = json.loads(content.decode())["value"]
         for bus in jsonObj:
             try:
-                res = es.get(index="sgbus", doc_type='bus_station', id=bus["BusStopCode"])
+                res = es.get(index="sgbus", doc_type='stations', id=bus["BusStopCode"])
                 stopId = bus['StopSequence']
                 key = str(bus['ServiceNo'])+"_"+str(bus['Direction'])
                 print(key)
@@ -65,4 +65,4 @@ if __name__ == "__main__":
         count = count + 50
     for busStop, value in busDict.items():
         print('indexing '+busStop)
-        es.index(index="sgbus", doc_type='bus_route', id=busStop, body=value)
+        es.index(index="sgbus", doc_type='itineraries', id=busStop, body=value)

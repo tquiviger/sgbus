@@ -34,6 +34,6 @@ if __name__=="__main__":
         for bus_station in jsonObj:
             bus_station["location"]={"lat":bus_station["Latitude"],"lon":bus_station["Longitude"]}
             print(bus_station)
-            es.index(index="sgbus", doc_type='bus_station', id=bus_station["BusStopCode"], body=bus_station)
+            es.index(index="sgbus", doc_type='stations', id=bus_station["BusStopCode"], body=bus_station)
 
         count = count + 50

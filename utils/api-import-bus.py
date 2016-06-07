@@ -33,6 +33,6 @@ if __name__=="__main__":
         jsonObj = json.loads(content.decode())["value"]
         for bus in jsonObj:
             print(bus["ServiceNo"])
-            es.index(index="sgbus", doc_type='bus', id=bus["ServiceNo"], body=bus)
+            es.index(index="sgbus", doc_type='buses', id=bus["ServiceNo"], body=bus)
 
         count = count + 50
