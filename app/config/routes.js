@@ -24,7 +24,7 @@ var routes = (
             <Route path='buses' component={SearchMainContainer}/>
             <Route path='buses/:bus' component={BusRoutesContainer}/>
             <Route path='itineraries' component={SearchMainContainer}/>
-            <Route path='itineraries/:departureStation' component={HomeContainer}/>
+            <Route path='itineraries/:departureStation' component={SearchMainContainer}/>
             <Route path='itineraries/:departureStation/:arrivalStation' component={ItineraryContainer}/>
         </Route>
     </Router>

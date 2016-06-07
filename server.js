@@ -31,7 +31,7 @@ https.createServer(
     });
 
 //This endpoint cannot be managed by app/helpers/api due to CORS matters
-app.get('/api/bus_arrivals/:bus_stop_id', function (req, res) {
+app.get('/api/arrivals/:bus_stop_id', function (req, res) {
     axios.get(_baseBusArrivalsUrl + req.params.bus_stop_id, {
         headers: {
             AccountKey: configuration.AccountKey,

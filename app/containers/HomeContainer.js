@@ -5,8 +5,7 @@ var HomeContainer = React.createClass({
 
     render: function () {
         return (
-            <Home
-                
+            <Home             
             />
         )
     }

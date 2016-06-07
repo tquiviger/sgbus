@@ -11,11 +11,11 @@ var styles = {
     }
 };
 
-var BusStationResults = function (stations, path,onClickReset) {
+var BusStationResults = function (mode, hits, path, onClickReset) {
     return (
         <div style={styles.container}>
             {
-                stations.map(function (result) {
+                hits.map(function (result) {
                         return (
                             <Link key={result._id} to={path+result._id}>
                                 <button
@@ -23,8 +23,8 @@ var BusStationResults = function (stations, path,onClickReset) {
                                     style={{margin: 9}}
                                     className='btn btn-info'
                                     onClick={onClickReset}
-                                    >
-                                    {result._source.Description}
+                                >
+                                    {mode === "buses" ? result._source.ServiceNo : result._source.Description}
                                 </button>
                             </Link>
                         )

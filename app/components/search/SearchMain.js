@@ -10,7 +10,7 @@ var busStopLogo = require('file?name=[name].[ext]!../../images/busStopLogo.png')
 var itineraryLogo = require('file?name=[name].[ext]!../../images/itineraryLogo.png');
 
 var styles = function (mode) {
-    var backgroundImage = mode === 'itineraries' ? backgroundImageGreen : backgroundImageBlue;
+    var backgroundImage = backgroundImageBlue;
     return {
         container: {
             backgroundSize: 'cover',
@@ -49,15 +49,21 @@ var SearchMain = React.createClass({
     render: function () {
         var text;
         var image;
+        var nearestBusStationContainer = <div className="container-fluid">
+            <NearestBusStationContainer
+                text="Find the nearest stations"
+                mode={this.props.mode}/>
+        </div>;
 
         switch (this.props.mode) {
             case "stations":
-                text = "Enter a bus station"
+                text = "Enter a bus station";
                 image = busStopLogo;
                 break;
             case "buses":
                 text = "Enter a bus #";
                 image = busLogo;
+                nearestBusStationContainer = null;
                 break;
             case "itineraries":
                 text = "Enter the departure Station";
@@ -67,7 +73,6 @@ var SearchMain = React.createClass({
                 text = "Enter the arrival Station";
                 image = itineraryLogo;
         }
-
         return (
             <div style={styles(this.props.mode).container}>
                 <div style={styles().mainIcons}>
@@ -81,11 +86,7 @@ var SearchMain = React.createClass({
                         mode={this.props.mode}
                         departureStation={this.props.departureStation}
                     />
-                    <div className="container-fluid">
-                        <NearestBusStationContainer
-                            text="Find the nearest stations"
-                            mode={this.props.mode}/>
-                    </div>
+                    {nearestBusStationContainer}
                 </div>
             </div>
         )

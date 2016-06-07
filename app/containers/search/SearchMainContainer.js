@@ -6,9 +6,10 @@ var withRouter = require('react-router').withRouter;
 var SearchMainContainer = React.createClass({
 
     render: function () {
+        var mode = this.props.routeParams.departureStation ? "itineraries2" : this.props.route.path;
         return (
             <SearchMain
-                mode={this.props.route.path}
+                mode={mode}
             />
         )
     }

@@ -1,13 +1,13 @@
 var axios = require('axios');
 var Config = require('Config');
 
-var _apiBusArrivalsUrl = Config.apiUrl + '/api/bus_arrivals/';
+var _apiBusArrivalsUrl = Config.apiUrl + '/api/arrivals/';
 
-var _elasticSearchBusRoutesUrl = Config.apiUrl + '/search/sgbus/bus_route/';
-var _elasticSearchBusUrl = Config.apiUrl + '/search/sgbus/bus/';
-var _elasticSearchBusStationsUrl = Config.apiUrl + '/search/sgbus/bus_station/';
-var _elasticSearchBusRoutesSearchUrl = Config.apiUrl + '/search/sgbus/bus_route/_search';
-var _elasticSearchBusStationUrl = Config.apiUrl + '/search/sgbus/bus_station/_search';
+var _elasticSearchBusRoutesUrl = Config.apiUrl + '/search/sgbus/itineraries/';
+var _elasticSearchBusUrl = Config.apiUrl + '/search/sgbus/buses/';
+var _elasticSearchBusStationsUrl = Config.apiUrl + '/search/sgbus/stations/';
+var _elasticSearchBusRoutesSearchUrl = Config.apiUrl + '/search/sgbus/itineraries/_search';
+var _elasticSearchBusStationUrl = Config.apiUrl + '/search/sgbus/stations/_search';
 var _elasticSearchStatsUrl = Config.apiUrl + '/search/sgbus/stats/_search';
 
 

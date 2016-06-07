@@ -4,14 +4,8 @@ var Searchkit = require('searchkit');
 var BusStationResults = require('./BusStationResults');
 var Config = require('Config');
 
-const searchkit = new Searchkit.SearchkitManager(
-    Config.apiUrl + "/search/sgbus/bus_station",
-    {searchOnLoad: false, useHistory: false}
-);
-searchkit.setQueryProcessor(function (query) {
-    query = query.query ? query : {"size": 0};
-    return query;
-});
+var searchkit;
+
 const SearchkitProvider = Searchkit.SearchkitProvider;
 const SearchBox = Searchkit.SearchBox;
 const Hits = Searchkit.Hits;
@@ -33,28 +27,43 @@ var styles = {
 
 
 var SearchBusStation = React.createClass({
-    BusStationResultsStation: function (props) {
-        return (
-            BusStationResults(props.hits, '/stations/', this.onClickReset)
-        )
+    componentWillMount: function () {
+        var path = this.props.mode === "buses" ? "buses" : "stations";
+
+        searchkit = new Searchkit.SearchkitManager(
+            Config.apiUrl + "/search/sgbus/" + path,
+            {searchOnLoad: false, useHistory: false}
+        );
+        searchkit.setQueryProcessor(function (query) {
+            query = query.query ? query : {"size": 0};
+            return query;
+        });
     },
-    BusStationResultsItineraryD: function (props) {
-        return (
-            BusStationResults(props.hits, '/itineraries/', this.onClickReset)
-        )
-    },
-    BusStationResultsItineraryA: function (props) {
+    BusStationContainer: function (props) {
+        //TODO itineraries2
         var finalPath = window.location.hash.split('?').shift().split('#').pop() + '/';
-        return (
-            BusStationResults(props.hits, finalPath, this.onClickReset)
-        )
+        var path;
+        switch (this.props.mode) {
+            case "stations":
+                path = "/stations/";
+                break;
+            case "buses":
+                path = "/buses/";
+                break;
+            case "itineraries":
+                path = "/itineraries/";
+                break;
+            case "itineraries2":
+                path = window.location.hash.split('?').shift().split('#').pop() + '/';
+        }
+
+        return BusStationResults(this.props.mode, props.hits, path, this.onClickReset);
     },
     onClickReset: function () {
         searchkit.resetState();
     },
     render: function () {
-        //TODO faire un case
-        var container = this.props.departureStation == null ? this.BusStationResultsItineraryD : this.BusStationResultsItineraryA;
+        var queryField = this.props.mode === "buses" ? "ServiceNo" : "Description";
         return (
             <div>
                 <SearchkitProvider searchkit={searchkit}>
@@ -63,14 +72,14 @@ var SearchBusStation = React.createClass({
                             <SearchBox
                                 searchOnChange={true}
                                 queryOptions={{analyzer:"standard"}}
-                                queryFields={["Description"]}
-                                prefixQueryFields={["Description"]}
+                                queryFields={[queryField]}
+                                prefixQueryFields={[queryField]}
                             />
                         </div>
                         <Hits
                             hitsPerPage={5}
                             mod="sk-hits-list"
-                            listComponent={ this.props.mode==='stations'?  this.BusStationResultsStation : container}
+                            listComponent={  this.BusStationContainer }
                         />
                     </div>
                 </SearchkitProvider>
