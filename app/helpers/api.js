@@ -73,18 +73,31 @@ function getItineraryInfo(busStationDeparture, busStationArrival) {
         }))
 }
 
-function getNearestBusStationInfo(lat, lon, numResults) {
+function getNearestBusStationInfo(lat, lon, numResults, idToExclude) {
+    idToExclude = idToExclude?idToExclude:"";
     return axios.post(_elasticSearchBusStationUrl, {
             "from": 0, "size": numResults,
             "query": {
                 "filtered": {
                     "filter": {
-                        "geo_distance": {
-                            "distance": "500m",
-                            "location": {
-                                "lat": lat,
-                                "lon": lon
+                        "bool": {
+                            "must": {
+                                "geo_distance": {
+                                    "distance": "500m",
+                                    "location": {
+                                        "lat": lat,
+                                        "lon": lon
+                                    }
+                                }
+                            },
+                            "must_not": {
+                                "ids": {
+                                    "values": [
+                                        idToExclude
+                                    ]
+                                }
                             }
+
                         }
                     }
                 }

@@ -48,7 +48,7 @@ var ItineraryMap = React.createClass({
                 <div className="row" style={styles.container}>
                     <GoogleMap
                         bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
-                        defaultCenter={{ lat: initialArrivalStation.Latitude, lng: initialArrivalStation.Longitude }}
+                        center={{ lat: initialArrivalStation.Latitude, lng: initialArrivalStation.Longitude }}
                         defaultZoom={ defaultZoom }>
                         {
                             rows

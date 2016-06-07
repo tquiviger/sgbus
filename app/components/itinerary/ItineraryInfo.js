@@ -28,27 +28,26 @@ var styles = {
 var ItineraryInfo = React.createClass({
 
     render: function () {
-        var itinerariesSize = this.props.arrivalStationsWithBus.map(function (arrSt) {
-            return arrSt.services.length;
-        }).reduce(function (total, num) {
-            return total + num;
-        }, 0);
+        var hasFinished = this.props.arrivalStationsWithBus.length == this.props.numItineraryResults;
+        var noItinerayFound = this.props.arrivalStationsWithBus.map(function (arrSt) {
+                return arrSt.services.length;
+            }).reduce(function (total, num) {
+                return total + num;
+            }, 0) == 0;
         return (
             <div style={styles.container}>
                 {
-                    this.props.isLoading
+                    !hasFinished
                         ? <h1 style={styles.header}><img src={loadingImage} style={styles.image}/>Loading </h1>
                         : <ItineraryMap {...this.props}/>
                 }
                 {
-                    this.props.isLoading
+                    !hasFinished
                         ? ''
-                        : (itinerariesSize != 0
-                            ? <ItineraryBusArrivals {...this.props}/>
-                            : <ItineraryNotFound {...this.props}/>
+                        : (noItinerayFound
+                            ? <ItineraryNotFound {...this.props}/>
+                            : <ItineraryBusArrivals {...this.props}/>
                     )
-
-
                 }
             </div>
         )

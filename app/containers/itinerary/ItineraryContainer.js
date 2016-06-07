@@ -19,7 +19,8 @@ var ItineraryContainer = React.createClass({
             callbackNotFoundFunction: this.noItineraryFound,
             nearestStations: [],
             originalArrivalStation: {},
-            departureId: 0
+            departureId: 0,
+            numItineraryResults:numItineraryResults
         }
     },
     callbackFunction: function (e) {
@@ -122,7 +123,7 @@ var ItineraryContainer = React.createClass({
         this.setState({
             isLoading: true
         });
-        getNearestBusStationInfo(this.state.departureStation.Latitude, this.state.departureStation.Longitude, numDepartureStationsAround)
+        getNearestBusStationInfo(this.state.departureStation.Latitude, this.state.departureStation.Longitude, numDepartureStationsAround, this.state.departureStation.BusStopCode)
             .then(function (stationData) {
                 this.setState({
                     isLoading: false,
