@@ -24,7 +24,7 @@ The application configuration file should look like that :
 ```
 
 ```
-curl -XPUT 'http://localhost:9200/sgbus/_mapping/bus_station' -d '
+curl -XPUT 'http://localhost:9200/sgbus/_mapping/stations' -d '
 {
   
             "properties": {
@@ -45,7 +45,7 @@ curl -XPUT 'http://localhost:9200/sgbus/_mapping/stats' -d '
                 "timestamp": {"type": "date"},
                 "stattype": {"type": "string"},
                 "key": {"type": "string"},
-                "value" {"type": "double"}
+                "value": {"type": "double"}
             }
 
 

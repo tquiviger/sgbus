@@ -27,7 +27,7 @@ var Stats = React.createClass({
     render: function () {
         return (
             <div style={styles.container}>
-                <h3>Stats of Bus <b>{this.props.selectedBus}</b></h3>
+                <h3>Bus <b>{this.props.selectedBus}</b> Stats</h3>
                 <div className="container-fluid" style={styles.chartContainer}>
                     <canvas id="waitingTime"/>
                 </div>

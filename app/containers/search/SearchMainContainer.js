@@ -7,9 +7,11 @@ var SearchMainContainer = React.createClass({
 
     render: function () {
         var mode = this.props.routeParams.departureStation ? "itineraries2" : this.props.route.path;
+        var currentPath = this.props.location.pathname;
         return (
             <SearchMain
                 mode={mode}
+                currentPath={currentPath}
             />
         )
     }

@@ -83,9 +83,7 @@ var SearchMain = React.createClass({
                         {text}
                     </h1>
                     <SearchBusStation
-                        mode={this.props.mode}
-                        departureStation={this.props.departureStation}
-                    />
+                        {...this.props}/>
                     {nearestBusStationContainer}
                 </div>
             </div>
@@ -95,7 +93,8 @@ var SearchMain = React.createClass({
 
 
 SearchMain.propTypes = {
-    mode: PropTypes.string.isRequired
+    mode: PropTypes.string.isRequired,
+    currentPath: PropTypes.string
 };
 
 

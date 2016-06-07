@@ -38,7 +38,7 @@ var navBar = function () {
         </li>
         <li role="presentation">
             <Link to={'/stats'}>
-                <i style={styles.icon} className="fa fa-area-chart"/>Bus stats
+                <i style={styles.icon} className="fa fa-area-chart"/>Stats
             </Link>
         </li>
     </ul>)

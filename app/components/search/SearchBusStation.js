@@ -29,7 +29,6 @@ var styles = {
 var SearchBusStation = React.createClass({
     componentWillMount: function () {
         var path = this.props.mode === "buses" ? "buses" : "stations";
-
         searchkit = new Searchkit.SearchkitManager(
             Config.apiUrl + "/search/sgbus/" + path,
             {searchOnLoad: false, useHistory: false}
@@ -40,24 +39,8 @@ var SearchBusStation = React.createClass({
         });
     },
     BusStationContainer: function (props) {
-        //TODO itineraries2
-        var finalPath = window.location.hash.split('?').shift().split('#').pop() + '/';
-        var path;
-        switch (this.props.mode) {
-            case "stations":
-                path = "/stations/";
-                break;
-            case "buses":
-                path = "/buses/";
-                break;
-            case "itineraries":
-                path = "/itineraries/";
-                break;
-            case "itineraries2":
-                path = window.location.hash.split('?').shift().split('#').pop() + '/';
-        }
-
-        return BusStationResults(this.props.mode, props.hits, path, this.onClickReset);
+        var path = this.props.mode == "itineraries2" ? this.props.currentPath : this.props.mode;
+        return BusStationResults(props.hits, path, this.onClickReset);
     },
     onClickReset: function () {
         searchkit.resetState();
