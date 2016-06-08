@@ -17,11 +17,9 @@ var styles = {
 
     },
     searchStationContainer: {
-        height: '30%',
         width: '100%'
     },
     nearestStationContainer: {
-        height: '70%',
         width: '100%'
     },
     stationContainer: {

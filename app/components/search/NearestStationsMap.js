@@ -12,49 +12,51 @@ var styles = {
     container: {
         display: 'flex',
         flexDirection: 'column',
-        border: '3px solid #FFF',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '70%',
-        width: '60%'
+        height: '300px',
+        width: '100%'
     }
 };
 
 var NearestStationsMap = React.createClass({
 
         render: function () {
-            var map = this.props.nearestStations.length > 0 ? <GoogleMap
-                bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
-                center={{ lat:  this.props.userCoord.lat, lng: this.props.userCoord.lng }}
-                defaultZoom={ defaultZoom }>
-                <StationMarker
-                    key={0}
-                    stationName={"USER"}
-                    stationId="USER"
-                    currentStation="USER"
-                    size={stationMarkerSize}
-                    lat={this.props.userCoord.lat}
-                    lng={this.props.userCoord.lng}/>
-                {
-                    this.props.nearestStations.map(function (result, rank) {
-                        return (
-                            <StationMarker
-                                key={result._source.BusStopCode}
-                                stationName={result._source.Description}
-                                stationId=""
-                                rank={rank}
-                                currentStation="NA"
-                                size={stationMarkerSize*2}
-                                lat={result._source.Latitude}
-                                lng={result._source.Longitude}/>)
+            var map = this.props.nearestStations.length == 0
+                ? null :
+                <GoogleMap
+                    bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
+                    center={{ lat:  this.props.userCoord.lat, lng: this.props.userCoord.lng }}
+                    defaultZoom={ defaultZoom }>
+                    <StationMarker
+                        key={0}
+                        stationName={"USER"}
+                        stationId="USER"
+                        currentStation="USER"
+                        size={stationMarkerSize}
+                        lat={this.props.userCoord.lat}
+                        lng={this.props.userCoord.lng}/>
+                    {
+                        this.props.nearestStations.map(function (result, rank) {
+                            return (
+                                <StationMarker
+                                    key={result._source.BusStopCode}
+                                    stationName={result._source.Description}
+                                    stationId=""
+                                    rank={rank+1}
+                                    currentStation="NA"
+                                    size={stationMarkerSize*2}
+                                    lat={result._source.Latitude}
+                                    lng={result._source.Longitude}/>)
 
-                    })
-                }
-            </GoogleMap> : null
+                        })
+                    }
+                </GoogleMap>;
             return (
                 <div className="row" style={styles.container}>
                     {map}
                 </div>
+
             )
         }
     })
