@@ -67,8 +67,7 @@ function buildArrivalTab(services, mode, arrivalStation, callBackFunction) {
         <table className="table table-condensed">
             <thead>
             <tr style={{textAlign:'center'}}>
-                { mode === 'itinerary' ? <th/> : null}
-                <th>Status</th>
+                <th>{ mode === 'itinerary' ? "Map" : "Status"}</th>
                 <th>Bus #</th>
                 <th>{ mode === 'itinerary' ? 'Distance' : 'Operator'}</th>
                 <th><i style={styles().icon} className="fa fa-clock-o"/>1st Bus</th>
@@ -82,19 +81,17 @@ function buildArrivalTab(services, mode, arrivalStation, callBackFunction) {
                     return (
                         <tr key={key}
                             style={styles(result.Status === 'In Operation').row}>
-                            {mode === 'itinerary' ? <td>
-                                <span
-                                    id={key}
-                                    style={styles().mapButton}
-                                    onClick={callBackFunction}>
-                                    <i className="fa fa-map"/>
-                                </span>
-                            </td> : null}
-                            <td>
-                                { result.Status === 'In Operation'
+
+                            <td>{mode === 'station' ?
+                                result.Status === 'In Operation'
                                     ? <i className="fa fa-check-circle"/>
                                     : <i className="fa fa-times-circle"/>
-                                }
+                                : <span id={key}
+                                        style={styles().mapButton}
+                                        onClick={callBackFunction}>
+                                    <i className="fa fa-map"/>
+                                </span>
+                            }
                             </td>
                             <td>
                                 <Link style={styles().links} to={'/buses/'+result.ServiceNo}>
