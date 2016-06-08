@@ -80,7 +80,7 @@ var ItineraryContainer = React.createClass({
 
         return services.filter(function (service) {
             //in the departure station Service, keeping only buses included in a route going to the arrival station
-            return availableBusesId.includes(service.ServiceNo) && service.goingInCorrectDirection
+            return availableBusesId.includes(service.ServiceNo) && service.goingInCorrectDirection && service.Status == 'In Operation'
         });
     },
     makeRequest: function (departureStation, arrivalStation) {
