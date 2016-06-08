@@ -16,13 +16,20 @@ var styles = {
         width: '100%'
 
     },
+    searchStationContainer: {
+        height: '30%',
+        width: '100%'
+    },
+    nearestStationContainer: {
+        height: '70%',
+        width: '100%'
+    },
     stationContainer: {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center'
     },
-
     mainIcons: {
         display: 'flex',
         align: 'middle',
@@ -45,12 +52,9 @@ var SearchMain = React.createClass({
     render: function () {
         var text;
         var image;
-
-        var nearestBusStationContainer = <div className="container-fluid">
-            <NearestBusStationContainer {...this.props}
-                text="Find the nearest stations"/>
-        </div>;
-
+        var nearestBusStationContainer =
+            <NearestBusStationContainer style={styles.nearestStationContainer} {...this.props}
+                                        text="Find the nearest stations"/>;
         switch (this.props.mode) {
             case "stations":
                 text = "Enter a bus station";
@@ -71,15 +75,18 @@ var SearchMain = React.createClass({
         }
         return (
             <div style={styles.container}>
-                <div style={styles.mainIcons}>
-                    <img src={image} style={styles.images}/>
+                <div style={styles.searchStationContainer}>
+                    <div style={styles.mainIcons}>
+                        <img src={image} style={styles.images}/>
+                    </div>
+                    <div style={styles.stationContainer}>
+                        <h1 style={styles.header}>
+                            {text}
+                        </h1>
+                        <SearchBusStation style={styles.searchStationContainer} {...this.props}/>
+                    </div>
                 </div>
-                <div style={styles.stationContainer}>
-                    <h1 style={styles.header}>
-                        {text}
-                    </h1>
-                    <SearchBusStation
-                        {...this.props}/>
+                <div style={styles.nearestStationContainer}>
                     {nearestBusStationContainer}
                 </div>
             </div>

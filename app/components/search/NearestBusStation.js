@@ -1,17 +1,17 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
+var NearestStationsMap = require('./NearestStationsMap');
 var Link = require('react-router').Link;
 
 var styles = {
     container: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        maxWidth: 300,
         alignSelf: 'right',
-        align: 'middle'
+        height: '100%'
     },
     buttons: {
         display: 'flex',
@@ -25,23 +25,21 @@ var styles = {
     },
     image: {
         width: 60
-
     },
     icon: {
         marginRight: 5
     }
 };
 
-function getStationNameAndDistance(stationData) {
-    return stationData._source.Description
+function getStationNameAndDistance(stationData, rank) {
+    return rank + ' - ' + stationData._source.Description
         + ' ('
         + Math.round(Number(stationData.sort[0]))
         + ' meters)'
 }
 
 var FindNearestButton = function (props) {
-
-    var nearestStationsButtons = props.nearestStations.map(function (result) {
+    var nearestStationsButtons = props.nearestStations.map(function (result, rank) {
         var path = props.mode === 'stations' ? '/stations' : '/itineraries';
         path = props.mode === 'itineraries2' ? props.currentPath + '/' + result._id : path + '/' + result._id;
         return (
@@ -51,7 +49,7 @@ var FindNearestButton = function (props) {
                         style={styles.button}
                         className='btn btn-primary'
                         value={props.nearestStationId}>
-                    <i style={styles.icon} className="fa fa-map-marker"/> {getStationNameAndDistance(result)}
+                    <i style={styles.icon} className="fa fa-map-marker"/> {getStationNameAndDistance(result, rank)}
                 </button>
             </Link>
         )
@@ -69,6 +67,9 @@ var FindNearestButton = function (props) {
             </button>
             }
             <div style={styles.buttons}>{nearestStationsButtons}</div>
+            {props.nearestStations.length == 0
+                ? null
+                : <NearestStationsMap {...props}/>}
         </div>
     )
 };
@@ -87,6 +88,7 @@ NearestBusStation.propTypes = {
     text: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired,
     nearestStations: PropTypes.array.isRequired,
+    userCoord: PropTypes.object.isRequired,
     mode: PropTypes.string.isRequired,
     originalArrivalStation: PropTypes.object
 };

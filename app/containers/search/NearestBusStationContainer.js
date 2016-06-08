@@ -10,7 +10,8 @@ var NearestBusStationContainer = React.createClass({
         return {
             isLoading: false,
             nearestStations: [],
-            callbackFunction: this.onSubmitNearestBusStation
+            callbackFunction: this.onSubmitNearestBusStation,
+            userCoord: {}
         }
     },
     locationSuccess: function (position) {
@@ -18,7 +19,8 @@ var NearestBusStationContainer = React.createClass({
             .then(function (stationData) {
                 this.setState({
                     isLoading: false,
-                    nearestStations: stationData.hits.hits
+                    nearestStations: stationData.hits.hits,
+                    userCoord: {lat: position.coords.latitude, lng: position.coords.longitude}
                 })
             }.bind(this));
     },
