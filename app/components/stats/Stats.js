@@ -1,12 +1,12 @@
 var React = require('react');
 var Config = require('Config');
 var PropTypes = React.PropTypes;
-var backgroundImageBlue = require('file?name=[name].[ext]!../../images/pattern.svg');
+var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 
 var styles = {
     container: {
         backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImageBlue + ')',
+        backgroundImage: 'url(' + backgroundImage + ')',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

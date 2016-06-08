@@ -44,6 +44,8 @@ var SearchBusStation = React.createClass({
     },
     onClickReset: function () {
         searchkit.resetState();
+        searchkit.accessors.queryAccessor.results.hits = {}
+
     },
     render: function () {
         var queryField = this.props.mode === "buses" ? "ServiceNo" : "Description";
