@@ -47,9 +47,8 @@ var SearchMain = React.createClass({
         var image;
 
         var nearestBusStationContainer = <div className="container-fluid">
-            <NearestBusStationContainer
-                text="Find the nearest stations"
-                mode={this.props.mode}/>
+            <NearestBusStationContainer {...this.props}
+                text="Find the nearest stations"/>
         </div>;
 
         switch (this.props.mode) {

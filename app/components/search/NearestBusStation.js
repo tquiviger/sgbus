@@ -40,11 +40,12 @@ function getStationNameAndDistance(stationData) {
 }
 
 var FindNearestButton = function (props) {
-    var path = props.mode === 'stations' ? '/stations/' : '/itineraries/';
+
     var nearestStationsButtons = props.nearestStations.map(function (result) {
-        var itinerayPath = props.mode == 'itineraries2' ? result._id + '/' + props.originalArrivalStation._id : result._id
+        var path = props.mode === 'stations' ? '/stations' : '/itineraries';
+        path = props.mode === 'itineraries2' ? props.currentPath + '/' + result._id : path + '/' + result._id;
         return (
-            <Link to={path+itinerayPath} key={result._id}>
+            <Link to={path} key={result._id}>
                 <button type='button'
                         key={result._id}
                         style={styles.button}
