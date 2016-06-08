@@ -38,7 +38,7 @@ var ItineraryInfo = React.createClass({
             <div style={styles.container}>
                 {
                     !hasFinished
-                        ? <h1 style={styles.header}><img src={loadingImage} style={styles.image}/>Loading </h1>
+                        ? <h1 style={styles.header}><img src={loadingImage} style={styles.image} alt="Loading logo"/>Loading </h1>
                         : <ItineraryMap {...this.props}/>
                 }
                 {

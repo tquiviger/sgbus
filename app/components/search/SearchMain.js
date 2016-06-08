@@ -75,7 +75,7 @@ var SearchMain = React.createClass({
             <div style={styles.container}>
                 <div style={styles.searchStationContainer}>
                     <div style={styles.mainIcons}>
-                        <img src={image} style={styles.images}/>
+                        <img src={image} style={styles.images} alt="Logo"/>
                     </div>
                     <div style={styles.stationContainer}>
                         <h1 style={styles.header}>

@@ -24,7 +24,7 @@ var BusInfo = React.createClass({
             <div style={styles.container}>
                 {
                     this.props.isLoading === true
-                        ? <h1 style={styles.header}><img src={loadingImage} style={styles.image}/>Loading </h1>
+                        ? <h1 style={styles.header}><img src={loadingImage} style={styles.image} alt="Loading logo"/>Loading </h1>
                         : <BusRoutesMap
                         busData={this.props.busData}
                         currentDirection={this.props.currentDirection}

@@ -64,7 +64,7 @@ var FindNearestButton = function (props) {
                         style={styles.button}
                         className='btn btn-primary'
                         value={props.nearestStationId}>
-                    <img style={{width:16,height:16, marginRight:5}} src={numberLogo}/>
+                    <img style={{width:16,height:16, marginRight:5}} src={numberLogo} alt="Number logo"/>
                     <span style={{verticalAlign: 'middle'}}>{getStationNameAndDistance(result, rank)}</span>
                 </button>
             </Link>
@@ -74,7 +74,7 @@ var FindNearestButton = function (props) {
     return (
         <div style={styles.container}>
             { props.isLoading
-                ? <img src={loadingImage} style={styles.image}/>
+                ? <img src={loadingImage} style={styles.image} alt="Loading logo"/>
                 : <button type='button'
                           style={styles.button}
                           className='btn btn-warning'

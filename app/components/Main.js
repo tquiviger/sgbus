@@ -50,7 +50,7 @@ var Main = React.createClass({
             <div style={styles.container}>
                 <div style={styles.header}>
                     <Link to={'/'}>
-                        <img src={logo} style={styles.image}/>
+                        <img src={logo} style={styles.image} alt="Main logo"/>
                     </Link>
                 </div>
                 {navBar()}

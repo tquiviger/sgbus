@@ -24,7 +24,7 @@ var BusStationInfo = React.createClass({
             <div style={styles.container}>
                 {
                     this.props.isLoading
-                        ? <h1 style={styles.header}><img src={loadingImage} style={styles.image}/>
+                        ? <h1 style={styles.header}><img src={loadingImage} style={styles.image} alt="Loading logo"/>
                         Loading </h1>
                         : <BusStationMap {...this.props}/>
                 }
