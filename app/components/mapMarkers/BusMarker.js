@@ -10,12 +10,13 @@ const placeStyle = {
     height: K_HEIGHT,
     left: -K_WIDTH / 2,
     top: -K_HEIGHT / 2,
-    border: '1px solid #e60000',
+    border: '3px solid #D35400',
     borderRadius: K_HEIGHT,
     backgroundColor: '#fff',
     textAlign: 'center',
-    color: '#b30000',
-    fontSize: 8,
+    color: '#000',
+    fontSize: 9,
+    fontWeight: 700,
     padding: 3
 };
 
