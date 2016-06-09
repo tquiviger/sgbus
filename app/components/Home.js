@@ -51,35 +51,39 @@ var Home = React.createClass({
     render: function () {
         return (
             <div style={styles.container}>
-                <div style={styles.mainIcons}>
-                    <div style={styles.mainIcon}>
-                        <Link to={'/buses'}>
-                            <img src={busLogo} style={styles.images} alt="Bus logo"/>
-                        </Link>
-                        <h3 style={styles.caption}><i style={styles.icon} className="fa fa-search"/>Bus</h3>
+                <section>
+                    <div style={styles.mainIcons}>
+                        <div style={styles.mainIcon}>
+                            <Link to={'/buses'}>
+                                <img src={busLogo} style={styles.images} alt="Bus logo"/>
+                            </Link>
+                            <h3 style={styles.caption}><i style={styles.icon} className="fa fa-search"/>Bus</h3>
+                        </div>
+                        <div style={styles.mainIcon}>
+                            <Link to={'/stations'}>
+                                <img src={busStopLogo} style={styles.images} alt="Bus station logo"/>
+                            </Link>
+                            <h3 style={styles.caption}><i style={styles.icon} className="fa fa-search"/>Station</h3>
+                        </div>
+                        <div style={styles.mainIcon}>
+                            <Link to={'/itineraries'}>
+                                <img src={itineraryLogo} style={styles.images} alt="Itinerary logo"/>
+                            </Link>
+                            <h3 style={styles.caption}><i style={styles.icon} className="fa fa-search"/>Itinerary</h3>
+                        </div>
                     </div>
-                    <div style={styles.mainIcon}>
-                        <Link to={'/stations'}>
-                            <img src={busStopLogo} style={styles.images} alt="Bus station logo"/>
-                        </Link>
-                        <h3 style={styles.caption}><i style={styles.icon} className="fa fa-search"/>Station</h3>
-                    </div>
-                    <div style={styles.mainIcon}>
-                        <Link to={'/itineraries'}>
-                            <img src={itineraryLogo} style={styles.images} alt="Itinerary logo"/>
-                        </Link>
-                        <h3 style={styles.caption}><i style={styles.icon} className="fa fa-search"/>Itinerary</h3>
-                    </div>
-                </div>
-                <div style={styles.mainIcons}>
-                    <div style={styles.mainIcon}>
-                        <Link to={'/stats'}>
-                            <img src={statsLogo} style={styles.images} alt="Statistics logo"/>
-                        </Link>
-                        <h3 style={styles.caption}>Statistics</h3>
-                    </div>
+                </section>
+                <section>
+                    <div style={styles.mainIcons}>
+                        <div style={styles.mainIcon}>
+                            <Link to={'/stats'}>
+                                <img src={statsLogo} style={styles.images} alt="Statistics logo"/>
+                            </Link>
+                            <h3 style={styles.caption}>Statistics</h3>
+                        </div>
 
-                </div>
+                    </div>
+                </section>
             </div>
         )
     }

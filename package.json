@@ -20,6 +20,7 @@
     "babel-loader": "^6.2.4",
     "babel-preset-react": "^6.5.0",
     "chart.js": "^2.1.4",
+    "compression": "^1.6.2",
     "cors": "^2.7.1",
     "express": "^4.13.4",
     "file-loader": "^0.8.5",

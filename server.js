@@ -5,11 +5,13 @@ var cors = require('cors')
 var axios = require('axios');
 var fs = require('fs');
 var request = require('request');
+var compression = require('compression');
 
 var app = express();
 app.use(cors());
+app.use(compression());
 
-var configPath = '/home/ec2-user/config/'
+var configPath = '/home/ec2-user/config/';
 var configurationFile = configPath + 'config.json';
 var configuration = JSON.parse(fs.readFileSync(configurationFile));
 

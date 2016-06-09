@@ -17,8 +17,8 @@ var styles = {
     chartContainer: {
         height: '70%',
         width: '70%',
-        marginBottom:10,
-        paddingBottom:20
+        marginBottom: 10,
+        paddingBottom: 20
     }
 };
 
@@ -26,29 +26,31 @@ var styles = {
 var Stats = React.createClass({
     render: function () {
         return (
-            <div style={styles.container}>
-                <h3>Bus <b>{this.props.selectedBus}</b> Stats</h3>
-                <div className="container-fluid" style={styles.chartContainer}>
-                    <canvas id="waitingTime"/>
-                </div>
-                <div className="container-fluid" >
-                    <div className="form-group">
-                        <input
-                            className="form-control input-sm"
-                            type="text"
-                            placeholder="Enter a bus number"
-                            onChange={this.props.callbackFunction}/>
+            <section>
+                <div style={styles.container}>
+                    <h3>Bus <b>{this.props.selectedBus}</b> Stats</h3>
+                    <div className="container-fluid" style={styles.chartContainer}>
+                        <canvas id="waitingTime"/>
                     </div>
-                </div>
+                    <div className="container-fluid">
+                        <div className="form-group">
+                            <input
+                                className="form-control input-sm"
+                                type="text"
+                                placeholder="Enter a bus number"
+                                onChange={this.props.callbackFunction}/>
+                        </div>
+                    </div>
 
-            </div>
+                </div>
+            </section>
         )
     }
 });
 
 Stats.propTypes = {
     callbackFunction: PropTypes.func.isRequired,
-    selectedBus:PropTypes.string
+    selectedBus: PropTypes.string
 };
 
 module.exports = Stats;
