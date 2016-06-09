@@ -33,7 +33,7 @@ var styles = {
     images: {
         width: 100,
         paddingLeft: 100,
-        paddingTop: 20,
+        paddingTop: 100,
         paddingRight: 100,
         paddingBottom: 10
     },
@@ -51,10 +51,6 @@ var Home = React.createClass({
     render: function () {
         return (
             <div style={styles.container}>
-                <div className="container-fluid">
-                    <h1>Welcome to SG Bus</h1>
-                    <h2>What are you looking for?</h2>
-                </div>
                 <div style={styles.mainIcons}>
                     <div style={styles.mainIcon}>
                         <Link to={'/buses'}>

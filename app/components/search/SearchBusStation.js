@@ -50,7 +50,7 @@ var SearchBusStation = React.createClass({
     render: function () {
         var queryField = this.props.mode === "buses" ? "ServiceNo" : "Description";
         return (
-            <div>
+            <div role="search" aria-labelledby="Search bus">
                 <SearchkitProvider searchkit={searchkit}>
                     <div>
                         <div style={styles.query}>
