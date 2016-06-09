@@ -5,7 +5,6 @@ var ItineraryBusArrivals = require('./ItineraryBusArrivals');
 var ItineraryNotFound = require('./ItineraryNotFound');
 var ItineraryMap = require('./ItineraryMap');
 var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
-var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 
 var styles = {
     container: {
@@ -13,8 +12,6 @@ var styles = {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImage + ')',
         height: '100%',
         width: '100%'
     },

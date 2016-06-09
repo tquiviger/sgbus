@@ -1,6 +1,7 @@
 var React = require('react');
 var Link = require('react-router').Link;
 var logo = require('file?name=[name].[ext]!../images/logo_large.png');
+var backgroundImage = require('file?name=[name].[ext]!../images/pattern.svg');
 
 var styles = {
     container: {
@@ -8,9 +9,22 @@ var styles = {
         height: '100%',
         fontFamily: 'Open Sans, sans-serif'
     },
+    main: {
+        backgroundSize: 'cover',
+        backgroundImage: 'url(' + backgroundImage + ')',
+        width: '100%',
+        height: '100%'
+    },
     header: {
         display: 'flex',
         alignItems: 'center',
+        background: '#21618C',
+        color: '#fff'
+    },
+    footer: {
+        position: 'absolute',
+        height: '30px',
+        width: '100%',
         background: '#21618C',
         color: '#fff'
     },
@@ -57,9 +71,15 @@ var Main = React.createClass({
                             <img src={logo} style={styles.image} alt="Main logo"/>
                         </Link>
                     </div>
+                    {navBar()}
                 </header>
-                {navBar()}
-                {this.props.children}
+                <div style={styles.main}>
+                    {this.props.children}
+                </div>
+                <footer style={styles.footer}>
+                            Copyright &copy; 2015 Thomas Quiviger, All Rights Reserved
+
+                </footer>
             </div>
         )
     }

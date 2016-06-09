@@ -1,14 +1,11 @@
 var React = require('react');
 var BusStationArrivals = require('./BusStationArrivals');
 var BusStationMap = require('./BusStationMap');
-var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
 var PropTypes = React.PropTypes;
 
 var styles = {
     container: {
-        backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImage + ')',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
