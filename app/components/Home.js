@@ -9,8 +9,8 @@ var statsLogo = require('file?name=[name].[ext]!../images/statsLogo.png');
 
 var styles = {
     container: {
-        height: 'auto',
         padding: 30,
+        height: 'auto',
         textAlign: 'center',
         display: 'flex',
         align: 'middle',

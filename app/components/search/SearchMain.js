@@ -2,7 +2,6 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var SearchBusStation = require('./SearchBusStation');
 var NearestBusStationContainer = require('../../containers/search/NearestBusStationContainer');
-var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 
 var busLogo = require('file?name=[name].[ext]!../../images/busLogo.png');
 var busStopLogo = require('file?name=[name].[ext]!../../images/busStopLogo.png');
@@ -10,10 +9,9 @@ var itineraryLogo = require('file?name=[name].[ext]!../../images/itineraryLogo.p
 
 var styles = {
     container: {
-        backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImage + ')',
-        height: '100%',
-        width: '100%'
+        height: 'auto',
+        width: '100%',
+        textAlign:'center'
 
     },
     searchStationContainer: {
