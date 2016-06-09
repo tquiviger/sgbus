@@ -39,14 +39,14 @@ var ItineraryInfo = React.createClass({
                 {
                     !hasFinished
                         ? <h1 style={styles.header}><img src={loadingImage} style={styles.image} alt="Loading logo"/>Loading </h1>
-                        : <section><ItineraryMap {...this.props}/></section>
+                        : <ItineraryMap {...this.props}/>
                 }
                 {
                     !hasFinished
                         ? ''
                         : (noItinerayFound
-                            ? <section><ItineraryNotFound {...this.props}/></section>
-                            : <section><ItineraryBusArrivals {...this.props}/></section>
+                            ? <ItineraryNotFound {...this.props}/>
+                            : <ItineraryBusArrivals {...this.props}/>
                     )
                 }
             </div>

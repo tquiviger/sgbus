@@ -26,12 +26,12 @@ var BusStationInfo = React.createClass({
                     this.props.isLoading
                         ? <h1 style={styles.header}><img src={loadingImage} style={styles.image} alt="Loading logo"/>
                         Loading </h1>
-                        : <section><BusStationMap {...this.props}/></section>
+                        : <BusStationMap {...this.props}/>
                 }
                 {
                     this.props.isLoading
                         ? ''
-                        : <section><BusStationArrivals {...this.props}/></section>
+                        : <BusStationArrivals {...this.props}/>
                 }
             </div>
         )

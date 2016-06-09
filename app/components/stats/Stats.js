@@ -26,7 +26,6 @@ var styles = {
 var Stats = React.createClass({
     render: function () {
         return (
-            <section>
                 <div style={styles.container}>
                     <h3>Bus <b>{this.props.selectedBus}</b> Stats</h3>
                     <div className="container-fluid" style={styles.chartContainer}>
@@ -43,7 +42,6 @@ var Stats = React.createClass({
                     </div>
 
                 </div>
-            </section>
         )
     }
 });

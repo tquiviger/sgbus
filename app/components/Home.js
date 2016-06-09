@@ -51,7 +51,6 @@ var Home = React.createClass({
     render: function () {
         return (
             <div style={styles.container}>
-                <section>
                     <div style={styles.mainIcons}>
                         <div style={styles.mainIcon}>
                             <Link to={'/buses'}>
@@ -72,8 +71,6 @@ var Home = React.createClass({
                             <h3 style={styles.caption}><i style={styles.icon} className="fa fa-search"/>Itinerary</h3>
                         </div>
                     </div>
-                </section>
-                <section>
                     <div style={styles.mainIcons}>
                         <div style={styles.mainIcon}>
                             <Link to={'/stats'}>
@@ -83,7 +80,6 @@ var Home = React.createClass({
                         </div>
 
                     </div>
-                </section>
             </div>
         )
     }
