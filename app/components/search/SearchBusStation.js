@@ -31,7 +31,7 @@ var SearchBusStation = React.createClass({
     componentWillMount: function () {
         var path = this.props.mode === "buses" ? "buses" : "stations";
         searchkit = new Searchkit.SearchkitManager(
-            Config.apiUrl + "/search/sgbus/" + path,
+            Config.apiUrl + "/search/" + path,
             {searchOnLoad: false, useHistory: false}
         );
         searchkit.setQueryProcessor(function (query) {
