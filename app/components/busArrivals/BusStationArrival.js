@@ -7,7 +7,7 @@ var ReactTooltip = require("react-tooltip");
 var styles = function (isInOperation) {
     return {
         container: {
-            fontSize: 16
+            fontSize: 11
         },
         icon: {
             marginRight: 3

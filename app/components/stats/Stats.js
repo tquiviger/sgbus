@@ -15,7 +15,6 @@ var styles = {
         width: '100%'
     },
     chartContainer: {
-        height: '70%',
         width: '70%',
         marginBottom: 10,
         paddingBottom: 20

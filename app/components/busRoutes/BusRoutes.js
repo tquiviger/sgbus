@@ -5,7 +5,7 @@ var Link = require('react-router').Link;
 var styles = {
     container: {
         height: '60%',
-        fontSize: 14,
+        fontSize: 11,
         overflowY: 'scroll',
         width: '100%'
     },
