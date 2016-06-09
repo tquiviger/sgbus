@@ -33,11 +33,14 @@
     "react-router": "^2.4.0",
     "react-tooltip": "^2.0.3",
     "request": "^2.72.0",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.1",
     "searchkit": "0.10.0",
     "underscore": "^1.8.3",
     "webpack": "^1.12.14"
   },
   "devDependencies": {
+
     "webpack-dev-server": "^1.14.1"
   }
 }
