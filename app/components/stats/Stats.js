@@ -1,17 +1,13 @@
 var React = require('react');
 var Config = require('Config');
 var PropTypes = React.PropTypes;
-var backgroundImage = require('file?name=[name].[ext]!../../images/pattern.svg');
 
 var styles = {
     container: {
-        backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImage + ')',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        height: '100%',
         width: '100%'
     },
     chartContainer: {
