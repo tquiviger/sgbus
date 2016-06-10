@@ -24,7 +24,7 @@ var styles = {
     },
     footer: {
         position: 'relative',
-        clear: 'both',
+        clear: 'both' ,
         zIndex: 10,
         fontSize: 10,
         height: '30px',
