@@ -23,6 +23,8 @@ var styles = {
     },
     footer: {
         position: 'absolute',
+        fontSize: 10,
+        verticalAlign: 'middle',
         height: '30px',
         width: '100%',
         background: '#21618C',
@@ -77,8 +79,7 @@ var Main = React.createClass({
                     {this.props.children}
                 </div>
                 <footer style={styles.footer}>
-                            Copyright &copy; 2015 Thomas Quiviger, All Rights Reserved
-
+                    <span style={{padding:10}}>Copyright &copy; 2016 Thomas Quiviger, All Rights Reserved</span>
                 </footer>
             </div>
         )
