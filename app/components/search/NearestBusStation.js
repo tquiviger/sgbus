@@ -34,7 +34,7 @@ var styles = {
     }
 };
 
-function getStationNameAndDistance(stationData, rank) {
+function getStationNameAndDistance(stationData) {
     return stationData._source.Description
         + ' ('
         + Math.round(Number(stationData.sort[0]))
@@ -44,7 +44,7 @@ function getStationNameAndDistance(stationData, rank) {
 var FindNearestButton = function (props) {
     var nearestStationsButtons = props.nearestStations.map(function (result, rank) {
         var path = props.mode === 'stations' ? '/stations' : '/itineraries';
-        path = props.mode === 'itineraries2' ? props.currentPath + '/' + result._id : path + '/' + result._id;
+        path = props.mode === 'itineraries2' ? '/itineraries/'+result._id + '/' + + props.originalArrivalStation._id  : path + '/' + result._id;
         var numberLogo;
         switch (rank) {
             case 0:
@@ -65,7 +65,7 @@ var FindNearestButton = function (props) {
                         className='btn btn-primary'
                         value={props.nearestStationId}>
                     <img style={{width:16,height:16, marginRight:5}} src={numberLogo} alt="Number logo"/>
-                    <span style={{verticalAlign: 'middle'}}>{getStationNameAndDistance(result, rank)}</span>
+                    <span style={{verticalAlign: 'middle'}}>{getStationNameAndDistance(result)}</span>
                 </button>
             </Link>
         )
@@ -83,9 +83,9 @@ var FindNearestButton = function (props) {
             </button>
             }
             <div style={styles.buttons}>{nearestStationsButtons}</div>
-            {props.nearestStations.length == 0
-                ? null
-                : <NearestStationsMap {...props}/>}
+            {props.nearestStations.length > 0 && props.userCoord
+                ? <NearestStationsMap {...props}/>
+                : null }
         </div>
     )
 };
@@ -104,7 +104,7 @@ NearestBusStation.propTypes = {
     text: PropTypes.string.isRequired,
     isLoading: PropTypes.bool.isRequired,
     nearestStations: PropTypes.array.isRequired,
-    userCoord: PropTypes.object.isRequired,
+    userCoord: PropTypes.object,
     mode: PropTypes.string.isRequired,
     originalArrivalStation: PropTypes.object
 };

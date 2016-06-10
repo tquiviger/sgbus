@@ -25,6 +25,10 @@ var styles = {
         background: '#21618C',
         color: '#fff'
     },
+    navBar: {
+        background: '#FFF',
+        color: '#fff'
+    },
     footer: {
         height: "30px",
         position: "absolute",
@@ -52,7 +56,7 @@ var styles = {
 
 var navBar = function () {
     return (
-        <nav role="navigation" aria-label="Site Navigation">
+        <div style={styles.navBar}><nav role="navigation" aria-label="Site Navigation">
             <ul className="nav nav-tabs">
                 <li role="presentation">
                     <Link to={'/'}>
@@ -65,22 +69,23 @@ var navBar = function () {
                     </Link>
                 </li>
             </ul>
-        </nav>)
+        </nav></div>)
 };
 
 var Main = React.createClass({
     render: function () {
         return (
             <div style={styles.body}>
-                <header>
-                    <div style={styles.header}>
-                        <Link to={'/'}>
-                            <img src={logo} style={styles.image} alt="Main logo"/>
-                        </Link>
-                    </div>
-                    {navBar()}
-                </header>
+
                 <div style={styles.container}>
+                    <header>
+                        <div style={styles.header}>
+                            <Link to={'/'}>
+                                <img src={logo} style={styles.image} alt="Main logo"/>
+                            </Link>
+                        </div>
+                        {navBar()}
+                    </header>
                     <div style={styles.main}>
                         {this.props.children}
                     </div>

@@ -10,12 +10,8 @@ const defaultZoom = 14;
 
 var styles = {
     container: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '40%',
-        width: '60%'
+        height: '300px',
+        width: '100%'
     }
 };
 

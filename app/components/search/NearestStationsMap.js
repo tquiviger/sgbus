@@ -10,10 +10,6 @@ const defaultZoom = 16;
 
 var styles = {
     container: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
         height: '300px',
         width: '60%',
         boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)'
@@ -22,7 +18,6 @@ var styles = {
 };
 
 var NearestStationsMap = React.createClass({
-
         render: function () {
             var map = this.props.nearestStations.length == 0
                 ? null :

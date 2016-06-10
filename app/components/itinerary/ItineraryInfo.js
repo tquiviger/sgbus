@@ -10,10 +10,8 @@ var styles = {
     container: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        height: '100%',
-        width: '100%'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     header: {
         fontSize: 45,
@@ -35,7 +33,7 @@ var ItineraryInfo = React.createClass({
             <div style={styles.container}>
                 {
                     !hasFinished
-                        ? <h1 style={styles.header}><img src={loadingImage} style={styles.image} alt="Loading logo"/>Loading </h1>
+                        ? <h1><img src={loadingImage} alt="Loading logo"/>Loading </h1>
                         : <ItineraryMap {...this.props}/>
                 }
                 {

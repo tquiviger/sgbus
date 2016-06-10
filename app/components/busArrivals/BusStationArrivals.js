@@ -5,7 +5,7 @@ var PropTypes = React.PropTypes;
 
 var styles = {
     container: {
-        height: '60%',
+        height: '300px',
         overflowY: 'scroll',
         width: '100%'
     }
@@ -15,7 +15,7 @@ var styles = {
 var BusStationArrivals = React.createClass({
     render: function () {
         return (
-            <div className="row" style={styles.container}>
+            <div style={styles.container}>
                 <BusStationArrival {...this.props}
                     services={this.props.stationData.Services}
                     mode="station"/>

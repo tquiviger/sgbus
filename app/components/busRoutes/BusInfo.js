@@ -9,9 +9,7 @@ var styles = {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        width: '100%'
+        alignItems: 'center'
     }
 };
 
@@ -21,7 +19,7 @@ var BusInfo = React.createClass({
             <div style={styles.container}>
                 {
                     this.props.isLoading === true
-                        ? <h1 style={styles.header}><img src={loadingImage} style={styles.image} alt="Loading logo"/>Loading
+                        ? <h1><img src={loadingImage} alt="Loading logo"/>Loading
                     </h1>
                         : <BusRoutesMap
                         busData={this.props.busData}

@@ -10,11 +10,7 @@ const defaultZoom = 15;
 
 var styles = {
     container: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '40%',
+        height: '300px',
         width: '100%'
     }
 };
@@ -23,7 +19,7 @@ var BusStationMap = React.createClass({
     render: function () {
         var stationDesc = this.props.stationData.stationDesc;
         return (
-            <div className="row" style={styles.container}>
+            <div style={styles.container}>
                 <GoogleMap
                     bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
                     center={{ lat: stationDesc.Latitude, lng: stationDesc.Longitude }}
