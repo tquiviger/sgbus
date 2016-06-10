@@ -26,7 +26,7 @@ var styles = {
         position: 'relative',
         clear: 'both',
         zIndex: 10,
-        fontSize: 10,
+        fontSize: 11,
         height: '30px',
         width: '100%',
         background: '#21618C',
