@@ -15,7 +15,8 @@ var styles = {
         justifyContent: 'center',
         alignItems: 'center',
         height: '40%',
-        width: '100%'
+        width: '100%',
+        // boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)'
     }
 };
 

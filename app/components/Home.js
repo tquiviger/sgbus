@@ -25,7 +25,7 @@ var styles = {
         marginLeft: 30,
         marginBottom: 10,
         borderRadius: '5px',
-        boxShadow: '10px 10px 5px #888888',
+        boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
         border: '3px solid #000'
     },
     mainIcon: {

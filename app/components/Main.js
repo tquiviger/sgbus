@@ -4,17 +4,20 @@ var logo = require('file?name=[name].[ext]!../images/logo_large.png');
 var backgroundImage = require('file?name=[name].[ext]!../images/pattern.svg');
 
 var styles = {
-    container: {
+    body: {
         width: '100%',
-        height: '100%',
-        minHeight: '600px',
+        height: '100%'
+    },
+    container: {
+        backgroundSize: 'cover',
+        backgroundImage: 'url(' + backgroundImage + ')',
+        minHeight: "100%",
+        position: "relative",
         fontFamily: 'Open Sans, sans-serif'
     },
     main: {
-        backgroundSize: 'cover',
-        backgroundImage: 'url(' + backgroundImage + ')',
-        width: '100%',
-        height: '100%'
+        paddingBottom: "30px",
+        width: '100%'
     },
     header: {
         display: 'flex',
@@ -23,11 +26,11 @@ var styles = {
         color: '#fff'
     },
     footer: {
-        position: 'relative',
-        clear: 'both',
-        zIndex: 10,
+        height: "30px",
+        position: "absolute",
+        bottom: "0px",
+        left: "0px",
         fontSize: 11,
-        height: '30px',
         width: '100%',
         background: '#21618C',
         color: '#fff'
@@ -68,7 +71,7 @@ var navBar = function () {
 var Main = React.createClass({
     render: function () {
         return (
-            <div style={styles.container}>
+            <div style={styles.body}>
                 <header>
                     <div style={styles.header}>
                         <Link to={'/'}>
@@ -77,12 +80,16 @@ var Main = React.createClass({
                     </div>
                     {navBar()}
                 </header>
-                <div style={styles.main}>
-                    {this.props.children}
+                <div style={styles.container}>
+                    <div style={styles.main}>
+                        {this.props.children}
+                    </div>
+
+                    <footer style={styles.footer}>
+                        <span style={{padding:10}}>Copyright &copy; 2016 Thomas Quiviger, All Rights Reserved</span>
+                    </footer>
+
                 </div>
-                <footer style={styles.footer}>
-                    <span style={{padding:10}}>Copyright &copy; 2016 Thomas Quiviger, All Rights Reserved</span>
-                </footer>
             </div>
         )
     }
