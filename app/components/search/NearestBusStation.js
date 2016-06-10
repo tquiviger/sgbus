@@ -19,7 +19,7 @@ var styles = {
     buttons: {
         display: 'flex',
         align: 'middle',
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
     },

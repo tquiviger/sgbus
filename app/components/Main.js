@@ -7,6 +7,7 @@ var styles = {
     container: {
         width: '100%',
         height: '100%',
+        minHeight: '600px',
         fontFamily: 'Open Sans, sans-serif'
     },
     main: {
@@ -22,9 +23,10 @@ var styles = {
         color: '#fff'
     },
     footer: {
-        position: 'absolute',
+        position: 'relative',
+        clear: 'both',
+        zIndex: 10,
         fontSize: 10,
-        verticalAlign: 'middle',
         height: '30px',
         width: '100%',
         background: '#21618C',

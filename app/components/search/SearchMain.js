@@ -12,7 +12,6 @@ var styles = {
         height: 'auto',
         width: '100%',
         textAlign:'center'
-
     },
     searchStationContainer: {
         width: '100%'
