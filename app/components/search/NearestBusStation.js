@@ -4,6 +4,7 @@ var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
 var one = require('file?name=[name].[ext]!../../images/one.png');
 var two = require('file?name=[name].[ext]!../../images/two.png');
 var three = require('file?name=[name].[ext]!../../images/three.png');
+var four = require('file?name=[name].[ext]!../../images/four.png');
 var NearestStationsMap = require('./NearestStationsMap');
 var Link = require('react-router').Link;
 
@@ -55,6 +56,11 @@ var FindNearestButton = function (props) {
                 break;
             case 2:
                 numberLogo = three;
+                break;
+            case 3:
+                numberLogo = four;
+
+
         }
         return (
 
