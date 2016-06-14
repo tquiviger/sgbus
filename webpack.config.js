@@ -1,17 +1,18 @@
-const path = require('path')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     template: __dirname + '/app/index.html',
     filename: 'index.html',
     inject: 'body'
-})
+});
 
 module.exports = {
     resolve: {
         alias: {
             react: path.resolve('./node_modules/react'),
             axios: path.resolve('./node_modules/axios')
-        }
+        },
+        extensions: ['', '.js', '.jsx']
     },
     loader: {
         configEnvironment: 'development'
@@ -28,8 +29,18 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
-            { test: /\.css$/, loader: "style-loader!css-loader" }
+            {
+                test: /\.jsx?$/,
+                loader: 'babel',
+                exclude: /node_modules/,
+                query: {
+                    cacheDirectory: true,
+                    presets: ['react', 'es2015']
+                }
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"}
         ]
     },
     plugins: [HTMLWebpackPluginConfig]

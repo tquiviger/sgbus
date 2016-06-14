@@ -1,4 +1,4 @@
-LINE_OPTIONS = {
+var LINE_OPTIONS = {
     responsive: true,
     hover: {
         mode: 'dataset'

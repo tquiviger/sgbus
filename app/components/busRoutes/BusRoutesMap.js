@@ -2,11 +2,9 @@ var React = require('react');
 var GoogleMap = require('google-map-react');
 var StationMarker = require('../mapMarkers/StationMarker');
 var BusMarker = require('../mapMarkers/BusMarker');
+var getMapBounds = require('../mapMarkers/MapUtils').getMapBounds;
 var Config = require('Config');
 var PropTypes = React.PropTypes;
-
-const stationMarkerSize = 8;
-const defaultZoom = 11;
 
 var styles = {
     container: {
@@ -14,6 +12,8 @@ var styles = {
         width: '100%'
     }
 };
+
+const stationMarkerSize = 8;
 
 var BusRoutesMap = React.createClass({
     getStationsMarkers: function (routes, direction) {
@@ -37,14 +37,15 @@ var BusRoutesMap = React.createClass({
 
         }
         return rows;
-    }, render: function () {
-
+    },
+    render: function () {
+        const {center, zoom} = getMapBounds(this.props.busData);
         return (
             <div className="row" style={styles.container}>
                 <GoogleMap
                     bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
-                    center={{ lat: this.props.currentStationLat, lng: this.props.currentStationLon }}
-                    defaultZoom={ defaultZoom }>
+                    center={center}
+                    defaultZoom={ zoom }>
                     {this.getStationsMarkers(this.props.busData, this.props.currentDirection)}
                 </GoogleMap>
             </div>

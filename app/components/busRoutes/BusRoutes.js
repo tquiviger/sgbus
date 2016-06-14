@@ -12,6 +12,9 @@ var styles = {
     table: {
         textAlign: 'left'
     },
+    links: {
+        color: '#000'
+    },
     tabHeader: {
         color: "#FFF",
         background: "#21618C",
@@ -43,7 +46,7 @@ var BusRoutes = React.createClass({
                         <td>{index}</td>
                         <td>{routes['BusStopRoad_' + index]}</td>
                         <td>
-                            <Link
+                            <Link style={styles.links}
                                 to={'/stations/'+routes['BusStopCode_' + index]}><b>{routes['BusStopName_' + index]}</b></Link>
                         </td>
                         <td>{routes['Distance_' + index]} km</td>
