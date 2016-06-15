@@ -3,7 +3,7 @@ var PropTypes = React.PropTypes;
 var Searchkit = require('searchkit');
 var BusStationResults = require('./BusStationResults');
 var Config = require('Config');
-require("../../stylesheets/searchkit.css")
+require("../../stylesheets/searchkit.css");
 
 var searchkit;
 

@@ -18,11 +18,10 @@ var styles = {
 
 var ItineraryMap = React.createClass({
         componentWillMount: function () {
-            defaults = getMapBoundsItinerary(this.props.arrivalStationsWithBus,this.props.departureStation);
+            defaults = getMapBoundsItinerary(this.props.arrivalStationsWithBus, this.props.departureStation);
         },
         render: function () {
             var depStation = this.props.departureStation;
-            var initialArrivalStation = this.props.arrivalStationsWithBus[0].arrivalStation;
             var busMap = {};
             this.props.arrivalStationsWithBus.forEach(function (station) {
                 station.services.forEach(function (bus) {

@@ -1,5 +1,4 @@
 var React = require('react');
-var moment = require('moment');
 var BusStationArrival = require('./BusStationArrival');
 var PropTypes = React.PropTypes;
 
