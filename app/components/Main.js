@@ -91,7 +91,7 @@ var Main = React.createClass({
                     </div>
 
                     <footer style={styles.footer}>
-                        <span style={{padding:10}}>Copyright &copy; 2016 Thomas Quiviger, All Rights Reserved</span>
+                        <span style={{padding:10}}>&copy; 2016 Thomas Quiviger, All Rights Reserved</span>
                     </footer>
 
                 </div>

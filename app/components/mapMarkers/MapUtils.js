@@ -6,8 +6,7 @@ const size = {
     height: 300 // Map height in pixels
 };
 
-function getMapBounds(busData) {
-    var routes = busData.routes_1;
+function getMapBounds(routes) {
     var latitudes = [];
     var longitudes = [];
     for (var i = 0; i < 110; i++) {
@@ -17,20 +16,37 @@ function getMapBounds(busData) {
             longitudes.push(routes['Longitude_' + index]);
         }
     }
+    return getBounds(latitudes, longitudes);
+}
+
+function getMapBoundsItinerary(arrivalStations, departureStation) {
+    var latitudes = arrivalStations.map(function(station){
+            return station.arrivalStation.Latitude;
+    })
+    var longitudes = arrivalStations.map(function(station){
+            return station.arrivalStation.Longitude;
+    })
+    latitudes.push(departureStation.Latitude);
+    longitudes.push(departureStation.Longitude);
+    return getBounds(latitudes, longitudes);
+}
+
+
+function getBounds(latitudes, longitudes){
     var nw = {
-            lat: _.max(latitudes),
-            lng: _.min(longitudes)
-        },
-        se = {
-            lat: _.min(latitudes),
-            lng: _.max(longitudes)
+        lat: _.max(latitudes),
+        lng: _.min(longitudes)
+    },
+    se = {
+        lat: _.min(latitudes),
+        lng: _.max(longitudes)
 
-        };
-
+    };
     return fitBounds({nw, se}, size);
 }
 
 
 module.exports = {
-    getMapBounds: getMapBounds
+    getMapBounds: getMapBounds,
+    getMapBoundsItinerary:getMapBoundsItinerary
 };
