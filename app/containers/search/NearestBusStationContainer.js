@@ -14,6 +14,11 @@ var NearestBusStationContainer = React.createClass({
             userCoord: {}
         }
     },
+    componentWillReceiveProps : function () {
+        this.setState({
+            nearestStations: []
+        })
+    },
     locationSuccess: function (position) {
         getNearestBusStationInfo(position.coords.latitude, position.coords.longitude, numResults)
             .then(function (stationData) {
