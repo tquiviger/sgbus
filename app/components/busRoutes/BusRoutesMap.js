@@ -14,11 +14,25 @@ var styles = {
 };
 
 const stationMarkerSize = 8;
-var defaults;
 
 var BusRoutesMap = React.createClass({
+    getInitialState: function () {
+        return {
+            center: null,
+            zoom: 12
+        }
+    },
     componentWillMount: function () {
-        defaults = getMapBounds(this.props.busData.routes_1);
+        var defaults = getMapBounds(this.props.busData.routes_1);
+        this.setState({
+            center: defaults.center,
+            zoom: defaults.zoom
+        });
+    },
+    componentWillReceiveProps: function (nextProps) {
+        this.setState({
+            center: {lat: nextProps.currentStationLat, lng: nextProps.currentStationLon}
+        });
     },
     getStationsMarkers: function (routes, direction) {
         routes = direction === '1' ? routes.routes_1 : routes.routes_2;
@@ -47,8 +61,8 @@ var BusRoutesMap = React.createClass({
             <div className="row" style={styles.container}>
                 <GoogleMap
                     bootstrapURLKeys={{ key: Config.GoogleMapsApiKey, language: 'fr' }}
-                    center={defaults.center}
-                    defaultZoom={ defaults.zoom }>
+                    center={this.state.center}
+                    defaultZoom={ this.state.zoom }>
                     {this.getStationsMarkers(this.props.busData, this.props.currentDirection)}
                 </GoogleMap>
             </div>
