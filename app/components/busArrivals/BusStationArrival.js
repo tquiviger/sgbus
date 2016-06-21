@@ -7,7 +7,7 @@ var ReactTooltip = require("react-tooltip");
 var styles = function (isInOperation) {
     return {
         container: {
-            fontSize: 11
+            fontSize: 13
         },
         icon: {
             marginRight: 3
@@ -70,9 +70,9 @@ function buildArrivalTab(services, mode, arrivalStation, callBackFunction) {
                 <th>{ mode === 'itinerary' ? "Map" : ""}</th>
                 <th>Bus #</th>
                 <th>{ mode === 'itinerary' ? 'Distance' : 'Operator'}</th>
-                <th><i style={styles().icon} className="fa fa-clock-o"/>1st Bus</th>
-                <th><i style={styles().icon} className="fa fa-clock-o"/>2nd Bus</th>
-                <th><i style={styles().icon} className="fa fa-clock-o"/>3rd Bus</th>
+                <th><i style={styles().icon} className="fa fa-clock-o"/>1st</th>
+                <th><i style={styles().icon} className="fa fa-clock-o"/>2nd</th>
+                <th><i style={styles().icon} className="fa fa-clock-o"/>3rd</th>
             </tr>
             </thead>
             <tbody>
