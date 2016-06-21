@@ -67,7 +67,7 @@ function buildArrivalTab(services, mode, arrivalStation, callBackFunction) {
         <table className="table table-condensed">
             <thead>
             <tr style={{textAlign:'center'}}>
-                <th>{ mode === 'itinerary' ? "Map" : "Status"}</th>
+                <th>{ mode === 'itinerary' ? "Map" : ""}</th>
                 <th>Bus #</th>
                 <th>{ mode === 'itinerary' ? 'Distance' : 'Operator'}</th>
                 <th><i style={styles().icon} className="fa fa-clock-o"/>1st Bus</th>
