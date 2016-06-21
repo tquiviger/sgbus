@@ -105,9 +105,9 @@ var BusRoutes = React.createClass({
                     <table className="table table-condensed table-hover">
                         <thead>
                         <tr>
-                            <th>Stop #</th>
-                            <th>Road Name</th>
-                            <th>Bus Stop Name</th>
+                            <th>#</th>
+                            <th>Road </th>
+                            <th>Bus Stop</th>
                             <th>Distance</th>
                         </tr>
                         </thead>
