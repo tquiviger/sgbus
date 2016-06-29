@@ -9,7 +9,7 @@ var styles = {
         justifyContent: 'flex-start',
         alignItems: 'center',
         height: '60%',
-        overflowY: 'scroll',
+        overflowY: 'auto',
         width: '100%'
     },
     title: {
@@ -21,8 +21,8 @@ var styles = {
 var ItineraryNotFound = React.createClass({
     render: function () {
         return (
-            <div className="container-fluid" style={styles.container}>
-                <div style={styles.title} className="container-fluid">
+            <div style={styles.container}>
+                <div style={styles.title}>
                     <h3><b>SNAP!</b></h3>
                     <h3>No itineray found from <b>{this.props.departureStation.Description}</b> To
                         <b> {this.props.originalArrivalStation._source.Description}</b> and stations around

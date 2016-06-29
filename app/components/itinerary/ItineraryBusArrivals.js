@@ -22,7 +22,7 @@ var ItineraryBusArrivals = React.createClass({
         var arrivalStationsWithBus = this.props.arrivalStationsWithBus;
         return (
             <div style={styles.container}>
-                <div style={styles.title} className="container-fluid">
+                <div style={styles.title} className="container">
                     <h3>Available buses From <b>{this.props.departureStation.Description}</b> To </h3>
                 </div>
                 {arrivalStationsWithBus
