@@ -3,10 +3,12 @@ var Link = require('react-router').Link;
 var isClientMobile = require('../helpers/mobile').isClientMobile;
 var logo = require('file?name=[name].[ext]!../images/logo_large.png');
 var backgroundImage = require('file?name=[name].[ext]!../images/pattern.svg');
-var backgroundImageSG = require('file?name=[name].[ext]!../images/cover.jpg');
+var backgroundImageDesktop = require('file?name=[name].[ext]!../images/coverd.jpg');
+var backgroundImageMobile = require('file?name=[name].[ext]!../images/coverm.jpg');
+
+const THEME_COLOR = '#224A73';
 
 var styles = function (bgImage) {
-
     return {
         body: {
             width: '100%',
@@ -15,31 +17,31 @@ var styles = function (bgImage) {
         container: {
             backgroundSize: 'cover',
             backgroundImage: 'url(' + bgImage + ')',
-            minHeight: "100%",
-            position: "relative",
+            minHeight: '100%',
+            position: 'relative',
             fontFamily: 'Open Sans, sans-serif'
         },
         main: {
-            paddingBottom: "30px",
+            paddingBottom: '20px',
             width: '100%'
         },
         header: {
             display: 'flex',
             alignItems: 'center',
-            background: '#21618C',
+            background: THEME_COLOR,
             color: '#fff'
         },
         navBar: {
             background: '#FFF'
         },
         footer: {
-            height: "30px",
-            position: "absolute",
-            bottom: "0px",
-            left: "0px",
+            height: '20px',
+            position: 'absolute',
+            bottom: '0px',
             fontSize: 11,
             width: '100%',
-            background: '#21618C',
+            display: 'table',
+            background: THEME_COLOR,
             color: '#fff'
         },
         image: {
@@ -51,9 +53,9 @@ var styles = function (bgImage) {
         },
         title: {
             fontSize: 30,
-            color: '#fff',
             fontWeight: 600,
-            margin: 7
+            margin: 7,
+            color: '#fff'
         }
     }
 };
@@ -78,8 +80,8 @@ var navBar = isClientMobile() ? null : (
 
 var Main = React.createClass({
     render: function () {
-        var pattern = isClientMobile() || this.props.params.bus || this.props.params.busStation || this.props.params.arrivalStation
-        var bgImage = pattern ? backgroundImage : backgroundImageSG;
+        var pattern = this.props.params.bus || this.props.params.busStation || this.props.params.arrivalStation
+        var bgImage = pattern ? backgroundImage : (isClientMobile() ? backgroundImageMobile : backgroundImageDesktop)
         return (
             <div style={styles().body}>
 
@@ -95,9 +97,8 @@ var Main = React.createClass({
                     <div style={styles().main}>
                         {this.props.children}
                     </div>
-
                     <footer style={styles().footer}>
-                        <span style={{padding:10}}>&copy; 2016 Thomas Quiviger, All Rights Reserved</span>
+                        <span style={{padding:10,display:'table-cell',verticalAlign:'middle'}}>&copy; 2016 Thomas Quiviger, All Rights Reserved</span>
                     </footer>
 
                 </div>
