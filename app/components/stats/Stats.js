@@ -7,12 +7,15 @@ var styles = {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: '100%'
+        width: '100%',
+        color:'#fff'
+
     },
     chartContainer: {
         width: '70%',
         marginBottom: 10,
-        paddingBottom: 20
+        paddingBottom: 20,
+        background: "rgba(231, 240, 249,0.9)"
     }
 };
 

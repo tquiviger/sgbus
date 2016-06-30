@@ -79,9 +79,7 @@ function buildArrivalTab(services, mode, arrivalStation, callBackFunction) {
             {services.map(function (result) {
                     var key = (arrivalStation ? arrivalStation.BusStopCode : result.OriginatingID) + '_' + result.ServiceNo;
                     return (
-                        <tr key={key}
-                            style={styles(result.Status === 'In Operation').row}>
-
+                        <tr key={key} style={styles(result.Status === 'In Operation').row}>
                             <td>{mode === 'station' ?
                                 result.Status === 'In Operation'
                                     ? <i className="fa fa-check-circle"/>
