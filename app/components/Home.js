@@ -34,7 +34,7 @@ var styles = function () {
             borderRadius: '5px',
             boxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
             border: '1px solid #000',
-            background: 'rgba(208, 209, 211,0.75)'
+            background: 'rgba(208, 209, 211,0.25)'
         },
         caption: {
             fontWeight: 700,
