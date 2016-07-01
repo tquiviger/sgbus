@@ -63,7 +63,7 @@ var styles = function () {
 
 var Home = React.createClass({
     render: function () {
-        var mainTitle = isClientMobile() ? null : <h3 style={styles().mainTitle}>Buses in Singapore</h3>;
+        var mainTitle = isClientMobile() ? null : <h1 style={styles().mainTitle}>Buses in Singapore</h1>;
         return (
             <div>
                 <div style={styles().containerC}>
@@ -72,20 +72,20 @@ var Home = React.createClass({
                             <Link to={'/stations'}>
                                 <img src={busStopLogo} style={styles().images} alt="Bus station logo"/>
                             </Link>
-                            <h3 style={styles().caption}>Station</h3>
+                            <h2 style={styles().caption}>Station</h2>
                         </div>
                         <div>
                             <Link to={'/buses'}>
                                 <img src={busLogo} style={styles().images} alt="Bus logo"/>
                             </Link>
-                            <h3 style={styles().caption}>Bus</h3>
+                            <h2 style={styles().caption}>Bus</h2>
                         </div>
                     </div>
                     <div>
                         <Link to={'/itineraries'}>
                             <img src={itineraryLogo} style={styles().images} alt="Itinerary logo"/>
                         </Link>
-                        <h3 style={styles().caption}>Itinerary </h3>
+                        <h2 style={styles().caption}>Itinerary </h2>
                     </div>
 
                 </div>
