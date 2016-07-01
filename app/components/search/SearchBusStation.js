@@ -1,15 +1,16 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var Searchkit = require('searchkit');
+
+import SearchkitProvider from "searchkit";
+import SearchBox from "searchkit";
+import Hits from "searchkit";
+
 var BusStationResults = require('./BusStationResults');
 var Config = require('Config');
 require("../../stylesheets/searchkit.css");
 
 var searchkit;
-
-const SearchkitProvider = Searchkit.SearchkitProvider;
-const SearchBox = Searchkit.SearchBox;
-const Hits = Searchkit.Hits;
 
 var styles = {
     query: {

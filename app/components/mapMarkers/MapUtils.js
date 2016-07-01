@@ -1,4 +1,4 @@
-import {fitBounds} from 'google-map-react/utils';
+import fitBounds from 'google-map-react/utils';
 var _ = require('underscore');
 
 const size = {

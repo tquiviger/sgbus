@@ -1,15 +1,18 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     resolve: {
         alias: {
-            react: path.resolve('./node_modules/react'),
+            react: path.resolve('./node_modules/react')
         }
     },
     loader: {
         configEnvironment: 'production'
     },
+
+    devtool: 'cheap-module-source-map'
+    ,
     entry: [
         './app/index'
     ],
@@ -24,6 +27,7 @@ module.exports = {
 
     plugins: [
         new webpack.optimize.DedupePlugin(),
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
         new webpack.optimize.UglifyJsPlugin({
             minimize: true,
             compress: {
@@ -54,4 +58,4 @@ module.exports = {
             }
         ]
     }
-}
+};
