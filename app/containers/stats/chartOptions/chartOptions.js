@@ -11,7 +11,7 @@ var LINE_OPTIONS = {
         position: 'bottom',
         labels: {
             boxWidth: 10,
-            fontColor: '#fff'
+            fontColor: '#000'
         }
     }, scales: {
         yAxes: [{

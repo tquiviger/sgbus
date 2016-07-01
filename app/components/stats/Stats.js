@@ -2,20 +2,18 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 
 var styles = {
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width: '100%',
-        color:'#fff'
-
-    },
     chartContainer: {
         width: '70%',
-        marginBottom: 10,
+        textAlign: 'center',
+        marginTop: 20,
+        marginBottom: 20,
         paddingBottom: 20,
-        background: "rgba(231, 240, 249,0.9)"
+        borderRadius: '5px',
+        background: "rgba(231, 240, 249,0.8)"
+    },
+    form: {
+        width: '20%',
+        textAlign: 'center'
     }
 };
 
@@ -23,22 +21,20 @@ var styles = {
 var Stats = React.createClass({
     render: function () {
         return (
-                <div style={styles.container}>
-                    <h3>Bus <b>{this.props.selectedBus}</b> Stats</h3>
-                    <div className="container-fluid" style={styles.chartContainer}>
-                        <canvas id="waitingTime"/>
+            <div className="container" style={styles.chartContainer}>
+                <h3>Stats for <b>{this.props.selectedBus ? 'Bus ' + this.props.selectedBus : 'all buses'}</b>
+                </h3>
+                <canvas id="waitingTime"/>
+                <div style={styles.form} className="container">
+                    <div className="form-group">
+                        <input
+                            className="form-control input-sm"
+                            type="text"
+                            placeholder="Enter a bus number"
+                            onChange={this.props.callbackFunction}/>
                     </div>
-                    <div className="container-fluid">
-                        <div className="form-group">
-                            <input
-                                className="form-control input-sm"
-                                type="text"
-                                placeholder="Enter a bus number"
-                                onChange={this.props.callbackFunction}/>
-                        </div>
-                    </div>
-
                 </div>
+            </div>
         )
     }
 });

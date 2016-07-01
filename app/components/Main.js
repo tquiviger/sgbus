@@ -22,7 +22,7 @@ var styles = function (bgImage) {
             fontFamily: 'Open Sans, sans-serif'
         },
         main: {
-            paddingBottom: '20px',
+            paddingBottom: '30px',
             width: '100%'
         },
         header: {
@@ -35,7 +35,7 @@ var styles = function (bgImage) {
             background: '#FFF'
         },
         footer: {
-            height: '20px',
+            height: '30px',
             position: 'absolute',
             bottom: '0px',
             fontSize: 11,
@@ -84,7 +84,6 @@ var Main = React.createClass({
         var bgImage = pattern ? backgroundImage : (isClientMobile() ? backgroundImageMobile : backgroundImageDesktop)
         return (
             <div style={styles().body}>
-
                 <div style={styles(bgImage).container}>
                     <header>
                         <div style={styles().header}>

@@ -10,7 +10,7 @@ var itineraryLogo = require('file?name=[name].[ext]!../images/itineraryLogo.png'
 
 var styles = function () {
     return {
-        container: {
+        containerC: {
             padding: 30,
             height: 'auto',
             textAlign: 'center',
@@ -19,7 +19,7 @@ var styles = function () {
             flexDirection: isClientMobile() ? 'column' : 'row',
             justifyContent: 'center'
         },
-        container2: {
+        containerR: {
             display: 'flex',
             align: 'middle',
             flexDirection: 'row',
@@ -42,20 +42,20 @@ var styles = function () {
             textDecoration: 'none',
             color: '#f0ad4e'
         },
-        mainTitle: {
-            textAlign: 'center',
-            padding: '20px',
-            margin: 0,
-            fontWeight: 700,
-            fontSize: 70
-        },
         mainTitleDiv: {
             borderRadius: '5px',
             color: '#fff',
             margin: 'auto',
             marginTop: 50,
             width: '70%',
-            background: 'rgba(34, 74, 115,0.5)'
+            background: "rgba(231, 240, 249,0.5)"
+        },
+        mainTitle: {
+            textAlign: 'center',
+            padding: '20px',
+            margin: 0,
+            fontWeight: 700,
+            fontSize: 70
         }
     };
 };
@@ -66,8 +66,8 @@ var Home = React.createClass({
         var mainTitle = isClientMobile() ? null : <h3 style={styles().mainTitle}>Buses in Singapore</h3>;
         return (
             <div>
-                <div style={styles().container}>
-                    <div style={styles().container2}>
+                <div style={styles().containerC}>
+                    <div style={styles().containerR}>
                         <div>
                             <Link to={'/stations'}>
                                 <img src={busStopLogo} style={styles().images} alt="Bus station logo"/>

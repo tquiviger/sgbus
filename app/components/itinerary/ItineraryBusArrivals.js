@@ -5,14 +5,15 @@ var PropTypes = React.PropTypes;
 var styles = {
     container: {
         height: '300px',
-        overflowY: 'scroll',
+        overflowY: 'auto',
         width: '100%'
     },
     busLine: {
-        borderTop: 'solid thin #3c8860'
+        borderTop: 'solid thin #fff'
     },
     title: {
-        textAlign: 'left'
+        textAlign: 'left',
+        marginLeft:10
     }
 };
 
@@ -22,7 +23,7 @@ var ItineraryBusArrivals = React.createClass({
         var arrivalStationsWithBus = this.props.arrivalStationsWithBus;
         return (
             <div style={styles.container}>
-                <div style={styles.title} className="container">
+                <div style={styles.title} >
                     <h3>Available buses From <b>{this.props.departureStation.Description}</b> To </h3>
                 </div>
                 {arrivalStationsWithBus
