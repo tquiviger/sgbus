@@ -1,10 +1,12 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var Searchkit = require('searchkit');
 
-import SearchkitProvider from "searchkit";
-import SearchBox from "searchkit";
-import Hits from "searchkit";
+import {
+    SearchkitManager,
+    SearchkitProvider,
+    SearchBox,
+    Hits
+} from "searchkit";
 
 var BusStationResults = require('./BusStationResults');
 var Config = require('Config');
@@ -31,7 +33,7 @@ var styles = {
 var SearchBusStation = React.createClass({
     componentWillMount: function () {
         var path = this.props.mode === "buses" ? "buses" : "stations";
-        searchkit = new Searchkit.SearchkitManager(
+        searchkit = new SearchkitManager(
             Config.apiUrl + "/search/" + path,
             {searchOnLoad: false, useHistory: false}
         );

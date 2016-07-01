@@ -1,5 +1,6 @@
-import fitBounds from 'google-map-react/utils';
-var _ = require('underscore');
+import {fitBounds} from 'google-map-react/utils';
+import max from 'lodash/max';
+import min from 'lodash/min';
 
 const size = {
     width: 800, // Map width in pixels
@@ -34,12 +35,12 @@ function getMapBoundsItinerary(arrivalStations, departureStation) {
 
 function getBounds(latitudes, longitudes) {
     var nw = {
-            lat: _.max(latitudes),
-            lng: _.min(longitudes)
+            lat: max(latitudes),
+            lng: min(longitudes)
         },
         se = {
-            lat: _.min(latitudes),
-            lng: _.max(longitudes)
+            lat: min(latitudes),
+            lng: max(longitudes)
 
         };
     return fitBounds({nw, se}, size);

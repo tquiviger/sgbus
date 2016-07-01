@@ -16,10 +16,10 @@
   "peerDependencies": {},
   "dependencies": {
     "axios": "^0.12.0",
-    "babel-core": "^6.9.1",
+    "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
-    "babel-preset-react": "^6.5.0",
+    "babel-preset-react": "^6.11.1",
     "chart.js": "^2.1.4",
     "compression": "^1.6.2",
     "cors": "^2.7.1",
@@ -32,12 +32,11 @@
     "randomcolor": "^0.4.4",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
-    "react-router": "^2.4.0",
-    "react-tooltip": "^3.0.5",
+    "react-router": "^2.5.1",
+    "react-tooltip": "^3.0.8",
     "request": "^2.72.0",
     "searchkit": "0.10.0",
     "style-loader": "^0.13.1",
-    "underscore": "^1.8.3",
     "webpack": "^1.12.14"
   },
   "devDependencies": {

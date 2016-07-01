@@ -1,7 +1,11 @@
 var React = require('react');
 var moment = require('moment');
 var Chart = require('chart.js');
-var _ = require('underscore');
+
+import uniq from 'lodash/uniq';
+import take from 'lodash/take';
+import groupBy from 'lodash/groupBy';
+
 var randomColor = require('randomcolor');
 
 var Stats = require('../../components/stats/Stats');
@@ -13,7 +17,7 @@ const OUTPUT_DATE_FORMAT = 'DD/MM/YYYY HH:mm';
 const SINGLE_BUS_STATS = ['meanwaitingtimebybus', 'maxwaitingtimebybus', 'minwaitingtimebybus'];
 const MULTI_BUS_STATS = ['meanwaitingtimebybus'];
 
-var defaultBusDisplayed = _.first(BUSES, 15);
+var defaultBusDisplayed = take(BUSES, 15);
 
 var StatsContainer = React.createClass({
     getInitialState: function () {
@@ -81,11 +85,11 @@ var StatsContainer = React.createClass({
         var data = statsData.hits.hits.map(function (h) {
             return h._source;
         });
-        var labels = _.uniq(data.map(function (stat) {
+        var labels = uniq(data.map(function (stat) {
                 return moment(stat.timestamp).format(OUTPUT_DATE_FORMAT);
             }
         ));
-        var hits = _.groupBy(data, busNumber ? 'stattype' : 'key');
+        var hits = groupBy(data, busNumber ? 'stattype' : 'key');
         var datasets = [];
         if (!busNumber) {
             for (var i = 0; i < 300; i++) {

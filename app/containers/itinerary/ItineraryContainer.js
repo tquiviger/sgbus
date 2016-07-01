@@ -3,7 +3,7 @@ var ItineraryInfo = require('../../components/itinerary/ItineraryInfo');
 var getItineraryInfo = require('../../helpers/api').getItineraryInfo;
 var getBusStationInfo = require('../../helpers/api').getBusStationInfo;
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
-var _ = require('underscore');
+import invert from 'lodash/invert';
 
 const numItineraryResults = 6;
 const numDepartureStationsAround = 4;
@@ -54,7 +54,7 @@ var ItineraryContainer = React.createClass({
             });
             if (busRoute) {
                 var route = busRoute._source;
-                var invertedRoute = _.invert(route);
+                var invertedRoute = invert(route);
                 var depIndex = invertedRoute[busData.departureStation.BusStopID].split('_')[1];
                 var arrIndex = invertedRoute[busData.arrivalStation.BusStopCode].split('_')[1];
                 var numStops = arrIndex - depIndex;
