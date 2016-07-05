@@ -27,7 +27,6 @@ module.exports = {
 
     plugins: [
         new webpack.optimize.DedupePlugin(),
-        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
         new webpack.optimize.UglifyJsPlugin({
             minimize: true,
             compress: {
