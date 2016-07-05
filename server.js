@@ -25,8 +25,9 @@ app.use('/search/*', function (req, res) {
 
 https.createServer(
     {
-        key: fs.readFileSync(configuration.certPath + 'privkey.pem'),
-        cert: fs.readFileSync(configuration.certPath + 'cert.pem')
+        ca: fs.readFileSync(configuration.certPath + 'sgbus.ca-bundle'),
+        key: fs.readFileSync(configuration.certPath + 'server.key'),
+        cert: fs.readFileSync(configuration.certPath + 'sgbus.crt')
     }, app)
     .listen(8080, function () {
         console.log("Express server listening on port " + 8080);
