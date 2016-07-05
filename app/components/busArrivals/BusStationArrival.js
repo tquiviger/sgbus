@@ -1,5 +1,5 @@
 var React = require('react');
-var moment = require('../../external/moment');
+var moment = require('moment');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
 var ReactTooltip = require("react-tooltip");

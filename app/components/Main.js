@@ -62,6 +62,23 @@ var styles = function (bgImage) {
     }
 };
 
+var navBar = isClientMobile() ? null : (
+    <div style={styles().navBar}>
+        <nav role="navigation" aria-label="Site Navigation">
+            <ul className="nav nav-tabs">
+                <li role="presentation">
+                    <Link to={'/'}>
+                        <i style={styles().icon} className="fa fa-home"/>Home
+                    </Link>
+                </li>
+                <li role="presentation">
+                    <Link to={'/stats'}>
+                        <i style={styles().icon} className="fa fa-area-chart"/>Statistics
+                    </Link>
+                </li>
+            </ul>
+        </nav>
+    </div>);
 
 var Main = React.createClass({
     render: function () {
@@ -76,6 +93,7 @@ var Main = React.createClass({
                                 <img src={logo} style={styles().image} alt="Main logo"/>
                             </Link>
                         </div>
+                        {navBar}
                     </header>
                     <div style={styles().main}>
                         {this.props.children}

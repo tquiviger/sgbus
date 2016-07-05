@@ -10,6 +10,7 @@ var HomeContainer = require('../containers/HomeContainer');
 var BusStationInfoContainer = require('../containers/busArrivals/BusStationInfoContainer');
 var ItineraryContainer = require('../containers/itinerary/ItineraryContainer');
 var BusRoutesContainer = require('../containers/busRoutes/BusRoutesContainer');
+var StatsContainer = require('../containers/stats/StatsContainer');
 var SearchMainContainer = require('../containers/search/SearchMainContainer');
 
 
@@ -17,6 +18,7 @@ var routes = (
     <Router history={hashHistory}>
         <Route path='/' component={Main}>
             <IndexRoute component={HomeContainer}/>
+            <Route path='stats' component={StatsContainer}/>
             <Route path='stations' component={SearchMainContainer}/>
             <Route path='stations/:busStation' component={BusStationInfoContainer}/>
             <Route path='buses' component={SearchMainContainer}/>
