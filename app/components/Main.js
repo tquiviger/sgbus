@@ -1,5 +1,7 @@
 var React = require('react');
 var Link = require('react-router').Link;
+require("../stylesheets/bootstrap.min.css");
+
 var isClientMobile = require('../helpers/mobile').isClientMobile;
 var logo = require('file?name=[name].[ext]!../images/logo_large.png');
 var backgroundImage = require('file?name=[name].[ext]!../images/pattern.svg');

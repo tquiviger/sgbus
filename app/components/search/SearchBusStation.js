@@ -1,16 +1,16 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
+require("../../stylesheets/searchkit.css");
 
 import {
-    SearchkitManager,
-    SearchkitProvider,
-    SearchBox,
-    Hits
+SearchkitManager,
+SearchkitProvider,
+SearchBox,
+Hits
 } from "searchkit";
 
 var BusStationResults = require('./BusStationResults');
 var Config = require('Config');
-require("../../stylesheets/searchkit.css");
 
 var searchkit;
 
