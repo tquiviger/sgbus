@@ -4,6 +4,7 @@ var getItineraryInfo = require('../../helpers/api').getItineraryInfo;
 var getBusStationInfo = require('../../helpers/api').getBusStationInfo;
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
 import invert from 'lodash/invert';
+import find from 'lodash/find';
 
 const numItineraryResults = 6;
 const numDepartureStationsAround = 4;
@@ -49,7 +50,7 @@ var ItineraryContainer = React.createClass({
         var services = busData.departureStation.Services;
         services.forEach(function (service) {
             var routeStations = [];
-            var busRoute = _.find(busData.hits.hits, function (hit) {
+            var busRoute = find(busData.hits.hits, function (hit) {
                 return hit._id.split('_')[0] == service.ServiceNo
             });
             if (busRoute) {
