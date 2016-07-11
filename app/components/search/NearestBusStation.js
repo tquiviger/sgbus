@@ -74,7 +74,7 @@ var FindNearestButton = function (props) {
                 <button type='button'
                         key={result._id}
                         style={styles.button}
-                        className='btn btn-primary'
+                        className='btn btn-primary btn-sm'
                         value={props.nearestStationId}>
                     <img style={{width:16,height:16, marginRight:5}} src={numberLogo} alt="Number logo"/>
                     <span style={{verticalAlign: 'middle'}}>{getStationNameAndDistance(result)}</span>

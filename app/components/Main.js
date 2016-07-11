@@ -34,7 +34,11 @@ var styles = function (bgImage) {
             color: '#fff'
         },
         navBar: {
-            background: '#FFF'
+            borderRadius: 0
+        },
+        navBarLinks: {
+            color: THEME_COLOR,
+            marginRight: 30
         },
         footer: {
             height: '30px',
@@ -63,20 +67,16 @@ var styles = function (bgImage) {
 };
 
 var navBar = isClientMobile() ? null : (
-    <div style={styles().navBar}>
-        <nav role="navigation" aria-label="Site Navigation">
-            <ul className="nav nav-tabs">
-                <li role="presentation">
-                    <Link to={'/'}>
-                        <i style={styles().icon} className="fa fa-home"/>Home
-                    </Link>
-                </li>
-                <li role="presentation">
-                    <Link to={'/stats'}>
-                        <i style={styles().icon} className="fa fa-area-chart"/>Statistics
-                    </Link>
-                </li>
-            </ul>
+    <div>
+        <nav style={styles().navBar} className="navbar navbar-light bg-faded" aria-label="Site Navigation">
+            <div className="nav navbar-nav">
+                <Link style={styles().navBarLinks} to={'/'}>
+                    <i style={styles().icon} className="fa fa-home"/>Home
+                </Link>
+                <Link style={styles().navBarLinks} to={'/stats'}>
+                    <i style={styles().icon} className="fa fa-area-chart"/>Statistics
+                </Link>
+            </div>
         </nav>
     </div>);
 

@@ -7,7 +7,7 @@ const placeStyle = function (size, currentStation, stationId) {
     var isStationRoute = stationId === 'route';
     return {
         position: 'absolute',
-        border: newSize / 5 + 'px solid #000',
+        border: newSize / 7 + 'px solid #000',
         backgroundColor: isCurrentStation ? (isStationRoute ? '#000' : '#2980B9') : '#F7DC6F',
         textAlign: 'center',
         verticalAlign: 'center',

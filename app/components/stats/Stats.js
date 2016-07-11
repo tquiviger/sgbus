@@ -30,7 +30,7 @@ var Stats = React.createClass({
                         <input
                             className="form-control input-sm"
                             type="text"
-                            placeholder="Enter a bus number"
+                            placeholder="Enter a bus #"
                             onChange={this.props.callbackFunction}/>
                     </div>
                 </div>

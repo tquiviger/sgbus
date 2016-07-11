@@ -20,8 +20,8 @@ var BusStationResults = function (hits, path, onClickReset) {
                             <Link key={result._id} to={path+"/"+result._id}>
                                 <button
                                     type='button'
-                                    style={{margin: 9}}
-                                    className='btn btn-info'
+                                    style={{marginTop: 16}}
+                                    className='btn btn-info btn-sm'
                                     onClick={onClickReset}>
                                     {path === "buses" ? result._source.ServiceNo : result._source.Description}
                                 </button>

@@ -1,5 +1,5 @@
 var React = require('react');
-var GoogleMap = require('google-map-react');
+import GoogleMap from 'google-map-react';
 var StationMarker = require('../mapMarkers/StationMarker');
 var BusMarker = require('../mapMarkers/BusMarker');
 var getMapBounds = require('../mapMarkers/MapUtils').getMapBounds;

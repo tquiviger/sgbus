@@ -26,7 +26,7 @@ var styles = function () {
             justifyContent: 'center'
         },
         images: {
-            width: 80,
+            width: 120,
             padding: 20,
             marginRight: isClientMobile() ? 10 : 90,
             marginLeft: isClientMobile() ? 10 : 90,
@@ -37,6 +37,7 @@ var styles = function () {
             background: 'rgba(208, 209, 211,0.25)'
         },
         caption: {
+            marginTop:10,
             fontWeight: 700,
             display: 'block',
             textDecoration: 'none',

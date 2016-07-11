@@ -8,12 +8,10 @@ var styles = {
         overflowY: 'auto',
         width: '100%'
     },
-    busLine: {
-        borderTop: 'solid thin #fff'
-    },
     title: {
         textAlign: 'left',
-        marginLeft:10
+        marginLeft:10,
+        marginTop:10
     }
 };
 
@@ -24,14 +22,14 @@ var ItineraryBusArrivals = React.createClass({
         return (
             <div style={styles.container}>
                 <div style={styles.title} >
-                    <h3>Available buses From <b>{this.props.departureStation.Description}</b> To </h3>
+                    <h4>Available buses From <b>{this.props.departureStation.Description}</b> To </h4>
                 </div>
                 {arrivalStationsWithBus
                     .sort(function (a, b) {
                         return parseFloat(a.arrivalStation.distance) - parseFloat(b.arrivalStation.distance)
                     }).map(function (arrivalStation, rank) {
                             return (
-                                <div className="container-fluid" style={styles.busLine}
+                                <div className="container-fluid"
                                      key={arrivalStation.arrivalStation.BusStopCode}>
                                     <BusStationArrival
                                         mode="itinerary"

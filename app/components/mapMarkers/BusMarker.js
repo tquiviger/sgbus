@@ -1,8 +1,8 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
-const K_WIDTH = 20;
-const K_HEIGHT = 10;
+const K_WIDTH = 30;
+const K_HEIGHT = 20;
 
 const placeStyle = {
     position: 'absolute',
@@ -17,7 +17,7 @@ const placeStyle = {
     color: '#000',
     fontSize: 9,
     fontWeight: 700,
-    padding: 3
+    padding: 2
 };
 
 

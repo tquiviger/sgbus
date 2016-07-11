@@ -1,11 +1,11 @@
 var React = require('react');
-var GoogleMap = require('google-map-react');
+import GoogleMap from 'google-map-react';
 var StationMarker = require('../mapMarkers/StationMarker');
 var BusMarker = require('../mapMarkers/BusMarker');
 var Config = require('Config');
 var PropTypes = React.PropTypes;
 
-const stationMarkerSize = 8;
+const stationMarkerSize = 10;
 const defaultZoom = 16;
 
 var styles = {

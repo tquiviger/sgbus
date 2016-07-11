@@ -15,6 +15,10 @@ var styles = {
     links: {
         color: '#000'
     },
+    row: {
+        marginTop:10,
+        marginBottom:10
+    },
     tabHeader: {
         color: "#FFF",
         background: "#21618C",
@@ -22,7 +26,7 @@ var styles = {
     },
     button: {
         fontWeight: 100,
-        marginTop: 10,
+        borderColor:'#fff',
         backgroundColor: 'Transparent',
         backgroundRepeat: 'no-repeat',
         cursor: 'pointer',
@@ -47,7 +51,7 @@ var BusRoutes = React.createClass({
                         <td>{routes['BusStopRoad_' + index]}</td>
                         <td>
                             <Link style={styles.links}
-                                to={'/stations/'+routes['BusStopCode_' + index]}><b>{routes['BusStopName_' + index]}</b></Link>
+                                  to={'/stations/'+routes['BusStopCode_' + index]}><b>{routes['BusStopName_' + index]}</b></Link>
                         </td>
                         <td>{routes['Distance_' + index]} km</td>
                     </tr>
@@ -59,22 +63,23 @@ var BusRoutes = React.createClass({
     render: function () {
         var toggleButon;
         if (this.props.busData.routes_2) {
-            toggleButon = <button
-                type='button'
-                style={styles.button}
-                className='btn btn-primary'
-                onClick={this.props.callbackFunction}>
-                <i style={{marginRight :10}} className="fa fa-exchange"/>
-                Switch direction
-            </button>
+            toggleButon =
+                <button
+                    type='button'
+                    style={styles.button}
+                    className='btn btn-primary btn-sm'
+                    onClick={this.props.callbackFunction}>
+                    <i style={{marginRight :10}} className="fa fa-exchange"/>
+                    Switch direction
+                </button>
         }
         return (
-            <div className="row" style={styles.container}>
-                <div className="col-md-4">
-                    <h1>Bus { this.props.busData.busInfo.ServiceNo} </h1>
-                    <h4>Operator : <b>{ this.props.busData.busInfo.Operator}</b></h4>
-                    <h4>Type : <b>{ this.props.busData.busInfo.Category} </b></h4>
-                    <table className="table table-condensed table-striped table-bordered">
+            <div  style={styles.container}>
+                <div style={styles.row} className="col-sm-4">
+                    <h2>Bus { this.props.busData.busInfo.ServiceNo} </h2>
+                    <h5>Operator : <b>{ this.props.busData.busInfo.Operator}</b></h5>
+                    <h5>Type : <b>{ this.props.busData.busInfo.Category} </b></h5>
+                    <table className="table table-sm table-striped table-bordered">
                         <tbody>
                         <tr style={styles.tabHeader}>
                             <td colSpan="4" style={{textAlign:"center"}}>Scheduled bus frequency</td>
@@ -93,20 +98,19 @@ var BusRoutes = React.createClass({
                         </tr>
                         </tbody>
                     </table>
-
                 </div>
-                <div style={styles.table} className="col-md-7">
-                    <div className="container-fluid">
-                        <div className="row">
+                <div style={styles.table} className="col-sm-6">
+                    <div className="container">
+                        <div style={styles.row} className="row">
                             {toggleButon}
-                            <h3 style={{marginTop:15}}><b>Direction {this.props.currentDirection}</b></h3>
+                            <h4><b>Direction {this.props.currentDirection}</b></h4>
                         </div>
                     </div>
-                    <table className="table table-condensed table-hover">
+                    <table className="table table-sm table-hover">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Road </th>
+                            <th>Road</th>
                             <th>Bus Stop</th>
                             <th>Distance</th>
                         </tr>
