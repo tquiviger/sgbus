@@ -1,6 +1,6 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
-var Link = require('react-router').Link;
+import React from 'react';
+import {PropTypes} from 'react';
+import Link from 'react-router/lib/Link'
 
 var styles = {
     container: {

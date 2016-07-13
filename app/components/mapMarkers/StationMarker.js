@@ -1,5 +1,5 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import {PropTypes} from 'react';
 
 const placeStyle = function (size, currentStation, stationId) {
     var isCurrentStation = (currentStation.localeCompare(stationId));

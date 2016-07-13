@@ -1,6 +1,7 @@
-var React = require('react');
+import React from 'react';
+import {PropTypes} from 'react';
+
 var BusStationArrival = require('../busArrivals/BusStationArrival');
-var PropTypes = React.PropTypes;
 
 var styles = {
     container: {

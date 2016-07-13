@@ -1,7 +1,8 @@
-var React = require('react');
-var moment = require('moment');
-var PropTypes = React.PropTypes;
-var Link = require('react-router').Link;
+import React from 'react';
+import {PropTypes} from 'react';
+import Link from 'react-router/lib/Link'
+import moment from 'moment';
+
 var ReactTooltip = require("react-tooltip");
 
 var styles = function (isInOperation) {

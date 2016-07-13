@@ -1,7 +1,7 @@
-var React = require('react');
-var SearchMain = require('../../components/search/SearchMain');
-var withRouter = require('react-router').withRouter;
+import React from 'react';
+import {withRouter} from 'react-router';
 
+var SearchMain = require('../../components/search/SearchMain');
 
 var SearchMainContainer = React.createClass({
 

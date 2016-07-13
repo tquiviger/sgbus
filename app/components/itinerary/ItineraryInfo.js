@@ -1,5 +1,6 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import {PropTypes} from 'react';
+
 var ItineraryBusArrivals = require('./ItineraryBusArrivals');
 var ItineraryNotFound = require('./ItineraryNotFound');
 var ItineraryMap = require('./ItineraryMap');

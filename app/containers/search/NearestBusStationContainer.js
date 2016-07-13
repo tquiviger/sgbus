@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 var NearestBusStation = require('../../components/search/NearestBusStation');
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
-var withRouter = require('react-router').withRouter;
+import {withRouter} from 'react-router';
 
 const numResults = 3;
 

@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
+
 var BusInfo = require('../../components/busRoutes/BusInfo');
 var getBusAndRoutesInfo = require('../../helpers/api').getBusAndRoutesInfo;
-
 
 const defaultCenterLatitude = 1.3634594;
 const defaultCenterLongitude = 103.8200663;

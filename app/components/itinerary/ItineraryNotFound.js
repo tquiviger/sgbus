@@ -1,6 +1,7 @@
-var React = require('react');
+import React from 'react';
+import {PropTypes} from 'react';
+
 var NearestBusStation = require('../search/NearestBusStation');
-var PropTypes = React.PropTypes;
 
 var styles = {
     container: {

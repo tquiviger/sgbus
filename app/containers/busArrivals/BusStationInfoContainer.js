@@ -1,4 +1,5 @@
-var React = require('react');
+import React from 'react';
+
 var BusStationInfo = require('../../components/busArrivals/BusStationInfo');
 var getBusStation = require('../../helpers/api').getBusStation;
 

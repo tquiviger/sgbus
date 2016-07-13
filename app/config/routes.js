@@ -1,9 +1,8 @@
-var React = require('react');
-var ReactRouter = require('react-router');
-var Router = ReactRouter.Router;
-var Route = ReactRouter.Route;
-var hashHistory = ReactRouter.hashHistory;
-var IndexRoute = ReactRouter.IndexRoute;
+import React from 'react';
+import Route from 'react-router/lib/Route';
+import IndexRoute from 'react-router/lib/IndexRoute';
+import Router from 'react-router/lib/Router';
+import hashHistory from 'react-router/lib/hashHistory';
 
 var Main = require('../components/Main');
 var HomeContainer = require('../containers/HomeContainer');

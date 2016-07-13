@@ -1,5 +1,6 @@
-var React = require('react');
-var Link = require('react-router').Link;
+import React from 'react';
+import Link from 'react-router/lib/Link'
+
 require("../stylesheets/bootstrap.min.css");
 
 var isClientMobile = require('../helpers/mobile').isClientMobile;

@@ -1,4 +1,4 @@
-var axios = require('axios');
+import axios from 'axios';
 var Config = require('Config');
 
 var _apiBusArrivalsUrl = Config.apiUrl + '/api/arrivals/';

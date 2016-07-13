@@ -1,10 +1,11 @@
-var React = require('react');
+import React from 'react';
 import GoogleMap from 'google-map-react';
+import {PropTypes} from 'react';
+
 var StationMarker = require('../mapMarkers/StationMarker');
 var BusMarker = require('../mapMarkers/BusMarker');
 var getMapBounds = require('../mapMarkers/MapUtils').getMapBounds;
 var Config = require('Config');
-var PropTypes = React.PropTypes;
 
 var styles = {
     container: {

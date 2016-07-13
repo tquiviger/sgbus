@@ -1,12 +1,10 @@
-var React = require('react');
-var moment = require('moment');
-var Chart = require('chart.js');
-
+import React from 'react';
+import moment from 'moment';
+import Chart from 'chart.js';
 import uniq from 'lodash/uniq';
 import take from 'lodash/take';
 import groupBy from 'lodash/groupBy';
-
-var randomColor = require('randomcolor');
+import randomColor from 'randomcolor';
 
 var Stats = require('../../components/stats/Stats');
 var getLatestsStats = require('../../helpers/api').getLatestsStats;
@@ -64,7 +62,7 @@ var StatsContainer = React.createClass({
         this.setState({myChart: myChart})
     },
     generateDatasets: function (datasets, values, label, color) {
-        var color = color ? color : randomColor({luminosity: 'bright'});
+        color = color ? color : randomColor({luminosity: 'bright'});
         datasets.push({
             label: label,
             fill: false,

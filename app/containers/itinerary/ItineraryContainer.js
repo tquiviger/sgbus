@@ -1,10 +1,11 @@
-var React = require('react');
+import React from 'react';
+import find from 'lodash/find';
+import invert from 'lodash/invert';
+
 var ItineraryInfo = require('../../components/itinerary/ItineraryInfo');
 var getItineraryInfo = require('../../helpers/api').getItineraryInfo;
 var getBusStationInfo = require('../../helpers/api').getBusStationInfo;
 var getNearestBusStationInfo = require('../../helpers/api').getNearestBusStationInfo;
-import invert from 'lodash/invert';
-import find from 'lodash/find';
 
 const numItineraryResults = 6;
 const numDepartureStationsAround = 4;

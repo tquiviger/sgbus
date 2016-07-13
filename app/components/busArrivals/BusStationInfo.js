@@ -1,8 +1,9 @@
-var React = require('react');
+import React from 'react';
+import {PropTypes} from 'react';
+
 var BusStationArrivals = require('./BusStationArrivals');
 var BusStationMap = require('./BusStationMap');
 var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
-var PropTypes = React.PropTypes;
 
 var styles = {
     container: {

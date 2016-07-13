@@ -1,8 +1,8 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import {PropTypes} from 'react';
+
 var SearchBusStation = require('./SearchBusStation');
 var NearestBusStationContainer = require('../../containers/search/NearestBusStationContainer');
-
 var busLogo = require('file?name=[name].[ext]!../../images/busLogo.png');
 var busStopLogo = require('file?name=[name].[ext]!../../images/busStopLogo.png');
 var itineraryLogo = require('file?name=[name].[ext]!../../images/itineraryLogo.png');

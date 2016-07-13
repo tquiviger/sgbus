@@ -1,12 +1,12 @@
-var React = require('react');
-var PropTypes = React.PropTypes;
+import React from 'react';
+import {PropTypes} from 'react';
+import Link from 'react-router/lib/Link'
 var loadingImage = require('file?name=[name].[ext]!../../images/loading.svg');
 var one = require('file?name=[name].[ext]!../../images/one.png');
 var two = require('file?name=[name].[ext]!../../images/two.png');
 var three = require('file?name=[name].[ext]!../../images/three.png');
 var four = require('file?name=[name].[ext]!../../images/four.png');
 var NearestStationsMap = require('./NearestStationsMap');
-var Link = require('react-router').Link;
 
 var styles = {
     container: {
