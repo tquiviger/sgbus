@@ -17,6 +17,7 @@ const MULTI_BUS_STATS = ['meanwaitingtimebybus'];
 
 var defaultBusDisplayed = take(BUSES, 15);
 
+
 var StatsContainer = React.createClass({
     getInitialState: function () {
         return {
