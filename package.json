@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/tquiviger/sgbus.git"
   },
-  "author": "Thomas Quiviger ",
+  "author": "Thomas Quiviger",
   "license": "MIT",
   "peerDependencies": {},
   "dependencies": {
